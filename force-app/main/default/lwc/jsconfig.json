@@ -1,6 +1,15 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/flowPickerFSC": [
+                "flowPickerFSC/flowPickerFSC.js"
+            ],
+            "c/quickChoiceFSC": [
+                "quickChoiceFSC/quickChoiceFSC.js"
+            ]
+        }
     },
     "include": [
         "**/*",
