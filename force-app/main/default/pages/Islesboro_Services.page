@@ -1,0 +1,59 @@
+<apex:page controller="Islesboro_Services" lightningStylesheets="true">
+    <apex:pageBlock >
+        <apex:outputPanel >
+            <apex:outputText value="Active Data Services - {!DataCount}"/>
+        </apex:outputPanel>
+        <apex:pageBlockSection >
+            <apex:pageBlockTable value="{!dataList}" var="data"> 
+                <apex:column >
+                    <apex:facet name="header">Service</apex:facet>
+                    <apex:outputField value="{!data.Name}" />                           
+                </apex:column> 
+                <apex:column >
+                    <apex:facet name="header">Status</apex:facet>
+                    <apex:outputField value="{!data.Status}" />                           
+                </apex:column>                 
+                <apex:column >
+                    <apex:facet name="header">Installed</apex:facet>
+                    <apex:outputField value="{!data.InstallDate}" />                           
+                </apex:column>                 
+                <apex:column >
+                    <apex:facet name="header">Removed</apex:facet>
+                    <apex:outputField value="{!data.Removal_Date__c}" />                           
+                </apex:column>             
+                <apex:column >
+                    <apex:facet name="header">ONT ID</apex:facet>
+                    <apex:outputField value="{!data.GWI_Asset_Tag_Number__c}" />                           
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:pageBlock >
+        <apex:outputPanel >
+            <apex:outputText value="Active Voice Services - {!VoiceCount}"/>
+        </apex:outputPanel>
+        <apex:pageBlockSection >
+            <apex:pageBlockTable value="{!voiceList}" var="voice"> 
+                <apex:column >
+                    <apex:facet name="header">Service</apex:facet>
+                    <apex:outputField value="{!voice.Name}" />                           
+                </apex:column> 
+                <apex:column >
+                    <apex:facet name="header">Status</apex:facet>
+                    <apex:outputField value="{!voice.Status}" />                           
+                </apex:column>                 
+                <apex:column >
+                    <apex:facet name="header">Installed</apex:facet>
+                    <apex:outputField value="{!voice.InstallDate}" />                           
+                </apex:column>                 
+                <apex:column >
+                    <apex:facet name="header">Removed</apex:facet>
+                    <apex:outputField value="{!voice.Removal_Date__c}" />                           
+                </apex:column>             
+                <apex:column >
+                    <apex:facet name="header">Phone #</apex:facet>
+                    <apex:outputField value="{!voice.Phone_Number__c}" />                           
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock></apex:page>

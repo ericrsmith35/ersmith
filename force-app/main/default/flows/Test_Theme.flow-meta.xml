@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Local_Action</name>
+        <label>Local Action</label>
+        <locationX>49</locationX>
+        <locationY>29</locationY>
+        <actionName>c:ersCurrentTheme_FA</actionName>
+        <actionType>component</actionType>
+        <connector>
+            <targetReference>Flow_Screen_Component</targetReference>
+        </connector>
+        <outputParameters>
+            <assignToReference>laDesc</assignToReference>
+            <name>Theme</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>laLEX</assignToReference>
+            <name>isLEX</name>
+        </outputParameters>
+    </actionCalls>
+    <interviewLabel>Test Theme {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Test Theme</label>
+    <processType>Flow</processType>
+    <screens>
+        <name>Flow_Screen_Component</name>
+        <label>Flow Screen Component</label>
+        <locationX>217</locationX>
+        <locationY>110</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Flow_Screen_Component_0</targetReference>
+        </connector>
+        <fields>
+            <name>FSC</name>
+            <extensionName>c:ersCurrentTheme</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>scDesc</assignToReference>
+                <name>Theme</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>scLEX</assignToReference>
+                <name>isLEX</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>scla</name>
+            <fieldText>SC Desc: {!scDesc}
+SC LEX: {!scLEX}
+
+LA Desc: {!laDesc}
+LA LEX: {!laLEX}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Flow_Screen_Component_0</name>
+        <label>Flow Screen Component</label>
+        <locationX>215</locationX>
+        <locationY>263</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>FSC_0</name>
+            <extensionName>c:ersCurrentTheme</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>scDesc</assignToReference>
+                <name>Theme</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>scLEX</assignToReference>
+                <name>isLEX</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>scla_0</name>
+            <fieldText>SC Desc: {!scDesc}
+SC LEX: {!scLEX}
+
+LA Desc: {!laDesc}
+LA LEX: {!laLEX}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Local_Action</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>laDesc</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>laLEX</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>scDesc</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>scLEX</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

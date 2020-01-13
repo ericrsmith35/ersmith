@@ -1,0 +1,5 @@
+<apex:page standardController="Asset">
+    <flow:interview name="Asset_Replace" finishLocation="/{!Asset.Id}" >
+        <apex:param name="vAssetID" value="{!Asset.Id}" />
+    </flow:interview>
+</apex:page>

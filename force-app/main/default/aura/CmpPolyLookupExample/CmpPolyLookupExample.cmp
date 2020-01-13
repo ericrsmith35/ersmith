@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="CmpPolyLookupExampleCtrl" >
+    
+    <aura:attribute name="selectedTeamMemberId" type="String" access="private"/>
+    <aura:attribute name="selectedTeamMemberName" type="String" access="private"/>
+    <aura:attribute name="selectedType" type="String" default="Users" access="private"/>
+    
+    <lightning:card >
+        <c:CmpPolymorphLookup lookupLabel="Add Team Members" 
+                              selectedMenuType="{!v.selectedType}"
+                              selectedId="{!v.selectedTeamMemberId}"
+                              selectedName="{!v.selectedTeamMemberName}" >
+            
+            <c:CmpPolymorphLookupType type="Users" 
+                                      fetchRecordsMethod="{!c.getUsers}" 
+                                      iconType="standard" 
+                                      iconName="user">
+            </c:CmpPolymorphLookupType>
+            
+            <c:CmpPolymorphLookupType type="User Groups" 
+                                      fetchRecordsMethod="{!c.getUserGroups}"
+                                      iconType="standard" 
+                                      iconName="groups">
+            </c:CmpPolymorphLookupType>
+            
+        </c:CmpPolymorphLookup>
+    </lightning:card>    
+    
+</aura:component>

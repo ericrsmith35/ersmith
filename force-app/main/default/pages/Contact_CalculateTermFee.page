@@ -1,0 +1,6 @@
+<apex:page standardController="Contact">
+    <apex:sectionheader title="Contact: {!Contact.Name}" subtitle="Calculate Term Fee"/>
+    <flow:interview name="Contact_Calculate_Termination_Fee" finishLocation="/{!Contact.Id}" >
+        <apex:param name="cID" value="{!Contact.Id}" />
+    </flow:interview>
+</apex:page>

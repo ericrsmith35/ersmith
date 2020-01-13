@@ -1,0 +1,10 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickAction">
+
+	<aura:attribute name="caseobject" type="Case" />
+
+	<force:recordData aura:id="recordData" layoutType="FULL" targetFields="{!v.caseobject}" mode="VIEW" recordId="{!v.recordId}" />
+	<lightning:navigation aura:id="nav"/>
+
+	<lightning:button label="Send Email" onclick="{!c.goToCmpSendEmail}"/>
+
+</aura:component>

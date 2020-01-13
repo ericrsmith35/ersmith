@@ -1,0 +1,120 @@
+<apex:page standardcontroller="Project__c" sidebar="false">
+<apex:messages />
+    <apex:sectionheader title="{!$ObjectType.Project__c.label} Detail" subtitle="{!Project__c.Name}"/>
+    <chatter:feedwithfollowers entityId="{!Project__c.Id}"/>
+    <apex:form >
+        <apex:pageblock mode="maindetail" title="{!$ObjectType.Project__c.label} Detail">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Edit" action="{!Edit}"/>
+                <apex:commandbutton value="Delete" action="{!Delete}"/>
+                <!-- *************** Uncomment as needed LAYOUT PAGE :: http://WWW.CLERISOFT.COM (2008-2014) *************** -->
+                    <!-- <apex:commandbutton value="Include Offline" action="{!URLFOR($Action.Project__c.IncludeOffline,Project__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Clone" action="{!URLFOR($Action.Project__c.Clone,Project__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Convert" action="{!URLFOR($Action.Project__c.Convert,Project__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Find Duplicates" action="{!URLFOR($Action.Project__c.FindDup,Project__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Request Update" action="{!URLFOR($Action.Project__c.RequestUpdate,Project__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Advanced Setup" action="{!URLFOR($Action.Project__c.AdvancedSetup,Project__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Manage Members" action="{!URLFOR($Action.Project__c.ManageMembers,Project__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Close Case" action="{!URLFOR($Action.Project__c.CloseCase,Project__c.id)}"/> -->
+                <!-- *************** Uncomment as needed LAYOUT PAGE :: http://WWW.CLERISOFT.COM (2008-2014) *************** -->
+            </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Master ]   **********  -->
+            <apex:outputpanel >
+                <apex:pageblocksection title="Information" showheader="false" collapsible="false" columns="2">
+                    <apex:outputfield value="{!Project__c.Name}"/>
+                    <apex:outputfield value="{!Project__c.osp_Standard_Interval__c}"/>
+                    <apex:outputfield value="{!Project__c.Opp_Name__c}"/>
+                    <apex:outputfield value="{!Project__c.Calculated_Interval__c}"/>
+                    <apex:outputfield value="{!Project__c.wf_Project_Manager__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Target_Month__c}"/>
+                    <apex:pageblocksectionitem >
+                        <apex:outputfield value="{!Project__c.opp_Delivery_Stage__c}"/>
+                        <apex:outputfield value="{!Project__c.opp_Amount__c}"/>
+                    </apex:pageblocksectionitem>
+                    <apex:outputfield value="{!Project__c.osp_Build_Status__c}"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Key Dates" showheader="true" collapsible="true" columns="2">
+                    <apex:outputfield value="{!Project__c.osp_CustExpected__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_ConfInstall__c}"/>
+                    <apex:outputfield value="{!Project__c.opp_Turn_Up_Date__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Actual_Completion_Date__c}"/>
+                    <apex:outputfield value="{!Project__c.opp_Turn_up_Scheduled__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Priority__c}"/>
+                    <apex:outputfield value="{!Project__c.opp_CSD_Barrier__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Barrier_s__c}"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Notes" showheader="true" collapsible="true" columns="2">
+                    <apex:outputfield value="{!Project__c.osp_Build_Notes__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_CSD_Notes__c}"/>
+                    <apex:pageblocksectionitem />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="OSP Build Information" showheader="true" collapsible="true" columns="2">
+                    <apex:outputfield value="{!Project__c.osp_Submit__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_max_MR_DD__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Poles__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Make_Ready_Req_Text__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Terminating_CO__c}"/>
+                    <apex:pageblocksectionitem />
+                    <apex:pageblocksectionitem />
+                    <apex:outputfield value="{!Project__c.osp_ON_Time__c}"/>
+                    <apex:outputfield value="{!Project__c.osp_Contact__c}"/>
+                    <apex:pageblocksectionitem />
+                    <apex:outputfield value="{!Project__c.osp_Contact_Phone__c}"/>
+                    <apex:outputfield value="{!Project__c.Project_Completed__c}"/>
+                    <apex:pageblocksectionitem />
+                    <apex:pageblocksectionitem />
+                    <apex:outputfield value="{!Project__c.osp_Build_Address__c}"/>
+                    <apex:pageblocksectionitem />
+                    <apex:pageblocksectionitem >
+                        <apex:outputfield value="{!Project__c.osp_Build_State__c}"/>
+                        <apex:outputfield style="font-weight: bold;" value="{!Project__c.osp_Build_City__c}"/>
+                    </apex:pageblocksectionitem>
+                    <apex:pageblocksectionitem />
+                    <apex:outputfield value="{!Project__c.osp_CSD_Active__c}"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Make Ready" showheader="true" collapsible="true" columns="2">
+                    <apex:outputfield value="{!Project__c.Telco_Company__c}"/>
+                    <apex:outputfield value="{!Project__c.Elco_Company__c}"/>
+                    <apex:outputfield value="{!Project__c.Telco_MR_Req__c}"/>
+                    <apex:outputfield value="{!Project__c.Elco_MR_Req__c}"/>
+                    <apex:outputfield value="{!Project__c.Telco_MR_DD__c}"/>
+                    <apex:outputfield value="{!Project__c.Elco_MR_DD__c}"/>
+                    <apex:outputfield value="{!Project__c.Telco_MR_Cmpltd__c}"/>
+                    <apex:outputfield value="{!Project__c.Elco_MR_Cmpltd__c}"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="System Information" showheader="false" collapsible="false" columns="2">
+                    <apex:pageblocksectionitem />
+                    <apex:pageblocksectionitem />
+                    <apex:pageblocksectionitem >
+                        <apex:outputlabel value="Created By"/>
+                        <apex:outputpanel >
+                            <apex:outputfield value="{!Project__c.CreatedById}"/>&nbsp;, 
+                            <apex:outputfield value="{!Project__c.CreatedDate}"/>
+                        </apex:outputpanel>
+                    </apex:pageblocksectionitem>
+                    <apex:pageblocksectionitem >
+                        <apex:outputlabel value="Last Modified By"/>
+                        <apex:outputpanel >
+                            <apex:outputfield value="{!Project__c.LastModifiedById}"/>&nbsp;, 
+                            <apex:outputfield value="{!Project__c.LastModifiedDate}"/>
+                        </apex:outputpanel>
+                    </apex:pageblocksectionitem>
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+
+    <!-- **********   [Related Lists for Record Type : Master ]   **********  -->
+    <apex:outputpanel >
+        <apex:relatedlist list="Poles__r" title="Poles"/>
+        <apex:relatedlist list="OpenActivities" title="Open Activities"/>
+        <apex:relatedlist list="ActivityHistories" title="Activity History"/>
+        <apex:relatedlist list="CombinedAttachments" title="Notes & Attachments"/>
+    </apex:outputpanel>
+    <center><br/>
+        <i style="font-size:10px;color:#aaa;">Generated By LAYOUT PAGE <a href="http://www.clerisoft.com" target="_blank">[http://www.clerisoft.com]</a> (2008-2014) : Wed Dec 02 2015 16:09:58 GMT-0500 (Eastern Standard Time)</i>
+    </center><br/>
+</apex:page>

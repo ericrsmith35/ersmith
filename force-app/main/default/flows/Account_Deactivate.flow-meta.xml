@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do_Nothing</label>
+        <locationX>187</locationX>
+        <locationY>99</locationY>
+        <assignmentItems>
+            <assignToReference>AccId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Deactivate_Screen</targetReference>
+        </connector>
+    </assignments>
+    <description>Flow for Account Deactivate Button</description>
+    <interviewLabel>Account {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account - (De)Activate</label>
+    <processType>Flow</processType>
+    <screens>
+        <name>Deactivate_Screen</name>
+        <label>Deactivate_Screen</label>
+        <locationX>348</locationX>
+        <locationY>200</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Account_Deactivate_Options</name>
+            <extensionName>c:Account_Disconnect_Options</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>AccId</name>
+                <value>
+                    <elementReference>AccId</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>AccId</assignToReference>
+                <name>AccId</name>
+            </outputParameters>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Deactivate_Screen</startElementReference>
+    <status>Active</status>
+    <variables>
+        <description>Account Id</description>
+        <name>AccId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,4 @@
+<design:component >
+	<design:attribute name="StringVar" label="My String" />	
+    <design:attribute name="BooleanVar" label="My Boolean" /> 
+</design:component>

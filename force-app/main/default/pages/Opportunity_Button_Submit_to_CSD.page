@@ -1,0 +1,6 @@
+<apex:page standardController="Opportunity">
+    <apex:sectionheader title="Submit to CSD" subtitle="{!Opportunity.Name}"/>
+    <flow:interview name="Opportunity_Button_Submit_to_CSD" finishLocation="/{!Opportunity.Id}" >
+        <apex:param name="vOppID" value="{!Opportunity.Id}" />
+    </flow:interview>
+</apex:page>

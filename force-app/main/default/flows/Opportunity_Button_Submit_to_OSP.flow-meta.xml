@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Refresh</name>
+        <label>Refresh</label>
+        <locationX>195</locationX>
+        <locationY>382</locationY>
+        <actionName>c:navigateToSObject</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>SObject</name>
+            <value>
+                <elementReference>vOppId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Refresh_Screen</name>
+        <label>Refresh Screen</label>
+        <locationX>402</locationX>
+        <locationY>387</locationY>
+        <actionName>c:updateScreen</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>vOppId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>36</locationX>
+        <locationY>24</locationY>
+        <assignmentItems>
+            <assignToReference>vOppId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>1</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Confirm</targetReference>
+        </connector>
+    </assignments>
+    <description>Case #58106
+Replace javascript button for Lightning compatibility
+Add confirmation button when running in Lightning</description>
+    <interviewLabel>Opportunity Button - Submit to OSP {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Button - Submit to OSP</label>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <name>Set_OSP_Trigger</name>
+        <label>Set OSP Trigger</label>
+        <locationX>195</locationX>
+        <locationY>255</locationY>
+        <connector>
+            <targetReference>Refresh</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vOppId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Trigger_OSP__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <screens>
+        <name>Confirm</name>
+        <label>Confirm</label>
+        <locationX>194</locationX>
+        <locationY>140</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Set_OSP_Trigger</targetReference>
+        </connector>
+        <fields>
+            <name>Button</name>
+            <extensionName>c:navigationButtonFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Submit to OSP</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>navigationType</name>
+                <value>
+                    <stringValue>next</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>Confirm</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>vOppId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

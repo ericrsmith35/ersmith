@@ -1,0 +1,94 @@
+<!-- Project: Assets Phase 1                                -->
+<!-- Created By: GWI, Eric Smith                            -->
+<!-- VisualForce Page: OLI_Update                           -->
+<!-- Description: VF page for product display and selection -->
+<!--    Classes Utilized:   OLI_Update.apxc                 -->
+<!--                        OLI_Update_Test.apxc            -->
+<!--                                                        -->
+<!--
+ 	Called from 'Update Products' Button on Products Related List on Opportunity Page
+-->
+
+
+<apex:page controller="OLI_Update" id="thePage" tabStyle="Product2" sidebar="false" lightningStylesheets="true">  
+    
+    <!-- Style for Page Messages -->
+    <style>
+        .Messages { color: red; font-weight: strong;}
+        .StatusPicklist { }
+    </style>
+    
+    <!-- Section Header -->
+    <apex:sectionHeader title="Update Product Bill to Accounts, Deliver to Accounts, Service Addresses and Sort Order" />
+    
+    <!-- Steps for the end users 
+    <h1>Directions:</h1>
+    <ol>
+        <li>Select the Product(s) you want to split by entering a quantity to split off and optionally enter a new Line Description.</li>
+        <li>You can also change the Bill to Account, Deliver to Account and Service Address for any new splits.</li>        
+    </ol>
+    
+    <!-- Form with Page Blocks and Sections -->
+    <apex:form >
+                
+        <!-- Page Block providing the user with Editable Table -->   
+        <apex:pageBlock >
+        
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!save}" value="Save"/>
+                <apex:commandButton action="{!cancel}" value="Cancel" immediate="true"/>
+            </apex:pageBlockButtons>
+            
+            <apex:messages styleClass="Messages"/>        
+            
+            <apex:pageBlockSection id="editableView" title="Opportunity Un-Billed Product List" columns="1" rendered="true" collapsible="false" >
+                <apex:pageBlockTable value="{!OLIlist1}" var="val">
+                
+                    <apex:column >
+                        <apex:facet name="header">Product Name</apex:facet>
+                            <apex:outputLink value="/{!val.ID}" >{!val.Product_Name__c}</apex:outputLink>
+                    </apex:column>
+                
+                    <apex:column >
+                        <apex:facet name="header">Quantity</apex:facet>
+                        <apex:outputText value="{!FLOOR(val.Quantity)}" />
+                    </apex:column>              
+
+                    <apex:column >
+                        <apex:facet name="header">Bill to Account</apex:facet>
+                        <apex:selectList value="{!val.Account__c}" size="1" multiselect="false" >
+                            <apex:selectOptions value="{!acctHierarchy}"/>
+                        </apex:selectList>
+                    </apex:column> 
+
+                    <apex:column rendered="false">
+                        <apex:facet name="header">Deliver to Account</apex:facet>
+                        <apex:inputField id="delvAcct" value="{!val.Deliver_to_Account__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Service Address</apex:facet>
+                        <apex:selectList value="{!val.Service_Address__c}" size="1" multiselect="false">
+                            <apex:selectOptions value="{!delvServAddr}"/>
+                        </apex:selectList>
+                    </apex:column> 
+               
+                    <apex:column >
+                        <apex:facet name="header">Line Description</apex:facet>
+                        <apex:inputField value="{!val.Description}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Sort Order</apex:facet>
+                        <apex:inputField value="{!val.QT_Line__c}" />
+                    </apex:column>
+                    
+                </apex:pageBlockTable>                               
+                
+            </apex:pageBlockSection>
+       
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

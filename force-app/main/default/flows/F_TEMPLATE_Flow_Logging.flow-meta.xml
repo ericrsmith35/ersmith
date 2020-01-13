@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>This module calls an Invocable Method that prints the parameter string (typically the FlowLogUpdateString) to the Developer Console Log as a DEBUG message.</description>
+        <name>Flow_Logging_Developer_Console_Debug_Logger_Call</name>
+        <label>Flow Logging Developer Console Debug Logger Call</label>
+        <locationX>79</locationX>
+        <locationY>293</locationY>
+        <actionName>azimuthflowlog__FlowLogging</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Update_Flow_Log_Record</targetReference>
+        </connector>
+        <inputParameters>
+            <name>FlowLogString</name>
+            <value>
+                <elementReference>FlowLogUpdateString</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>FlowLogString</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_the_Flow</name>
+        <label>Log the Flow</label>
+        <locationX>362</locationX>
+        <locationY>405</locationY>
+        <actionName>azimuthflowlog__FlowLoggingWrapper</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>FlowLogRecordID</name>
+            <value>
+                <elementReference>FlowLogRecordID</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>FlowLogUpdateString</name>
+            <value>
+                <elementReference>FlowLogUpdateString</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>FlowName</name>
+            <value>
+                <elementReference>FlowName</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>FlowLogRecordID</assignToReference>
+            <name>FlowLogRecordID</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <name>FlowLogUpdateString</name>
+        </outputParameters>
+    </actionCalls>
+    <assignments>
+        <description>At first this action was thought to be needed to initialize the string for the flow. That is not the case and was removed from the flow path. It can be deleted.
+
+Any subsequent assignments to FlowLogUpdateString should use the ADD operator. Using the EQUALS operator will essentially clear FlowLogUpdateString.</description>
+        <name>Initialize_Flow_Log_Update_String</name>
+        <label>Initialize Flow Log Update String</label>
+        <locationX>51</locationX>
+        <locationY>64</locationY>
+        <assignmentItems>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>++</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>This is the beginning of the Flow</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>DELETE_THIS_Data_Access_Example</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_a_Value</name>
+        <label>Set a Value</label>
+        <locationX>368</locationX>
+        <locationY>270</locationY>
+        <assignmentItems>
+            <assignToReference>ExampleFlowVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>This is a new value for Example</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>The value of ExampleFlow Variable = {!ExampleFlowVariable} ++</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Flow_Log_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Captures any FAULT and reports it to the Flow Log record.</description>
+        <name>Set_Flow_Log_Error</name>
+        <label>Set Flow Log Error</label>
+        <locationX>77</locationX>
+        <locationY>190</locationY>
+        <assignmentItems>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>ERROR!  {!$Flow.FaultMessage}</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IsFault</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Flow_Logging_Developer_Console_Debug_Logger_Call</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>This example shows how the FlowLogUpdateString is manipulated to provide information about the Flow at its current state.
+
+FlowLogUpdateString is built and maintained throughout the Flow. The [[]] characters are optional.
+
+The first three lines are an example build up. The last line is an example of single line entry of the same information.
+The ultimate result of this Assignment is:
+[Some Txt = ]some Variable Value[[]][Some Txt = ]some Variable Value[[]]</description>
+        <name>Update_the_Flow_Log_String</name>
+        <label>Update the Flow Log String</label>
+        <locationX>365</locationX>
+        <locationY>171</locationY>
+        <assignmentItems>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Flow Name = {!FlowName} ++</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>This is a Flow Log update on different lines =</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>FlowLogUpdateString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Some variable value</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_a_Value</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>The steps of a new Flow. 
+
+Mixed into the steps of the Flow would be Assignment and Update Flow Log Record steps.
+
+When adding Update Flow Log Record steps, the easiest thing to do is simply copy the existing one and paste it into the Flow where it is needed.</description>
+        <name>DELETE_THIS_Process_Steps</name>
+        <label>DELETE THIS - Process Steps</label>
+        <locationX>366</locationX>
+        <locationY>67</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>DummyRecordSet</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_the_Flow_Log_String</targetReference>
+            </connector>
+            <label>Outcome 1</label>
+        </rules>
+    </decisions>
+    <description>A template Flow to be used to create new Flows with Logging. Open this Flow and then Save As a new Flow.</description>
+    <interviewLabel>F - TEMPLATE - Flow Logging {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>F - TEMPLATE - Flow Logging</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>This would be some database access (Record Lookup, fast Lookup, Record Create, Fast Update, etc.) 
+
+Placed here to show how to use Flow Error Log.</description>
+        <name>DELETE_THIS_Data_Access_Example</name>
+        <label>DELETE THIS - Data Access Example</label>
+        <locationX>209</locationX>
+        <locationY>64</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>DELETE_THIS_Process_Steps</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Set_Flow_Log_Error</targetReference>
+        </faultConnector>
+        <filters>
+            <field>IsDeleted</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <outputReference>DummyRecordSet</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <startElementReference>Initialize_Flow_Log_Update_String</startElementReference>
+    <status>Active</status>
+    <subflows>
+        <description>Updates the Flow Log record with FlowLogUpdateString. Useful to place in strategic places in your flow and particularly at the end.
+
+This Action sends all of the information needed to create the Flow Log record. If F - Flow Log Record Management is called previously in the flow, FlowLogRecordD MUST be passed as an Input in this action along with {!FlowLogString} to LogResultString.
+
+Provides FlowLogRecordID and LogResultString back to the originating Flow.</description>
+        <name>Update_Flow_Log_Record</name>
+        <label>Update Flow Log Record</label>
+        <locationX>80</locationX>
+        <locationY>410</locationY>
+        <connector>
+            <targetReference>Log_the_Flow</targetReference>
+        </connector>
+        <flowName>azimuthflowlog__Flow_Log_Record_Management</flowName>
+        <inputAssignments>
+            <name>LogModificationString</name>
+            <value>
+                <elementReference>FlowLogUpdateString</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>OriginatingFlowName</name>
+            <value>
+                <elementReference>FlowName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>IsFault</name>
+            <value>
+                <elementReference>IsFault</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>FlowLogRecordID</assignToReference>
+            <name>FlowLogRecordID</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>FlowLogString</assignToReference>
+            <name>LogResultString</name>
+        </outputAssignments>
+    </subflows>
+    <variables>
+        <name>DummyRecordSet</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <description>Used to demonstrate building a FlowLogUpdateString using a variable value.</description>
+        <name>ExampleFlowVariable</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <description>The ID of the Flow Log record that is created. This value is passed back from the Flow Logging flow and is used to maintain consistency during multiple updating calls.</description>
+        <name>FlowLogRecordID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <description>Resulting full text of the corresponding Flow Log record.</description>
+        <name>FlowLogString</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the text passed to the Flow Logging flow to be logge</description>
+        <name>FlowLogUpdateString</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the name of the Flow. Should be entered as the Default Value below. Enter as all CAPS and with underscores</description>
+        <name>FlowName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>F_TEMPLATE_FLOW_LOGGING</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Used to force a Flow Log record to be created when an error is detected. Must be set through an Assignment</description>
+        <name>IsFault</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>

@@ -1,0 +1,14 @@
+.THIS.notice-container {
+    border: t(borderWidthThick) solid t(popBorderColor);
+    border-radius: t(borderRadiusMedium);
+}
+
+.THIS .notice {
+    font-size: 1.125rem; /*t(fontSizeTextLarge)*/
+    font-weight: t(fontWeightBold);    
+    line-height: t(lineHeightHeading);    
+}
+
+.THIS .icon svg {
+    fill: t(popIconColor);
+}

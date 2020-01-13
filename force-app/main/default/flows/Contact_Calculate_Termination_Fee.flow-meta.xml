@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>ETF_Email_Template</name>
+        <label>ETF Email Template</label>
+        <locationX>874</locationX>
+        <locationY>420</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Update_Chatter_Feed</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>IMPORTANT NOTICE - About your GWI Account</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>finance@staff.gwi.net</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Customer_Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Update_Chatter_Feed</name>
+        <label>Update Chatter Feed</label>
+        <locationX>874</locationX>
+        <locationY>527</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>conAccountId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>fChatterPost</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Assign_Values_0</name>
+        <label>Assign Values</label>
+        <locationX>514</locationX>
+        <locationY>105</locationY>
+        <assignmentItems>
+            <assignToReference>vStart_Date</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Start_Date</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vEnd_Date</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fEndDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTerm</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Term_Months</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTerm_Date</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fFirstOfNextMonth</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vYear</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vETF</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vMRR</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MRR</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vETF_Text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fETF_Header</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Calculated_5_Years_0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>51</locationX>
+        <locationY>26</locationY>
+        <assignmentItems>
+            <assignToReference>cID</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>003g000001VdgMP</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Contact_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Finish_Up</name>
+        <label>Finish Up</label>
+        <locationX>874</locationX>
+        <locationY>106</locationY>
+        <assignmentItems>
+            <assignToReference>vETF_Text</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>fEndText</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Results</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Penalty_Calculation_0</name>
+        <label>Penalty Calculation</label>
+        <locationX>669</locationX>
+        <locationY>210</locationY>
+        <assignmentItems>
+            <assignToReference>vETF</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>fPenalty</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vETF_Text</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>fTermFeeText</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vYear</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Calculated_5_Years_0</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Calculated_5_Years_0</name>
+        <label>Calculated 5 Years?</label>
+        <locationX>669</locationX>
+        <locationY>105</locationY>
+        <defaultConnector>
+            <targetReference>Penalty_Calculation_0</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Year by Year</defaultConnectorLabel>
+        <rules>
+            <name>COMPLETE_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vYear</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>5.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Finish_Up</targetReference>
+            </connector>
+            <label>COMPLETE</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Send_Emailq</name>
+        <label>Send Email?</label>
+        <locationX>874</locationX>
+        <locationY>316</locationY>
+        <defaultConnectorLabel>NO</defaultConnectorLabel>
+        <rules>
+            <name>YES</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Send_Email</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ETF_Email_Template</targetReference>
+            </connector>
+            <label>YES</label>
+        </rules>
+    </decisions>
+    <description>Termination Fee Calculator</description>
+    <formulas>
+        <description>Is the Anniv Date after the Term Date?</description>
+        <name>fAfter</name>
+        <dataType>Number</dataType>
+        <expression>IF({!vTerm_Date}&lt;{!fAnniversary_Date},1,0)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>fAnniversary_Date</name>
+        <dataType>Date</dataType>
+        <expression>DATE(YEAR({!vStart_Date})+{!vYear},MONTH({!vStart_Date}),
+IF(AND(MONTH({!vStart_Date})=2,DAY({!vStart_Date})=29),28,DAY({!vStart_Date})))</expression>
+    </formulas>
+    <formulas>
+        <name>fChatterPost</name>
+        <dataType>String</dataType>
+        <expression>&quot;ETF Email sent to &quot; &amp; {!Customer_Email} &amp; {!fCrLf} &amp;
+{!fCrLf} &amp;
+{!etfEmailBody}</expression>
+    </formulas>
+    <formulas>
+        <name>fCrLf</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!ttCrLf},&quot;.&quot;,&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>fEndDate</name>
+        <dataType>Date</dataType>
+        <expression>DATE(YEAR({!Start_Date})+({!Term_Months}/12),MONTH({!Start_Date}),DAY({!Start_Date}))</expression>
+    </formulas>
+    <formulas>
+        <name>fEndText</name>
+        <dataType>String</dataType>
+        <expression>{!fCrLf} &amp; &quot;Total ETF: &quot; &amp; 
+IF({!vETF} &lt; 0, &quot;(&quot;, &quot;&quot;) &amp; &quot;$&quot; &amp;
+IF(ABS({!vETF}) &gt;= 1000000, TEXT(FLOOR(ABS({!vETF}) / 1000000)) &amp; &quot;,&quot;, &quot;&quot;) &amp;
+IF(ABS({!vETF}) &gt;= 1000, RIGHT(TEXT(FLOOR(ABS({!vETF}) / 1000)), 3) &amp; &quot;,&quot;, &quot;&quot;) &amp;
+RIGHT(TEXT(FLOOR(ABS({!vETF}))), 3) &amp; &quot;.&quot; &amp;
+IF(MOD(ABS({!vETF}) , 1) * 100 &lt; 10, &quot;0&quot; &amp; TEXT(ROUND(MOD(ABS({!vETF}) , 1), 2) * 100), TEXT(MIN(ROUND(MOD(ABS({!vETF}) , 1), 2) * 100, 99))) &amp;
+IF({!vETF} &lt; 0, &quot;)&quot;, &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>fETF_Header</name>
+        <dataType>String</dataType>
+        <expression>&quot;Termination Fees&quot; &amp; {!fCrLf} &amp; {!fCrLf}</expression>
+    </formulas>
+    <formulas>
+        <name>fFirstOfNextMonth</name>
+        <dataType>Date</dataType>
+        <expression>IF(MONTH({!Termination_Date})=12,DATE(YEAR({!Termination_Date})+1,1,1),DATE(YEAR({!Termination_Date}),MONTH({!Termination_Date})+1,1))</expression>
+    </formulas>
+    <formulas>
+        <description>Is the Anniv Date in the full Term range?</description>
+        <name>fInTerm</name>
+        <dataType>Number</dataType>
+        <expression>IF({!vTerm}&gt;=({!vYear}*12),1,0)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <description>Number of months left in this year of the contract term.</description>
+        <name>fMonthsLeft</name>
+        <dataType>Number</dataType>
+        <expression>IF(({!fAnniversary_Date}-{!vTerm_Date}) &lt;= 0,0,IF(({!fAnniversary_Date}-{!vTerm_Date}) &lt; 366,
+MONTH({!fAnniversary_Date})-MONTH({!vTerm_Date})+IF(YEAR({!fAnniversary_Date}) &gt; YEAR({!vTerm_Date}),13,1)
+,12))</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>fNewTerms</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT({!Older_SA})</expression>
+    </formulas>
+    <formulas>
+        <description>Percentage used for Term Fee calculation.  Always 100% for Service Agreements after v15.02.  100%, 75%, 50%, 25%, 25% for earlier agreements.</description>
+        <name>fPct</name>
+        <dataType>Number</dataType>
+        <expression>IF({!fNewTerms},1,
+CASE({!vYear},
+1,1,
+2,0.75,
+3,0.5,
+0.25)
+)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>Number of months left times percentage of MRR</description>
+        <name>fPenalty</name>
+        <dataType>Currency</dataType>
+        <expression>{!fAfter} * {!fInTerm} * {!fPct} * {!fMonthsLeft} * {!vMRR}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>fTermFeeText</name>
+        <dataType>String</dataType>
+        <expression>&quot;Year &quot; &amp; TEXT({!vYear}) &amp; &quot; (&quot; &amp; TEXT({!fPct}*100) &amp; &quot;%) &quot; &amp;
+ 
+IF({!fPenalty} &lt; 0, &quot;(&quot;, &quot;&quot;) &amp; &quot;$&quot; &amp;
+IF(ABS({!fPenalty}) &gt;= 1000000, TEXT(FLOOR(ABS({!fPenalty}) / 1000000)) &amp; &quot;,&quot;, &quot;&quot;) &amp;
+IF(ABS({!fPenalty}) &gt;= 1000, RIGHT(TEXT(FLOOR(ABS({!fPenalty}) / 1000)), 3) &amp; &quot;,&quot;, &quot;&quot;) &amp;
+RIGHT(TEXT(FLOOR(ABS({!fPenalty}))), 3) &amp; &quot;.&quot; &amp;
+IF(MOD(ABS({!fPenalty}) , 1) * 100 &lt; 10, &quot;0&quot; &amp; TEXT(ROUND(MOD(ABS({!fPenalty}) , 1), 2) * 100), TEXT(MIN(ROUND(MOD(ABS({!fPenalty}) , 1), 2) * 100, 99))) &amp;
+IF({!fPenalty} &lt; 0, &quot;)&quot;, &quot;&quot;)
+
+&amp; {!fCrLf}</expression>
+    </formulas>
+    <interviewLabel>Contact - Calculate Termination Fee {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contact - Calculate Termination Fee</label>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Contact_Record</name>
+        <label>Get Contact Record</label>
+        <locationX>206</locationX>
+        <locationY>105</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Contract_Details</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>cID</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputAssignments>
+            <assignToReference>conAccountId</assignToReference>
+            <field>AccountId</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>conEmail</assignToReference>
+            <field>Email</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>conFirstName</assignToReference>
+            <field>FirstName</field>
+        </outputAssignments>
+    </recordLookups>
+    <screens>
+        <name>Get_Contract_Details</name>
+        <label>Get Contract Details</label>
+        <locationX>360</locationX>
+        <locationY>105</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Assign_Values_0</targetReference>
+        </connector>
+        <fields>
+            <name>Header0</name>
+            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Please provide the following information to calculate early termination fees.  You will be given the option to send an email notification to this contact.&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Customer_Name</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>conFirstName</elementReference>
+            </defaultValue>
+            <fieldText>Customer Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Customer_Email</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>conEmail</elementReference>
+            </defaultValue>
+            <fieldText>Customer Email</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Separator</name>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Start_Date</name>
+            <dataType>Date</dataType>
+            <fieldText>Start Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Term_Months</name>
+            <dataType>Number</dataType>
+            <fieldText>Term (Months)</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+        </fields>
+        <fields>
+            <name>MRR</name>
+            <dataType>Currency</dataType>
+            <fieldText>MRR</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <scale>2</scale>
+        </fields>
+        <fields>
+            <name>Termination_Date</name>
+            <dataType>Date</dataType>
+            <fieldText>Termination Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Separator2</name>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Older_SA</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Old Contract Terms</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Check this box if the Service Agreement is older than version 15.02.  Older agreements specified a graduated term fee percent.</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Results</name>
+        <label>Results</label>
+        <locationX>874</locationX>
+        <locationY>209</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Send_Emailq</targetReference>
+        </connector>
+        <fields>
+            <name>EmailBody</name>
+            <defaultValue>
+                <elementReference>etfEmailBody</elementReference>
+            </defaultValue>
+            <fieldText>EmailBody</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Separator3</name>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Send_Email</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Send Email?</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Get_Contact_Record</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <description>Early Termination Fee customer email.</description>
+        <name>etfEmailBody</name>
+        <text>Dear {!Customer_Name},
+
+Our Sales Team let us know that you have started the process to disconnect your contracted GWI services.  Based on Sections 1 and 5 of the GWI Terms and Conditions of the contract beginning on {!Start_Date}, there will be early termination fees associated with disconnecting these services.
+
+The early termination fees are calculated as follows:
+
+{!vETF_Text}
+
+Please note these fees will not be charged to your account if you choose to keep your service with GWI through your contracted term.  If you wish to discuss payment of these fees or file a dispute, please respond to this email.
+
+Thank you,
+
+GWI Billing</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttCrLf</name>
+        <text>.
+.</text>
+    </textTemplates>
+    <variables>
+        <description>Contract record ID</description>
+        <name>cID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Contract Object Record</description>
+        <name>cObj</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contract</objectType>
+    </variables>
+    <variables>
+        <name>conAccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>conEmail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>conFirstName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vEnd_Date</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>cObj.EndDate</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <description>Total Early Termination Fee</description>
+        <name>vETF</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>vETF_Text</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Current MRR for Contract</description>
+        <name>vMRR</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>vStart_Date</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Contract Term in Months</description>
+        <name>vTerm</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>First of the following month after the requested termination date.</description>
+        <name>vTerm_Date</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Year counter for contract term</description>
+        <name>vYear</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+</Flow>

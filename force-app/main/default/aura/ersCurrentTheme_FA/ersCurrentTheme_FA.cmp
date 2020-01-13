@@ -1,0 +1,6 @@
+<aura:component implements="lightning:availableForFlowActions" controller="UIThemeController" access="global">
+    
+    <aura:attribute name="Theme" type="String" />
+    <aura:attribute name="isLEX" type="Boolean" />
+    
+</aura:component>

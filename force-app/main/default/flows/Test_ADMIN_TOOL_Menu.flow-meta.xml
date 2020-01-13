@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Test using Flow Picker &amp; Launch Modal</description>
+    <interviewLabel>Test - ADMIN TOOL Menu {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Test - ADMIN TOOL Menu</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Admin_Tool_Menu</name>
+        <label>Admin Tool Menu</label>
+        <locationX>220</locationX>
+        <locationY>152</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Selection</targetReference>
+        </connector>
+        <fields>
+            <name>MyFlows</name>
+            <extensionName>c:flowPickerFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>showActiveFlowsOnly</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>selectedFlowApiName</name>
+                <value>
+                    <stringValue>ADMIN TOOL</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Select an ADMIN TOOL:</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>vSelectedFlow</assignToReference>
+                <name>selectedFlowApiName</name>
+            </outputParameters>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Selection</name>
+        <label>Selection</label>
+        <locationX>367</locationX>
+        <locationY>152</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Selected</name>
+            <fieldText>&lt;p&gt;{!vSelectedFlow}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Admin_Tool_Menu</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>vSelectedFlow</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

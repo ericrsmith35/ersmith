@@ -1,0 +1,11 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" extends="ltngfw:CmpBase">
+	
+	<aura:attribute name="caseobject" type="Case" />
+
+	<force:recordData aura:id="recordData" layoutType="FULL" targetFields="{!v.caseobject}" mode="VIEW" recordId="{!v.recordId}"/>
+
+	<div aura:id="emaildiv" >
+		<c:CommunitySendEmail relatedTo="Case" relatedToRecord="{!v.recordId}" templateId="Case_Comment_Template" to="{!v.caseobject.ContactId}" fromEmail="help@gwisupport.net"/>
+	</div>
+
+</aura:component>

@@ -1,0 +1,7 @@
+<design:component >
+
+	<design:attribute name="childCaseId" label="Child Case ID" />
+	<design:attribute name="recordTypeId" label="Record Type Id" />
+    <design:attribute name="houseAccountId" label="House Account Id" />
+	
+</design:component>

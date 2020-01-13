@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Refresh</name>
+        <label>Refresh</label>
+        <locationX>185</locationX>
+        <locationY>265</locationY>
+        <actionName>c:navigateToSObject</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>SObject</name>
+            <value>
+                <elementReference>vOpportunityId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>42</locationX>
+        <locationY>31</locationY>
+        <assignmentItems>
+            <assignToReference>vOpportunityId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>0063200001lW4iBAAS</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Trigger</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>Opportunity - Refresh Screen {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity - Refresh Stage</label>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <name>Update_Trigger</name>
+        <label>Update Trigger</label>
+        <locationX>185</locationX>
+        <locationY>143</locationY>
+        <connector>
+            <targetReference>Refresh</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vOpportunityId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Trigger_Stage_Reset__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <startElementReference>Update_Trigger</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>vOpportunityId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

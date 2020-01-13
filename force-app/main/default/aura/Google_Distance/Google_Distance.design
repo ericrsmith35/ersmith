@@ -1,0 +1,5 @@
+<design:component >
+    <design:attribute name="origin" />
+    <design:attribute name="destination" />
+    <design:attribute name="distance" />
+</design:component>

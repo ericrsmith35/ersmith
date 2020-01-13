@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>23</locationX>
+        <locationY>12</locationY>
+        <assignmentItems>
+            <assignToReference>pass_OLI_Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00kW0000005iYwBIAU</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>find_OLI_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_as_Converted</name>
+        <label>Set as Converted</label>
+        <locationX>150</locationX>
+        <locationY>221</locationY>
+        <assignmentItems>
+            <assignToReference>OppLineItem.IsConverted__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Save_Update</targetReference>
+        </connector>
+    </assignments>
+    <description>Set the IsConverted flag to True for the OLI with the ID passed by the newly created Asset record Process Flow</description>
+    <interviewLabel>Set OLI as Converted {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Set OLI as Converted</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>find_OLI_Record</name>
+        <label>find_OLI_Record</label>
+        <locationX>149</locationX>
+        <locationY>112</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_as_Converted</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>pass_OLI_Id</elementReference>
+            </value>
+        </filters>
+        <object>OpportunityLineItem</object>
+        <outputReference>OppLineItem</outputReference>
+        <queriedFields>IsConverted__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>LastModifiedDate</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Save_Update</name>
+        <label>Save Update</label>
+        <locationX>151</locationX>
+        <locationY>344</locationY>
+        <inputReference>OppLineItem</inputReference>
+    </recordUpdates>
+    <startElementReference>find_OLI_Record</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>OppLineItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityLineItem</objectType>
+    </variables>
+    <variables>
+        <description>OLI Id passed from the new Asset Process Flow</description>
+        <name>pass_OLI_Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

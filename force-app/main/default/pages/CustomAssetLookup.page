@@ -1,0 +1,119 @@
+<!-- Project: Create new record to add to a Case as an Asset    -->
+<!-- Created By: Eric Smith - GWI - 12/2015						-->
+<!-- VisualForce Page: CustomAssetLookup         		        -->
+<!-- Description: Select existing Asset							-->
+<!-- Classes Utilized: CustomAssetLookupController, 			-->
+<!--                   CaseAssetLookupController			   	-->
+<!-- Test Classes: 												-->
+
+<!-- Activated by the Lookup button on the New CaseAsset's		--> 
+<!-- selection page												-->
+
+<apex:page controller="CustomAssetLookupController"  
+           title="Search" 
+           showHeader="false" 
+           sideBar="false" 
+           tabStyle="Asset" 
+           id="pg">
+    
+    <!-- JavaScript to override the Standard Lookup process		-->    
+    <script type="text/javascript"> 
+    function openLookup(baseURL, width, modified, searchParam){
+        var originalbaseURL = baseURL;
+        var originalwidth = width;
+        var originalmodified = modified;
+        var originalsearchParam = searchParam;
+        
+        var lookupType = baseURL.substr(baseURL.length-3, 3);
+        if (modified == '1') baseURL = baseURL + searchParam;
+        
+        var isCustomLookup = false;
+        
+        // "01t" is the lookup type for the Product2 object
+        if(lookupType == "01t"){
+            
+            var urlArr = baseURL.split("&");
+            var txtId = '';
+            if(urlArr.length > 2) {
+                urlArr = urlArr[1].split('=');
+                txtId = urlArr[1];
+            }
+            
+            // Set url of the Custom Lookup page
+            baseURL = "/apex/CustomProductLookup?txt=" + txtId;
+            
+            // Add the id of apex:form control "myForm2"
+            baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm2}");
+            if (modified == '1') {
+                baseURL = baseURL + "&lksearch=" + searchParam;
+            }
+            
+            // Identify the ID of inputField that is the lookup to be customized
+            if(txtId.indexOf('newCPE') > -1 ){
+                isCustomLookup = true;
+            }
+        }
+        
+        if(isCustomLookup == true){
+            openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
+        }
+        else {
+            if (modified == '1') originalbaseURL = originalbaseURL + originalsearchParam;
+            openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
+        } 
+    }
+    </script>
+    
+    <apex:form id="myForm2">
+        <apex:outputPanel id="page" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+            <apex:tabPanel switchType="client" selectedTab="name1" id="tabbedPanel">
+                
+                <!-- SELECT TAB -->
+                <apex:tab label="Select" name="tab1" id="tabOne">
+                    
+                    <apex:actionRegion >  
+                        <apex:outputPanel id="top" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+                            <apex:outputLabel value="Search" style="font-weight:Bold;padding-right:10px;" for="txtSearch"/>
+                            <apex:inputText id="txtSearch" value="{!searchString}" />
+                            <span style="padding-left:5px"><apex:commandButton id="btnGo" value="Go" action="{!Search}" rerender="searchResults"></apex:commandButton></span>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel id="pnlSearchResults" style="margin:10px;height:350px;overflow-Y:auto;" layout="block">
+                            <apex:pageBlock id="searchResults"> 
+                                <apex:pageBlockTable value="{!results}" var="a" id="tblResults">
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:outputPanel >Asset</apex:outputPanel>
+                                        </apex:facet>
+                                        <apex:outputLink value="javascript:top.window.opener.lookupPick2('{!FormTag}','{!TextBox}_lkid','{!TextBox}','{!a.Id}','{!a.Name}', false)" rendered="{!NOT(ISNULL(a.Id))}">{!a.Name}</apex:outputLink>     
+                                    </apex:column>
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:outputPanel >Service Address</apex:outputPanel>
+                                        </apex:facet>
+                                        <apex:outputField value="{!a.Service_Address__c}" />
+                                    </apex:column>
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:outputPanel >GWI Asset Tag #</apex:outputPanel>
+                                        </apex:facet>
+                                        <apex:outputField value="{!a.GWI_Asset_Tag_Number__c}" />
+                                    </apex:column>
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:outputPanel >Serial #</apex:outputPanel>
+                                        </apex:facet>
+                                        <apex:outputField value="{!a.SerialNumber}" />
+                                    </apex:column>
+                                </apex:pageBlockTable>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                    </apex:actionRegion>
+                    
+                </apex:tab>
+                
+            </apex:tabPanel>
+        </apex:outputPanel>
+    </apex:form>
+    
+</apex:page>

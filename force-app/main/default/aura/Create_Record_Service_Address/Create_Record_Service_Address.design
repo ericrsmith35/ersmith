@@ -1,0 +1,7 @@
+<design:component >
+    
+    <design:attribute name="AccountId" label="Account ID" />
+    <design:attribute name="AccountName" label="Account Name" />
+    <design:attribute name="ServiceAddressId" label="Service Address ID" />
+    
+</design:component>

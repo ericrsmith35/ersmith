@@ -1,0 +1,5 @@
+<apex:page standardController="Case">
+    <flow:interview name="Case_Send_email_to_SaviLynx_for_Review" finishLocation="/{!Case.Id}" >
+        <apex:param name="vCaseId" value="{!Case.Id}" />
+    </flow:interview>
+</apex:page>

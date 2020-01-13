@@ -1,0 +1,113 @@
+<!-- Project: Assets Phase 2												-->
+<!-- Created By: GWI, Eric Smith											-->
+<!-- VisualForce Page: OLI_SelectR_vp										-->
+<!-- Description: VF page for selecting existing Products from a Renewal 
+					Opportunity for turn-down     							-->
+<!-- 	Classes Utilized:	OLI_SelectR_ap.apxc								-->
+<!-- 	 					OLI_SelectR_ap_Test.apxc						-->
+<!-- 	 					OLI_Wrapper.apxc								-->
+<!-- 																		-->
+
+<apex:page controller="OLI_SelectR_ap" id="thePage" tabStyle="Product2" sidebar="false" lightningStylesheets="true">  
+    
+    <!-- Style for Page Messages -->
+    <style>
+        .Messages { color: red; font-weight: strong;}
+        .StatusPicklist { }
+    </style>
+      
+    <!-- Section Header -->
+    <apex:sectionHeader title="Select Products for Turn-Down on this Renewal" />
+    
+    <!-- Form with Page Blocks and Sections -->
+    <apex:form >
+        
+        <!-- Page Block providing the user with Editable Table -->   
+        <apex:pageBlock >
+
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!remove}" value="Turn-Down" rendered="{!beOpp.Created_from_Contract__c}" />
+                <apex:commandButton action="{!cancel}" value="Cancel" immediate="true"/>
+            </apex:pageBlockButtons>
+            
+            <apex:messages styleClass="Messages"/>        
+            
+            <apex:pageBlockSection id="editableView" title="Available for Turn-Down on this Opportunity" columns="1" rendered="true" collapsible="false" >
+                <apex:pageBlockTable value="{!oProdW}" var="val">
+                
+                    <apex:column id="chkColumn">
+                        <apex:facet name="header">
+                            <apex:outputLabel >
+                                <apex:inputCheckbox value="{!chkSelection}" 
+                                                    title="Select All or Deselect All Products" >
+                                	<apex:actionSupport event="onchange" action="{!selectAll}" reRender="chkColumn"/>
+                                </apex:inputCheckbox>
+                            </apex:outputLabel>
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!val.isoProdSelected}"/>
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Product Name</apex:facet>
+	                        <apex:outputLink value="/{!val.oliID}" >{!val.OLI.Product_Name__c}</apex:outputLink>
+                    </apex:column>
+                
+                    <apex:column >
+                        <apex:facet name="header">Quantity</apex:facet>
+                        <apex:outputText value="{!FLOOR(val.OLI.Quantity)}" />
+                    </apex:column>
+
+                    <apex:column >
+                        <apex:facet name="header">Unit Price</apex:facet>
+                        <apex:outputField value="{!val.OLI.UnitPrice}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Total Price</apex:facet>
+                        <apex:outputField value="{!val.OLI.TotalPrice}" />                           
+                    </apex:column> 
+<!--
+                    <apex:column >
+                        <apex:facet name="header">Equipment Price</apex:facet>
+                        <apex:outputField value="{!val.OLI.Equipment_Price_Ext__c}" />                           
+                    </apex:column> 
+                    
+                    <apex:column >
+                        <apex:facet name="header">Installation Price</apex:facet>
+                        <apex:outputField value="{!val.OLI.Installation_Ext__c}" />                           
+                    </apex:column> 
+-->                                        
+                    <apex:column >
+                        <apex:facet name="header">Bill to Account</apex:facet>
+                        <apex:outputField value="{!val.OLI.Account__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Deliver to Account</apex:facet>
+                        <apex:outputField value="{!val.OLI.Deliver_to_Account__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Service Address</apex:facet>
+                        <apex:outputField value="{!val.OLI.Service_Address__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Asset Information</apex:facet>
+                        <apex:outputField value="{!val.OLI.Additional_Phone_Numbers__c}" />
+                    </apex:column> 
+                    
+                    <apex:column >
+                        <apex:facet name="header">Line Description</apex:facet>
+                        <apex:inputField value="{!val.OLI.Description}" />
+                    </apex:column> 
+                    
+                </apex:pageBlockTable>
+                
+            </apex:pageBlockSection>
+       
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

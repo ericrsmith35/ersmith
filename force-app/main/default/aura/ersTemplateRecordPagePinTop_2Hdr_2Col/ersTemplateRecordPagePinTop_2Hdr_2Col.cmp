@@ -1,0 +1,41 @@
+<aura:component implements="lightning:recordHomeTemplate" description="Full-width header above a main column and collapsible right sidebar.">
+    
+    <aura:attribute name="headerP" type="Aura.Component[]" description="Pinned header region"/>
+    <aura:attribute name="subHeaderP" type="Aura.Component[]" description="Pinned header region 2nd component"/>
+    <aura:attribute name="headerS" type="Aura.Component[]" description="Scrolling header region"/>    
+    <aura:attribute name="main" type="Aura.Component[]" description="Main region"/>
+    <aura:attribute name="sidebar" type="Aura.Component[]" description="Collapsible sidebar region"/>
+    
+    <aura:attribute name="isSidebarCollapsed" type="Boolean" access="PRIVATE" default="false" />
+    
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+    
+    <div>
+        <div id="stickySection" class="p-header">
+            <lightning:layout multipleRows="true" aura:id="stickySection" class="slds-p-around_none">
+                <lightning:layoutItem flexibility="auto" class="slds-size_12-of-12 slds-p-around_none">
+                    {!v.headerP}
+                    {!v.subHeaderP}
+                </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+        <div class="slds-p-top_small">
+            {!v.headerS}
+        </div>
+        <lightning:layout class="slds-m-top_medium">
+            <lightning:layoutItem flexibility="auto">
+                {!v.main}
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="no-flex">
+                <lightning:buttonIcon onclick ="{!c.toggleSection}"
+                                      class="design-allow-interaction toggle slds-p-around_xxx-small slds-m-horizontal_xx-small"
+                                      variant="border-filled"
+                                      iconName="{! v.isSidebarCollapsed ? 'utility:chevronleft' : 'utility:chevronright' }" 
+                                      alternativeText="{! v.isSidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar' }" />
+            </lightning:layoutItem>
+            <lightning:layoutItem class="{! v.isSidebarCollapsed ? ' slds-hide' : '' }" size="4">
+                {!v.sidebar}
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

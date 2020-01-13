@@ -1,0 +1,14 @@
+<apex:page standardController="Opportunity">
+    <apex:form >
+        <apex:commandButton value="Set Primary Accounts" onclick="window.open('/flow/Opportunity_Assign_Accounts?varOppId={!Opportunity.Id}','Popup','width=760,height=600,left=100,top=100')" style="margin-left:162px;" />    
+<!--        <apex:commandButton rendered="{!Opportunity.wf_RenderAssign__c}" value="Set Product Locations" onclick="window.open('/flow/Opportunity_Assign_Accounts_to_Products?varOppId={!Opportunity.Id}','Popup','width=760,height=600,left=100,top=100')" /> -->      
+        <apex:commandButton value="Refresh Page" oncomplete="RefreshPrimaryTab('{!Opportunity.Id}'); return true;" status="waitStatus" />          
+    </apex:form>
+    <script type="text/javascript">
+        function RefreshPrimaryTab(id) 
+        {
+                  window.top.location.href = '/' + id;
+                  return false;
+        }
+    </script>    
+</apex:page>

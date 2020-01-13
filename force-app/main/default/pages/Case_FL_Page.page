@@ -1,0 +1,203 @@
+<!-- Project: Replace Standard Lookup with Custom Filtered Lookup           -->
+
+<!-- Created By: Eric Smith - GWI - 1/2016                                  -->
+<!-- Based on: 'Roll your own Salesforce "Lookup" Popup Window'             -->
+<!--    By Jeff Douglas - http://blog.jeffdouglas.com/2011/08/12/roll-your-own-salesforce-lookup-popup-window/ -->
+
+<!-- Calling Object:            Case            (Case)                      -->
+<!-- Filtered Lookup Object:    Service_Address (Service_Address__c)        -->
+<!-- Filtered Lookup Object:    Contact         (Contact)                   -->
+<!-- Field with Filter Value:   Account         (Account)                   -->
+
+<!-- This File: Case_FL_Page                                                --> 
+<!--            VF page for presenting an object for a filtered lookup      -->
+
+<!-- VisualForce Pages: Case_FL_Page,                                       -->
+<!--                    Service_Address_FL_PopUp                            -->
+<!--                    Contact_FL_PopUp                                    -->
+<!-- Classes Utilized:  CaseLookupController,                               -->
+<!--                    Service_AddressPopUpController                      -->
+<!--                    ContactPopUpController                              -->
+<!-- Test Classes:      CaseLookupControllerTester,                         -->
+<!--                    Service_AddressPopUpControllerTester                -->
+<!--                    ContactPopUpControllerTester                        -->
+
+<!-- Activate this page from a custom Action, Button or Link and pass       --> 
+<!--    parameter of CaseId as ?cid=                                        -->
+<!--    Example: location.href = ( communityName + '/apex/Case_FL_Page?cid={!Case.Id}'); -->
+
+<!-- ***** If Case is custom then append '__c' to tabstyle  *****   -->
+<!-- Only show header and sidebar if in Standard View				-->
+<apex:page controller="CaseLookupController" id="Page" tabstyle="Case"
+           showHeader="{!isStandardView}" sidebar="{!isStandardView}">    
+    
+    <!-- JavaScript to handle Service Console                       -->    
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <script type="text/javascript">
+        
+    // Set the Tab Label
+    // ** I'm taking this out because a saved case won't display the case # on the tab
+    //    if I set this.  The value set here will persist to the standard Case page
+    //    I'll live with 'External Page' displayed until Save is selected
+    //if ("{!CaseNumber}" == "" || "{!CaseNumber}" == "null"){   
+    //sforce.console.getFocusedSubtabId(function(result){
+    //    sforce.console.setTabTitle("New Case", result.id);
+    //})};
+    
+    
+    // Close the Tab on Cancel
+    var callback = function () {
+        if (result.error) {
+            alert("Error message is " + result.error);
+        }
+    };
+    function CloseTab() {
+        //First find the ID of the current tab to close it
+        sforce.console.getEnclosingTabId(closeSubtab);
+    }
+    
+    var closeSubtab = function closeSubtab(result) {
+        //Now that we have the tab ID, we can close it
+        var tabId = result.id;
+        sforce.console.closeTab(tabId, callback);
+    };
+    
+    </script>
+    
+    <!-- JavaScript to override the Standard Lookup process     -->    
+    <script type="text/javascript"> 
+    function openLookup(baseURL, width, modified, searchParam){
+        var originalbaseURL = baseURL;
+        var originalwidth = width;
+        var originalmodified = modified;
+        var originalsearchParam = searchParam;
+        
+        var lookupType = baseURL.substr(baseURL.search("&lktp=")+6, 3);
+        if (modified == '1') baseURL = baseURL + searchParam;
+        
+        var isCustomLookup = false;
+        
+        // ***** Provide 3 character ID prefix for your Service_Address record *****
+        // "001" is the lookup type for the Account object
+        if(lookupType == "a0S" || lookupType == '003'){
+            
+            var urlArr = baseURL.split("&");
+            var txtId = '';
+            if(urlArr.length > 2) {
+                urlArr = urlArr[1].split('=');
+                txtId = urlArr[1];
+            } 
+            
+            // Set url of the Custom PopUp page
+            if (lookupType == "a0S") {
+                baseURL = "/apex/Service_Address_FL_PopUp?txt=" + txtId;
+            } else {
+                baseURL = "/apex/Contact_FL_PopUp?txt=" + txtId;
+            }
+            
+            // Add Support Partner Community prefix
+            baseURL = "{!$Site.Prefix}" + baseURL;
+            
+            // Add the id of apex:form control "myForm"
+            baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");
+            if (modified == '1') {
+                baseURL = baseURL + "&lksearch=" + searchParam;
+            }
+            
+            // Pass value to filter the lookup by to the next page
+            // Pass parameter of Account to filter the Service_Address lookup
+            baseURL = baseURL + "&fid=\'{!co.AccountId}\'";
+            
+            // ***** Add any additional parameters you want to pass to the next page ***** 
+            // Pass parameter of Service Address to set value in new CPE Asset record
+            // baseURL = baseURL + "&srvadr={\!co.SrvAdr__c}";
+            
+            // Identify the ID of inputField that is the lookup to be customized
+            if(txtId.indexOf('LookupObject1') > -1 ){
+                isCustomLookup = true;
+            }
+            if(txtId.indexOf('LookupObject2') > -1 ){
+                isCustomLookup = true;
+            }
+            if(txtId.indexOf('LookupObject3') > -1 ){
+                isCustomLookup = true;
+            }
+        }
+        
+        if(isCustomLookup == true){
+            openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
+        }
+        else {
+            if (modified == '1') originalbaseURL = originalbaseURL + originalsearchParam;
+            openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
+        } 
+    }
+    </script>
+    <!--Spell Check    
+<apex:includeScript value="/js/spch.js"/>
+-->
+
+    <apex:sectionheader title="{!$ObjectType.Case.label} Edit" subtitle="{!IF(ISNULL(co.CaseNumber), 'New Case', co.CaseNumber)}"/>
+  
+    <apex:form id="myForm">
+        
+        <apex:PageBlock mode="edit" title="{!$ObjectType.Case.label} Edit" id="PageBlock">
+            
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!mySave}"/>
+                <!--*** Unable to get standard spell check functionality to work on custom VF page ***
+<input value="Check Spelling" class="btn" name="spell" title="Check Spelling (New Window)" onclick="doSpell({ctrl:'cas15',lang:'en_US',title:'Check Spelling',intLang:'en_US',organizationId:'00D11000000Dc6j',userId:'005600000019cXW'}, '/servlet/SProxyWrapper', document.location.protocol + '//' + 'spell-was.salesforce.com/spellcheck', 'There is nothing to check', 'We are sorry,our spellchecker currently does not support the browser you are using. Please upgrade your browser.', 'The Spell Checker is not available in this language.');" type="button"/>
+-->
+                <apex:commandbutton value="Save & Close" action="{!mySaveClose}"/>
+                <!--
+<apex:commandbutton value="More Options" action="{!myMore}"/>
+-->
+                <apex:commandbutton value="Cancel" onClick="CloseTab();return false" rendered="{!isServiceConsole}" />
+                <apex:commandbutton value="Cancel" action="{!myCancel}" immediate="true" rendered="{!isStandardView}" />
+                     
+            </apex:pageblockbuttons>
+            
+            <apex:pageblocksection title="Case Information - Account: {!acctName}" showheader="true" columns="2">
+                <apex:outputtext label="Case Owner" value="{!userName}"/>
+                <apex:inputfield value="{!co.Service_Catagory__c}" required="true"/>
+                <apex:outputtext label="Account Name" value="{!acctName}"/>
+                <apex:inputfield value="{!co.Impact__c}" required="true"/>
+                <apex:inputField id="LookupObject1" value="{!co.Service_Address__c}" required="true" />
+                <apex:inputfield value="{!co.Origin}" required="true"/>
+                <apex:inputField id="LookupObject3" value="{!co.Secondary_Service_Address__c}" required="false" />
+                <apex:inputfield value="{!co.Status}" required="true"/>
+                <apex:inputField id="LookupObject2" value="{!co.ContactId}" required="true" />
+                <apex:inputfield value="{!co.Priority}" required="false"/>
+                <apex:inputfield value="{!co.Dispatch_Ticket__c}" required="false"/>
+                <apex:inputfield value="{!co.FRP_Dispute_Flag__c}" required="false"/>
+                <apex:inputfield value="{!co.Monthly_Monitoring__c}" required="false"/>
+                <apex:inputfield value="{!co.FRP_Ticket__c}" required="false"/>
+                <apex:pageblocksectionitem />
+                <apex:inputfield value="{!co.Circuit_ID__c}" required="false"/>
+            </apex:pageblocksection>    
+            
+            <apex:pageblocksection title="Description Information" showheader="true" columns="1">
+                <apex:inputfield value="{!co.Subject}" required="false" style="width: 500px"/>
+                <apex:inputfield value="{!co.Description}" required="false" style="width: 500px; height: 100px"/>
+            </apex:pageblocksection>
+            
+            <apex:pageblocksection title="Closed Case Infomation" showheader="true" columns="1">
+                <apex:inputfield value="{!co.Case_Closed_Comments__c}" required="false" style="width: 500px"/>
+                <apex:pageblocksectionitem />
+            </apex:pageblocksection>
+            
+            <apex:pageblocksection title="System Information" showheader="true" columns="2">
+                <apex:outputfield value="{!co.RecordTypeId}"/>                
+            </apex:pageblocksection>            
+            
+            <apex:pageblocksection title="Optional" showheader="true" columns="1" rendered="false">
+                <apex:inputCheckbox value="{!isAssignmentChecked}" rendered="false">
+                    <apex:outputText >Assign using active assignment rules</apex:outputText>    
+                </apex:inputCheckbox>
+            </apex:pageblocksection>  
+            
+        </apex:PageBlock>        
+         
+    </apex:form>
+    
+</apex:page>

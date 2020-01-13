@@ -1,0 +1,8 @@
+<apex:page >
+    <apex:sectionheader title="Manager's Meeting Metrics" subtitle="Service Delivery"/>
+    <apex:form >
+        <apex:pageblock >
+            <apex:outputText >Billed, Reductions, Forecast and Backlog</apex:outputText>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

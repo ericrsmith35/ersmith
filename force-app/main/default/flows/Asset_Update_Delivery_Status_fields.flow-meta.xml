@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <description>This sets the status variable and the Delivery System Owner variable to Null before updating the Asset values.</description>
+        <name>Assign_Delivery_Status_and_Delivery_System_Owner_to_Null</name>
+        <label>Assign Delivery Status and Delivery System Owner to Null</label>
+        <locationX>284</locationX>
+        <locationY>378</locationY>
+        <assignmentItems>
+            <assignToReference>VarDelivStatus</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarDelSysOwner</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_the_Asset_Delivery_tracking_to_the_same_as_the_Opportunity_Product</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>This checks for the looked up delivery method, to see if it is checked.</description>
+        <name>Is_the_Track_Delivery_Method_for_this_product_checked</name>
+        <label>Is the Track Delivery Method for this product checked?</label>
+        <locationX>273</locationX>
+        <locationY>262</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Delivery_Status_and_Delivery_System_Owner_to_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Delivery Method not tracked</defaultConnectorLabel>
+        <rules>
+            <name>Delivery_Method_to_be_tracked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>VarTrackDelStatus</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_the_Asset_Delivery_tracking_to_the_same_as_the_Opportunity_Product</targetReference>
+            </connector>
+            <label>Delivery Method to be tracked</label>
+        </rules>
+    </decisions>
+    <description>This is the flow that updates an individual asset with the values for the Delivery Information from the opportunity product.</description>
+    <interviewLabel>Asset - Update Delivery Status fields {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Asset - Update Delivery Status fields</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Finds the opportunity product record, if any, associated with this product on the asset.</description>
+        <name>Lookup_opportunity_product_record_for_the_product_on_this_asset</name>
+        <label>Lookup opportunity product record for the product on this asset</label>
+        <locationX>167</locationX>
+        <locationY>54</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Lookup_Product_Track_Delivery_Option</targetReference>
+        </connector>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarOpportunityID</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Product2Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarProductID</elementReference>
+            </value>
+        </filters>
+        <object>OpportunityLineItem</object>
+        <outputAssignments>
+            <assignToReference>VarDelivStatus</assignToReference>
+            <field>Delivery_Method__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>VarDelSysOwner</assignToReference>
+            <field>Delivery_System_Owner__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <description>Looks up to the product and checks to see if the Track Delivery Method box is checked</description>
+        <name>Lookup_Product_Track_Delivery_Option</name>
+        <label>Lookup Product Track Delivery Option</label>
+        <locationX>170</locationX>
+        <locationY>167</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_the_Track_Delivery_Method_for_this_product_checked</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarProductID</elementReference>
+            </value>
+        </filters>
+        <object>Product2</object>
+        <outputAssignments>
+            <assignToReference>VarTrackDelStatus</assignToReference>
+            <field>Track_Delivery_Method__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <description>Updates that Asset Delivery tracking to the values retrieved from the Opportunity Product record.</description>
+        <name>Update_the_Asset_Delivery_tracking_to_the_same_as_the_Opportunity_Product</name>
+        <label>Update the Asset Delivery tracking to the same as the Opportunity Product</label>
+        <locationX>515</locationX>
+        <locationY>262</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarAssetID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Delivery_Method__c</field>
+            <value>
+                <elementReference>VarDelivStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Delivery_System_Owner__c</field>
+            <value>
+                <elementReference>VarDelSysOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Asset</object>
+    </recordUpdates>
+    <startElementReference>Lookup_opportunity_product_record_for_the_product_on_this_asset</startElementReference>
+    <status>Active</status>
+    <variables>
+        <description>The asset ID of the Asset being created or changed</description>
+        <name>VarAssetID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>The Delivery Status from the Opportunity Product record for the product affiliated with the asset as linked by the contract and opportunity.</description>
+        <name>VarDelivStatus</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The Delivery System Owner ID as listed on the opportunity product record.</description>
+        <name>VarDelSysOwner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <description>The opportunity ID passed in from the process builder.</description>
+        <name>VarOpportunityID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>The Product ID that is being added to the asset.</description>
+        <name>VarProductID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Intended to hold the looked up value of the Track Delivery Status field for the product related to the asset.</description>
+        <name>VarTrackDelStatus</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

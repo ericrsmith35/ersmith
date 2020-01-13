@@ -1,0 +1,45 @@
+<aura:component controller="DisconnectOptionsController" implements="lightning:availableForFlowScreens" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:attribute name="DiscoReason" type="String" />
+    <aura:attribute name="Perm" type="Integer"/>
+    <aura:attribute name="AccId" type="String"/>
+    <aura:if isTrue="{!v.DiscoReason == null}">        
+        <aura:if isTrue="{!mod(v.Perm,2) == 1}">
+            <lightning:button label="Non Payment" onclick="{!c.disco}" />
+        </aura:if>
+        <aura:if isTrue="{!mod(v.Perm,4) > 1}">
+            <lightning:button label="Seasonal Suspend" onclick="{!c.disco}" />
+        </aura:if>
+        <aura:if isTrue="{!mod(v.Perm,8) > 3}">
+            <lightning:button label="Security Suspend" onclick="{!c.disco}" />
+        </aura:if>
+        <aura:if isTrue="{!mod(v.Perm,8) == 0}">
+            No Options Available
+        </aura:if>
+    </aura:if>
+    <aura:if isTrue="{!v.DiscoReason == 'Non-Payment'}">
+        <aura:if isTrue="{!mod(v.Perm,16) > 7}">
+            <lightning:button label="Reactivate Non Payment" onclick="{!c.disco}" />
+            <aura:set attribute="else">
+                Reactivate Non Payment Unavailable
+            </aura:set>
+        </aura:if> 
+    </aura:if>
+    <aura:if isTrue="{!v.DiscoReason == 'Seasonal Suspend'}">
+        <aura:if isTrue="{!mod(v.Perm,32) > 15}">
+            <lightning:button label="Reactivate Seasonal" onclick="{!c.disco}" />
+            <aura:set attribute="else">
+                Reactivate Seasonal Suspend Unavailable
+            </aura:set>
+        </aura:if> 
+    </aura:if>
+    <aura:if isTrue="{!v.DiscoReason == 'Security'}">
+        <aura:if isTrue="{!mod(v.Perm,64) > 31}">
+            <lightning:button label="Reactivate Security" onclick="{!c.disco}" />
+            <aura:set attribute="else">
+                Reactivate Security Suspend Unavailable
+            </aura:set>
+        </aura:if> 
+    </aura:if>
+</aura:component>

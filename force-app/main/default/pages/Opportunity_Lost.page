@@ -1,0 +1,38 @@
+<!-- 
+    Shared Visualforce page used to present and collect reason for Opportunity
+    being set to either Closed Lost or to Cancelled.  
+    Closed Lost Reason is a dependent picklist based on the value of Trigger Lost
+    
+    Eric Smith - GWI - May 2016
+-->
+    <apex:page standardcontroller="Opportunity" lightningStylesheets="true">
+    <apex:messages />
+    <apex:sectionheader title="{!$ObjectType.Opportunity.label} Edit" subtitle="Lost/Cancelled Opportunity"/>
+    
+    <chatter:feedwithfollowers entityId="{!Opportunity.Id}"/>
+    
+    <apex:form >
+        <apex:pageblock mode="edit" title="{!$ObjectType.Opportunity.label} Edit">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+            
+            <apex:pageblocksection title="Lost/Cancelled Details" showheader="true" columns="1">
+                <apex:outputtext label="Stage" value="{!Opportunity.StageName}"/>
+                <apex:pageblocksectionitem />
+                <apex:inputfield value="{!Opportunity.Closed_Lost_Reason__c}" required="true"/>                
+                <apex:pageblocksectionitem />
+                <apex:inputfield value="{!Opportunity.Closed_Lost_Notes__c}" required="false" style="width: 500px; height: 100px"/>
+                <apex:pageblocksectionitem />
+                <apex:inputfield value="{!Opportunity.Competitor_Lost_To__c}" rendered="{!Opportunity.Trigger_Lost__c}" required="true"/>
+                <apex:pageblocksectionitem />
+                <!-- This next field needs to be on the page for the dependent picklist to work --> 
+                <!-- 0px keeps it from displaying or being changed -->
+                <apex:inputfield value="{!Opportunity.Trigger_Lost__c}" style="width: 0px; height: 0px"/>
+            </apex:pageblocksection>    
+            
+        </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

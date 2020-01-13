@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>33</locationX>
+        <locationY>23</locationY>
+        <assignmentItems>
+            <assignToReference>vGroupName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Director of Service Delivery</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Group_ID</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Pass_Back_ID</name>
+        <label>Pass Back ID</label>
+        <locationX>174</locationX>
+        <locationY>368</locationY>
+        <assignmentItems>
+            <assignToReference>vReturnId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objGroupMember.UserOrGroupId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Take the Name of a Public Group and return the ID of the first active user.</description>
+    <interviewLabel>User - Get ID from Public Group Name {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>User - Get ID from Public Group Name</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Group_ID</name>
+        <label>Get Group ID</label>
+        <locationX>175</locationX>
+        <locationY>108</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Member</targetReference>
+        </connector>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vGroupName</elementReference>
+            </value>
+        </filters>
+        <object>Group</object>
+        <outputAssignments>
+            <assignToReference>vGroupId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Member</name>
+        <label>Get Member</label>
+        <locationX>175</locationX>
+        <locationY>233</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Pass_Back_ID</targetReference>
+        </connector>
+        <filters>
+            <field>GroupId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vGroupId</elementReference>
+            </value>
+        </filters>
+        <object>GroupMember</object>
+        <outputReference>objGroupMember</outputReference>
+        <queriedFields>UserOrGroupId</queriedFields>
+    </recordLookups>
+    <startElementReference>Get_Group_ID</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>objGroupMember</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>GroupMember</objectType>
+    </variables>
+    <variables>
+        <name>vGroupId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vGroupName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vReturnId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

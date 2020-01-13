@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>21</locationX>
+        <locationY>18</locationY>
+        <assignmentItems>
+            <assignToReference>vProjectId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>a140e000005SHNxAAO</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Project_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Prepend_Note</name>
+        <label>Prepend Note</label>
+        <locationX>158</locationX>
+        <locationY>405</locationY>
+        <assignmentItems>
+            <assignToReference>objProject.osp_Build_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ttUpdatedNote</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Save_Changes</targetReference>
+        </connector>
+    </assignments>
+    <description>Replaces old javascript button for Lightning compatability</description>
+    <formulas>
+        <description>Format for the tag to be prepended to the note</description>
+        <name>fTag</name>
+        <dataType>String</dataType>
+        <expression>TEXT(TODAY()) &amp; &quot; &quot; &amp; {!$User.Alias} &amp; &quot; - &quot;</expression>
+    </formulas>
+    <interviewLabel>Project Button - OSP Note {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Project Button - OSP Note</label>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Project_Record</name>
+        <label>Get Project Record</label>
+        <locationX>160</locationX>
+        <locationY>141</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_OSP_Note</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vProjectId</elementReference>
+            </value>
+        </filters>
+        <object>Project__c</object>
+        <outputReference>objProject</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>osp_Build_Notes__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Save_Changes</name>
+        <label>Save Changes</label>
+        <locationX>158</locationX>
+        <locationY>530</locationY>
+        <inputReference>objProject</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Add_OSP_Note</name>
+        <label>Add OSP Note</label>
+        <locationX>159</locationX>
+        <locationY>269</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Prepend_Note</targetReference>
+        </connector>
+        <fields>
+            <name>Add_Note</name>
+            <fieldText>Add Note</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>ExistingNote</name>
+            <fieldText>{!objProject.osp_Build_Notes__c}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Get_Project_Record</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>ttUpdatedNote</name>
+        <text>{!fTag}{!Add_Note} 
+
+{!objProject.osp_Build_Notes__c}</text>
+    </textTemplates>
+    <variables>
+        <name>objProject</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Project__c</objectType>
+    </variables>
+    <variables>
+        <name>vProjectId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

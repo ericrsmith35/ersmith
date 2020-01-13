@@ -1,0 +1,15 @@
+<aura:component implements="force:hasRecordId">
+
+	<aura:attribute name="fields" type="Array"/>
+	<aura:attribute name="disabled" type="Boolean" default="false" />
+	<aura:attribute name="whenDone" type="Object"/>
+	
+	<lightning:recordEditForm recordId="{!v.recordId}" onsuccess="{!v.whenDone}" objectApiName="Service_Number__c">
+		<aura:iteration items="{!v.fields}" var="f">
+			<lightning:inputField fieldName="{!f}"/>
+		</aura:iteration>
+		<div class="slds-m-top_medium">
+			<lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+		</div>
+	</lightning:recordEditForm>
+</aura:component>

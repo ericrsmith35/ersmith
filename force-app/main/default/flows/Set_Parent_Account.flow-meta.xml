@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Plat_ID_not_Found</name>
+        <label>Plat ID not Found</label>
+        <locationX>465</locationX>
+        <locationY>315</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <stringValue>Salesforce Administration</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>ChatterPostNotFound</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>Group</stringValue>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>r_FeedID</assignToReference>
+            <name>feedItemId</name>
+        </outputParameters>
+    </actionCalls>
+    <constants>
+        <name>SystemAdminChatterGroup</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Salesforce Administration</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>Zero</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Make sure a Plat ID is provided that is not null or 0</description>
+        <name>Is_Plat_ID_Provided</name>
+        <label>Is Plat ID Provided?</label>
+        <locationX>165</locationX>
+        <locationY>15</locationY>
+        <defaultConnector>
+            <targetReference>Lookup_Account_by_Plat_ID</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Pass Plat ID</defaultConnectorLabel>
+        <rules>
+            <name>Missing_Plat_ID</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>v_PlatID</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue/>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>v_PlatID</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <label>Missing Plat ID</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_an_Account_record_found</name>
+        <label>Was an Account record found?</label>
+        <locationX>165</locationX>
+        <locationY>465</locationY>
+        <defaultConnector>
+            <targetReference>Set_Parent_Account_ID</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Account_Not_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>r_AccountID</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Plat_ID_not_Found</targetReference>
+            </connector>
+            <label>Account Not Found</label>
+        </rules>
+    </decisions>
+    <description>Set the Parent Account field on the provided Account ID to the Account with the provided Plat ID.</description>
+    <interviewLabel>Set Parent Account {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Set Parent Account</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Lookup_Account_by_Plat_ID</name>
+        <label>Lookup Account by Plat ID</label>
+        <locationX>165</locationX>
+        <locationY>315</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_an_Account_record_found</targetReference>
+        </connector>
+        <filters>
+            <field>Plat_ID__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>v_PlatID</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <outputAssignments>
+            <assignToReference>r_AccountID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>r_Name</assignToReference>
+            <field>Name</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>r_PlatID</assignToReference>
+            <field>Plat_ID__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>r_GuarantorID</assignToReference>
+            <field>plat_guarantor_id__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_Parent_Account_ID</name>
+        <label>Set Parent Account ID</label>
+        <locationX>165</locationX>
+        <locationY>615</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>v_ChildAccountID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>ParentId</field>
+            <value>
+                <elementReference>r_AccountID</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <startElementReference>Is_Plat_ID_Provided</startElementReference>
+    <status>Draft</status>
+    <textTemplates>
+        <name>ChatterPostNotFound</name>
+        <text>The Parent Account for {!v_ChildAccountID} was not changed because the Guarantor Plat ID ({!v_PlatID}) was not found.</text>
+    </textTemplates>
+    <variables>
+        <description>ID of the Account whose Plat ID matches the provided value.</description>
+        <name>r_AccountID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>r_FeedID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>r_GuarantorID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>r_Name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>r_PlatID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The ID of the Child Account record to be updated</description>
+        <name>v_ChildAccountID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Plat ID for the Account lookup</description>
+        <name>v_PlatID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

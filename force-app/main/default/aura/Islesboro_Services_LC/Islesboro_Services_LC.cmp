@@ -1,0 +1,78 @@
+<aura:component controller="Islesboro_Services_LC" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <aura:attribute name="recordId" type="String" default="{!recordId}" />
+    
+    <aura:attribute name="dataCount" type="String" default=" "/>
+    <aura:attribute name="voiceCount" type="String" default=" "/>
+    <aura:attribute name="dataList" type="Asset[]" />
+    <aura:attribute name="voiceList" type="Asset[]" />
+    <aura:attribute name="isActiveData" type="Boolean" />
+    <aura:attribute name="isTempDeactiveData" type="Boolean" />
+    <aura:attribute name="isRequested" type="Boolean" default="false"/>
+    <aura:attribute name="accountId" type="String" />
+    <aura:attribute name="vResult" type="String" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:flow aura:id="flowData" onstatuschange="{!c.handleStatusChange}" />    
+    
+    <lightning:card iconName="custom:custom21" variant="Narrow" class="slds-is-relative">
+        <aura:set attribute="title">Active Data Services - {!v.dataCount}</aura:set>
+        
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.isActiveData}">
+                <aura:if isTrue="{!v.isRequested}">
+                    <lightning:button label="Deactivation Requested"  
+                                      title="Account Deactivation Request has Been Submitted" type="submit" 
+                                      class="slds-button_neutral slds-button_small">
+                    </lightning:button>
+                    <aura:set attribute="else">
+                        <lightning:button label="Deactivate" onclick="{!c.vwfDeactivate}" 
+                                          title="Request Account Deactivation" type="submit" 
+                                          class="slds-button_destructive slds-button_small">
+                        </lightning:button>
+                    </aura:set>
+                </aura:if>
+            </aura:if>
+            <aura:if isTrue="{!v.isTempDeactiveData}">
+                <aura:if isTrue="{!v.isRequested}">
+                    <lightning:button label="Reactivation Requested"  
+                                      title="Account Reactivation Request has Been Submitted" type="submit" 
+                                      class="slds-button_neutral slds-button_small">
+                    </lightning:button>
+                    <aura:set attribute="else">
+                        <lightning:button label="Reactivate" onclick="{!c.vwfDeactivate}" 
+                                          title="Request Account Reactivation" type="submit" 
+                                          class="slds-button_success slds-button_small">
+                        </lightning:button>
+                    </aura:set>
+                </aura:if>
+            </aura:if>
+        </aura:set>
+        
+        <div class="slds-p-left_medium slds-p-right_medium">
+            <ul class="slds-list_vertical slds-has-dividers_top-space">
+                <aura:iteration items="{!v.dataList}" var="item" indexVar="i">
+                    <li class="slds-list__item">                   
+                        <c:Islesboro_Display_Asset_LC assetId="{!item.Id}" dataAsset="true" remoteRecordId="{!v.remoteRecordId}" showDialog="{!v.showDialog}" />
+                    </li>
+                </aura:iteration>
+            </ul>
+        </div>
+        <lightning:spinner aura:id="spinnerd" variant="brand" size="large"/>
+    </lightning:card>
+    
+    <lightning:card iconName="custom:custom22" variant="Narrow" class="slds-is-relative">
+        <aura:set attribute="title">Active Voice Services - {!v.voiceCount}</aura:set>
+        <div class="slds-p-left_medium slds-p-right_medium">
+            <ul class="slds-list_vertical slds-has-dividers_top-space">
+                <aura:iteration items="{!v.voiceList}" var="item" indexVar="i">
+                    <li class="slds-list__item">                   
+                        <c:Islesboro_Display_Asset_LC assetId="{!item.Id}" dataAsset="false" remoteRecordId="{!v.remoteRecordId}" showDialog="{!v.showDialog}" />
+                    </li>
+                </aura:iteration>
+            </ul>
+        </div>
+        <lightning:spinner aura:id="spinnerv" variant="brand" size="large"/>
+    </lightning:card>        
+    
+</aura:component>

@@ -1,0 +1,175 @@
+<!-- Project: Assets Phase 1                                                -->
+<!-- Created By: GWI, Eric Smith                                            -->
+<!-- VisualForce Page: OLI_SelectA_vp                                       -->
+<!-- Description: VF page for selecting existing Assets to assign to OLIs   -->
+<!--    Classes Utilized:   OLI_SelectA_ap.apxc                             -->
+<!--                        OLI_SelectA_ap_Test.apxc                        -->
+<!--                        OLI_Wrapper.apxc                                -->
+<!--                                                                        -->
+
+<apex:page controller="OLI_SelectA_ap" id="thePage" tabStyle="Product2" sidebar="false" lightningStylesheets="true">  
+    
+    <!-- Style for Page Messages -->
+    <style>
+        .Messages { color: red; font-weight: strong;}
+        .StatusPicklist { }
+    </style>
+    
+    <!-- Javascript -->
+    <script>
+        // Script to provide pop-up on 'Cancel' button click
+        function confirmCancel() {
+            var isCancel = confirm("Are you sure you wish to cancel?");
+            if (isCancel) return true;     
+            return false;
+        }
+    </script>
+    
+    <!-- Section Header -->
+    <apex:sectionHeader title="Select Assets to Assign to this Product" />
+    
+    <!-- Form with Page Blocks and Sections -->
+    <apex:form >
+        
+        <!-- Page Block providing the user with Editable Table -->   
+        <apex:pageBlock >
+
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!assign}" value="{!IF(warningMsg,'Override Warning','Assign')}"/>
+                <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
+            </apex:pageBlockButtons>
+            
+            <apex:messages styleClass="Messages"/>        
+            
+            <apex:pageBlockSection title="Opportunity Product" showHeader="true" columns="1" >
+                <apex:pageBlockTable value="{!olis}" var="oli">
+                    
+                    <apex:column >
+                        <apex:facet name="header">Product Name</apex:facet>
+                        <apex:outputField value="{!oli.Product_Name__c}" />                           
+                    </apex:column> 
+                
+                    <apex:column >
+                        <apex:facet name="header">Quantity</apex:facet>
+                        <apex:outputText value="{!FLOOR(oli.Quantity)}" />
+                    </apex:column>
+                
+                    <apex:column id="selQtyCol">
+                        <apex:facet name="header">Selected</apex:facet>
+                        <apex:outputText value="{!FLOOR(selQty)}" style="font-weight:800; color:{!selColor}"/>
+                    </apex:column>
+                                                                                
+                    <apex:column >
+                        <apex:facet name="header">Bill to Account</apex:facet>
+                        <apex:outputField value="{!oli.Account__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Deliver to Account</apex:facet>
+                        <apex:outputField value="{!oli.Deliver_to_Account__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Service Address</apex:facet>
+                        <apex:outputField value="{!oli.Service_Address__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Line Description</apex:facet>
+                        <apex:outputField value="{!oli.Description}" />
+                    </apex:column> 
+                    
+                </apex:pageBlockTable>                                   
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection id="editableView" title="Assets related to this Customer, Contract or Opportunity" columns="1" rendered="true" collapsible="false" >
+                <apex:pageBlockTable value="{!oAssetW}" var="val">
+                
+                    <apex:column id="chkColumn">
+                        <apex:facet name="header">
+                            <apex:outputLabel >
+                                <apex:inputCheckbox value="{!chkSelection}" 
+                                                    title="Select All or Deselect All Assets" >
+                                    <apex:actionSupport event="onchange" action="{!selectAll}" reRender="chkColumn, selQtyCol"/>
+                                </apex:inputCheckbox>
+                            </apex:outputLabel>
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!val.isoAssetSelected}" >
+                        	<apex:actionSupport event="onchange" action="{!selectOne}" reRender="selQtyCol"/>
+                        </apex:inputCheckbox>
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Asset Name</apex:facet>
+                            <apex:outputLink value="/{!val.assID}" >{!val.ASS.Name}</apex:outputLink>
+                    </apex:column>
+
+                    <apex:column >
+                        <apex:facet name="header">Display ID</apex:facet>
+                        <apex:outputField value="{!val.ASS.Display_ID__c}" />                           
+                    </apex:column> 
+                    
+                    <apex:column >
+                        <apex:facet name="header">Type</apex:facet>
+                        <apex:outputField value="{!val.ASS.Asset_Type__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Status</apex:facet>
+                        <apex:outputField value="{!val.ASS.Status}" />                           
+                    </apex:column> 
+                   
+                    <apex:column >
+                        <apex:facet name="header">Quantity</apex:facet>
+                        <apex:outputText value="{!FLOOR(val.ASS.Quantity)}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Converted Asset</apex:facet>
+                        <apex:outputField value="{!val.ASS.Converted_Asset__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Purchase/Renewal Opportunity</apex:facet>
+                        <apex:outputField value="{!val.ASS.Latest_Opportunity__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">In Production</apex:facet>
+                        <apex:outputField value="{!val.ASS.In_Production__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Install Date</apex:facet>
+                        <apex:outputField value="{!val.ASS.InstallDate}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Account</apex:facet>
+                        <apex:outputField value="{!val.ASS.AccountId}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Service Address</apex:facet>
+                        <apex:outputField value="{!val.ASS.Service_Address__c}" /> 						                         
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Contract</apex:facet>
+                        <apex:outputField value="{!val.ASS.Contract__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">End Date</apex:facet>
+                        <apex:outputField value="{!val.ASS.Contract_End_Date__c}" />                           
+                    </apex:column> 
+                     
+                </apex:pageBlockTable>
+                
+            </apex:pageBlockSection>
+       
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

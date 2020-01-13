@@ -1,0 +1,125 @@
+<aura:component implements="ltngfw:IntBase,force:hasRecordId,flexipage:availableForAllPageTypes" extends="ltngfw:CmpBase" controller="CmpLinkAssetToNumberCtrl">
+
+	<aura:attribute name="availableNumbers" type="Array"/>
+	<aura:attribute name="lstAssets" type="Array"/>
+	<aura:attribute name="lstDisplayAssets" type="Array"/> 
+	<aura:attribute name="assetOptions" type="List"/>
+	<aura:attribute name="saOptions" type="Array"/> 
+
+	<aura:attribute name="selectedProduct" type="String"/> 
+	<aura:attribute name="selectedSA" type="String"/> 
+
+	<aura:attribute name="countAsset" type="Integer" default="0"/>
+	<aura:attribute name="countSN" type="Integer" default="0"/>
+	<aura:attribute name="totalSN" type="Integer" default="0"/>
+
+	<lightning:card title="Link Assets to Service Numbers">
+		<aura:set attribute="actions">
+			<lightning:button variant="brand" label="Refresh List" onclick="{!c.init}"/>
+			<lightning:button variant="brand" label="Assign" onclick="{!c.saveAll}" disabled="{!or(v.countSN != v.totalSN, v.countAsset == 0)}"/>
+		</aura:set>
+
+		<lightning:select value="{!v.selectedProduct}" label="Asset" onchange="{!c.updateTable}">
+			<aura:iteration items="{!v.assetOptions}" var="so">
+				<option value="{!so.value}" text="{!so.label}" selected="{!so.selected}"/>
+			</aura:iteration>
+		</lightning:select>
+
+		<aura:renderIf isTrue="{!v.selectedProduct != ''}">
+			<lightning:select value="{!v.selectedSA}" label="Service Address" onchange="{!c.updateTable}">
+				<aura:iteration items="{!v.saOptions}" var="so">
+					<option value="{!so.value}" text="{!so.label}" selected="{!so.selected}"/>
+				</aura:iteration>
+			</lightning:select>
+		</aura:renderIf>
+	</lightning:card>
+
+	<div class="slds-p-around_small slds-m-bottom_medium">
+		# of Assets selected: {!v.countAsset}<br/>
+		# of Service Numbers selected: {!v.countSN} of {!v.totalSN}
+	</div>
+	<aura:renderIf isTrue="{!and(v.selectedProduct != null, v.selectedProduct != '')}">
+		<div class="slds-grid slds-wrap">
+			<div class="slds-col">
+				<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+					<thead>
+						<tr class="slds-line-height_reset">
+							<th class="slds-text-title_caps" scope="col">
+								<div class="slds-truncate" title="Select">
+									<lightning:input type="checkbox" variant="label-hidden" aura:id="asset_all" class="slds-float_left" onchange="{!c.assetSelectAll}"/>
+									Select
+								</div>
+							</th>
+							<th class="slds-text-title_caps" scope="col">
+								<div class="slds-truncate" title="Asset">Asset</div>
+							</th>
+							<th class="slds-text-title_caps" scope="col">
+								<div class="slds-truncate" title="Display ID">Display ID</div>
+							</th>
+							<th class="slds-text-title_caps" scope="col">
+								<div class="slds-truncate" title="Service Address">Service Address</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<aura:iteration items="{!v.lstDisplayAssets}" var="a" indexVar="i">
+							<tr class="slds-hint-parent" id="{!'tr_' + i}" data-id="{!a.Id}">
+								<th data-label="Select" scope="row">
+									<lightning:input type="checkbox" variant="label-hidden" value="{!a.isSelected}" checked="{!a.isSelected}" onchange="{!c.assetSelect}"/>
+								</th>
+
+								<td data-label="Asset">
+									<div class="slds-truncate" title="{!a.asset.Name}">{!a.asset.Name}</div>
+								</td>
+
+								<td data-label="Display ID">
+									<div class="slds-truncate" title="{!a.asset.Display_ID__c}">{!a.asset.Display_ID__c}</div>
+								</td>
+
+								<td data-label="Service Address">
+									<div class="slds-truncate" title="{!a.asset.Service_Address_Name__c}">{!a.asset.Service_Address_Name__c}</div>
+								</td>
+							</tr>
+						</aura:iteration>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="slds-col slds-p-left_small">
+				<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+					<thead>
+						<tr class="slds-line-height_reset">
+							<th class="slds-text-title_caps" scope="col">
+								<div class="slds-truncate" title="Select">
+									<lightning:input type="checkbox" variant="label-hidden" aura:id="sn_all" class="slds-float_left" onchange="{!c.snSelectAll}"/>
+									Select
+								</div>
+							</th>
+							<th class="slds-text-title_caps" scope="col">
+								<div class="slds-truncate" title="Service Number">Service Number</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<aura:iteration items="{!v.availableNumbers}" var="a" indexVar="i">
+							<tr class="slds-hint-parent" id="{!'tr_' + i}" data-id="{!a.Id}">
+								<th data-label="Select" scope="row">
+									<lightning:input type="checkbox" variant="label-hidden" value="{!a.isSelected}" checked="{!a.isSelected}" onchange="{!c.snSelect}"/>
+								</th>
+
+								<td data-label="Service Number">
+									{!a.label}
+								</td>
+							</tr>
+						</aura:iteration>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<aura:set attribute="else">
+			<ui:message title="Info" severity="info">Please select an Asset</ui:message>
+		</aura:set>
+	</aura:renderIf>
+	
+</aura:component>

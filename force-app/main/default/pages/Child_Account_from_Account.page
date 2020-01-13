@@ -1,0 +1,5 @@
+<apex:page standardController="Account">
+    <flow:interview name="Create_Child_Account_from_Account" finishLocation="/acc/account_hierarchy.jsp?id={!Account.Id}">
+        <apex:param name="varParentID" value="{!Account.Id}"/>
+    </flow:interview>
+</apex:page>

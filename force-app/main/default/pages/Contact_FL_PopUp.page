@@ -1,0 +1,98 @@
+<!-- Project: Replace Standard Lookup with Custom Filtered Lookup           -->
+
+<!-- Created By: Eric Smith - GWI - 1/2016                                  -->
+<!-- Based on: 'Roll your own Salesforce "Lookup" Popup Window'             -->
+<!--    By Jeff Douglas - http://blog.jeffdouglas.com/2011/08/12/roll-your-own-salesforce-lookup-popup-window/ -->
+
+<!-- Calling Object:            Case            (Case)                      -->
+<!-- Filtered Lookup Object:    Service_Address (Service_Address__c)        -->
+<!-- Filtered Lookup Object:    Contact         (Contact)                   -->
+<!-- Field with Filter Value:   Account         (Account)                   -->
+
+<!-- This File: Contact_FL_PopUp                                            --> 
+<!--            VF page for presenting popup window with filtered selections-->
+
+<!-- VisualForce Pages: Case_FL_Page,                                       -->
+<!--                    Service_Address_FL_PopUp                            -->
+<!--                    Contact_FL_PopUp                                    -->
+<!-- Classes Utilized:  CaseLookupController,                               -->
+<!--                    Service_AddressPopUpController                      -->
+<!--                    ContactPopUpController                              -->
+<!-- Test Classes:      CaseLookupControllerTester,                         -->
+<!--                    Service_AddressPopUpControllerTester                -->
+<!--                    ContactPopUpControllerTester                        -->
+
+<!-- Activated from the Case_FL_Page                                        --> 
+
+
+<!-- ***** If Contact is custom then append '__c' to tabstyle   *****       -->
+<apex:page controller="ContactPopUpController"  
+           title="Search" 
+           showHeader="false" 
+           sideBar="false" 
+           tabStyle="Contact" 
+           id="pg">
+    
+    <!-- Define Tab panel .css styles -->
+    <style>
+        .activeTab {background-color: gainsboro; color:black; background-image:none}
+        .inactiveTab { background-color: white; color:black; background-image:none}
+    </style>
+    
+    <apex:form id="myForm2">
+        <apex:outputPanel id="page" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+            <apex:tabPanel switchType="client" value="{!TabInFocus}" id="tabbedPanel"
+                           tabClass="activeTab" inactiveTabClass="inactiveTab">
+                
+                <!-- SELECT TAB -->
+                <apex:tab label="Select" name="tab1" id="tabOne">
+                    
+                    <apex:actionRegion >  
+                        <apex:outputPanel id="top" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+                            <apex:outputLabel value="Search" style="font-weight:Bold;padding-right:10px;" for="txtSearch"/>
+                            <apex:inputText id="txtSearch" value="{!searchString}" />
+                            <span style="padding-left:5px"><apex:commandButton id="btnGo" value="Refresh" action="{!Search}" rerender="searchResults"></apex:commandButton></span>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel id="pnlSearchResults" style="margin:10px;height:350px;overflow-Y:auto;" layout="block">
+                            <apex:pageBlock id="searchResults"> 
+                                <apex:pageBlockTable value="{!results}" var="a" id="tblResults">
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:outputPanel >Contact</apex:outputPanel>
+                                        </apex:facet>
+                                        <apex:outputLink value="javascript:top.window.opener.lookupPick2('{!FormTag}','{!TextBox}_lkid','{!TextBox}','{!a.Id}','{!JSENCODE(a.Name)}', false)" rendered="{!NOT(ISNULL(a.Id))}">{!a.Name}</apex:outputLink>     
+                                    </apex:column>
+                                    <!-- ***** Add any additional columns you want displayed    ***** -->
+                                    
+                                    <!-- *****                                              ***** -->                                   
+                                </apex:pageBlockTable>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                    </apex:actionRegion>                   
+                </apex:tab>
+                
+                <!-- NEW CONTACT TAB -->
+                <apex:tab label="New Contact" name="tab2" id="tabTwo">
+                    
+                    <apex:pageBlock id="newContact" title="New Contact" >
+                        
+                        <apex:pageBlockButtons location="bottom">
+                            <apex:commandButton action="{!saveContact}" value="Save"/>
+                        </apex:pageBlockButtons>
+                        <apex:pageMessages />
+                        
+                        <apex:pageBlockSection columns="2">
+                            <apex:repeat value="{!$ObjectType.Contact.FieldSets.CustomContactLookup}" var="f">
+                                <apex:inputField value="{!luobj[f]}"/>
+                            </apex:repeat>
+                        </apex:pageBlockSection> 
+                    </apex:pageBlock>
+                    
+                </apex:tab>
+                
+            </apex:tabPanel>
+        </apex:outputPanel>
+    </apex:form>
+    
+</apex:page>

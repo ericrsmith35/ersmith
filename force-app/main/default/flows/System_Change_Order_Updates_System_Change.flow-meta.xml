@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Determine_Number_of_Created_Records</name>
+        <label>Determine Number of Created Records</label>
+        <locationX>29</locationX>
+        <locationY>365</locationY>
+        <assignmentItems>
+            <assignToReference>Varnumcreated</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarCumCreatedType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NoDupCreatedtype</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Determine_number_of_Created_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Cumulative_Remaining_Items</name>
+        <label>Set Cumulative Remaining Items</label>
+        <locationX>356</locationX>
+        <locationY>457</locationY>
+        <assignmentItems>
+            <assignToReference>VarCumObjectsChanged</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NoDupObjectsChanged</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Totalotherupdates</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_records_to_write_cumulative_values</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_number_of_changes_created_modified_deleted</name>
+        <label>Set number of changes - created, modified, deleted</label>
+        <locationX>528</locationX>
+        <locationY>261</locationY>
+        <assignmentItems>
+            <assignToReference>VarCumCreatedType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Addnumbercreated</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarCumModType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Addnumbermodified</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarCumDeletedType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Addnumberdeleted</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_System_Change_Order</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_number_of_Deleted_Records</name>
+        <label>Set number of Deleted Records</label>
+        <locationX>337</locationX>
+        <locationY>160</locationY>
+        <assignmentItems>
+            <assignToReference>VarNumberDeletedType</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarCumDeletedType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NoDupDeletedType</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Review_Deleted_to_see_if_any_exist</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_the_number_of_records_modified</name>
+        <label>Set the number of records modified</label>
+        <locationX>16</locationX>
+        <locationY>260</locationY>
+        <assignmentItems>
+            <assignToReference>Varnumofmodifed</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarCumModType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NoDupModType</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_the_Modified_Entries</targetReference>
+        </connector>
+    </assignments>
+    <description>Updates the Type-Subtype, object changed, and nature of change from the System Change to the System Change Order - First version with modified data model</description>
+    <formulas>
+        <description>This formula adds the number of created items to the begininning of the Text showing the type-subtype created.</description>
+        <name>Addnumbercreated</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   LEN({!VarCumCreatedType}) &lt;&gt; 0,
+   TEXT({!Varnumcreated}) &amp; &quot; Total:  &quot; &amp;  {!VarCumCreatedType},
+   &quot;No Created items.&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description>This adds the number of deleted type records to the beginning of the Cumulative deleted type field.</description>
+        <name>Addnumberdeleted</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   LEN({!VarCumDeletedType}) &lt;&gt; 0,
+   TEXT({!VarNumberDeletedType}) &amp; &quot; Total:  &quot; &amp; {!VarCumDeletedType},
+   &quot;No deleted items.&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Adds the number of modified type-subtypes to the text types of type-subtypes.</description>
+        <name>Addnumbermodified</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   LEN({!VarCumModType}) &lt;&gt; 0,
+   TEXT({!Varnumofmodifed}) &amp; &quot; Total: &quot; &amp; {!VarCumModType},
+   &quot;No modified items.&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description>The formula that returns the Cumulative Created Type-Sub-Type without duplication and under 2000 charecters</description>
+        <name>CumCreatidNoDup</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	CONTAINS( {!VarCumCreatedType} , {!SobjColLoopSC.Type_Subtype_Combo__c}),
+	{!VarCumCreatedType},
+	IF(
+		LEN( {!VarCumCreatedType} )=0 &amp;&amp;
+		LEN( {!SobjColLoopSC.Type_Subtype_Combo__c} ) &lt; 1941,
+		{!SobjColLoopSC.Type_Subtype_Combo__c},
+			IF(
+			LEN( {!VarCumCreatedType} &amp; &quot; -- &quot; &amp; {!SobjColLoopSC.Type_Subtype_Combo__c}) &gt; 1941,
+			LEFT({!VarCumCreatedType} &amp; &quot; -- &quot; &amp; {!SobjColLoopSC.Type_Subtype_Combo__c} , 1941)
+			&amp; &quot;...See individual System Changes for more information&quot;,
+			{!VarCumCreatedType} &amp; &quot; -- &quot; &amp; {!SobjColLoopSC.Type_Subtype_Combo__c}
+			)
+		)
+	)</expression>
+    </formulas>
+    <formulas>
+        <description>Calculates the excess length of the name of item changed initial field.</description>
+        <name>ExcessLengthNamechanged</name>
+        <dataType>Number</dataType>
+        <expression>LEN({!VARInitialName})-(1937 - (4* {!Totalotherupdates} ))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>This calculates the excess length of the description of change field.</description>
+        <name>ExcessLengthofDesc</name>
+        <dataType>Number</dataType>
+        <expression>LEN({!VARinitialdescreption})-1937 - (4* {!Totalotherupdates} )</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>Provides the initial Description of Change with only duplicates screened out - No truncation is completed.</description>
+        <name>InitialDescnodup</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  CONTAINS({!VARinitialdescreption},{!SobjColLoopSC.Description_of_Change__c} &amp; &quot;  &quot;) || LEN({!SobjColLoopSC.Description_of_Change__c}) = 0,
+   {!VARinitialdescreption},
+     IF(
+        LEN({!VARinitialdescreption}) = 0,
+        {!SobjColLoopSC.Description_of_Change__c} &amp; &quot;  &quot;,
+        {!VARinitialdescreption} &amp; &quot;--  &quot; &amp; {!SobjColLoopSC.Description_of_Change__c} &amp;  &quot;  &quot;
+        )
+)</expression>
+    </formulas>
+    <formulas>
+        <description>This provides the Initial name value, removing duplications and doing no trucation.</description>
+        <name>InitialNameNoDup</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   CONTAINS({!VARInitialName},{!SobjColLoopSC.Name_of_Item_Changed__c}&amp; &quot;  &quot;) ,
+   {!VARInitialName},
+     IF(
+         LEN({!VARInitialName}) = 0,
+          {!SobjColLoopSC.Name_of_Item_Changed__c} &amp; &quot;  &quot;,
+          {!VARInitialName} &amp; &quot;--  &quot; &amp; {!SobjColLoopSC.Name_of_Item_Changed__c} &amp; &quot;  &quot;
+         )
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the length of the description field</description>
+        <name>LengthofDesc</name>
+        <dataType>Number</dataType>
+        <expression>LEN({!VARinitialdescreption})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>Returns the length of the name of items changed field.</description>
+        <name>LenofName</name>
+        <dataType>Number</dataType>
+        <expression>LEN({!VARInitialName})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>A formula to determine determine if this type-subtype is duplicated, and present the value and a seperator if it is not.</description>
+        <name>NoDupCreatedtype</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	CONTAINS( {!VarCumCreatedType} , {!Sobtype.Type_Subtype_Combo__c} &amp; &quot;  &quot;),
+	{!VarCumCreatedType},
+	IF(
+		LEN( {!VarCumCreatedType} )=0 &amp;&amp;
+		LEN( {!Sobtype.Type_Subtype_Combo__c} ) &lt; 1941,
+		{!Sobtype.Type_Subtype_Combo__c} &amp; &quot;  &quot;,
+			IF(
+			LEN( {!VarCumCreatedType} &amp; &quot; -- &quot; &amp; {!Sobtype.Type_Subtype_Combo__c}) &gt; 1941,
+			LEFT({!VarCumCreatedType} &amp; &quot; -- &quot; &amp; {!Sobtype.Type_Subtype_Combo__c} , 1941)
+			&amp; &quot;...See individual System Changes for more information&quot;,
+			{!VarCumCreatedType} &amp; &quot;--  &quot; &amp; {!Sobtype.Type_Subtype_Combo__c} &amp; &quot;  &quot;
+			)
+		)
+	)</expression>
+    </formulas>
+    <formulas>
+        <description>This is the formula that determines if the Type-Subtype is a duplicate, and returns the value of the Type-Subtype if it is not.</description>
+        <name>NoDupDeletedType</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	CONTAINS( {!VarCumDeletedType} ,  {!SobDeleted.Type_Subtype_Combo__c} &amp; &quot;  &quot;),
+	{!VarCumDeletedType},
+	IF(
+		LEN( {!VarCumDeletedType} )=0 &amp;&amp;
+		LEN(  {!SobDeleted.Type_Subtype_Combo__c} ) &lt; 1941,
+		 {!SobDeleted.Type_Subtype_Combo__c}&amp; &quot;  &quot;,
+			IF(
+			LEN( {!VarCumDeletedType} &amp; &quot; -- &quot; &amp; {!SobDeleted.Type_Subtype_Combo__c}) &gt; 1941,
+			LEFT({!VarCumDeletedType} &amp; &quot; -- &quot; &amp;  {!SobDeleted.Type_Subtype_Combo__c} , 1941)
+			&amp; &quot;...See individual System Changes for more information&quot;,
+			{!VarCumDeletedType} &amp; &quot;--  &quot; &amp;  {!SobDeleted.Type_Subtype_Combo__c} &amp; &quot;  &quot;
+			)
+		)
+	)</expression>
+    </formulas>
+    <formulas>
+        <description>This returns the Cumulative Type and Sub type for the System Change Orders</description>
+        <name>NoDupModType</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	CONTAINS({!VarCumModType},
+			 {!Sobmod.Type_Subtype_Combo__c} &amp; &quot;  &quot;),
+	 {!VarCumModType},
+	IF(
+	LEN({!VarCumModType})=0 &amp;&amp;
+	LEN( {!Sobmod.Type_Subtype_Combo__c}) &lt;1941,
+	 {!Sobmod.Type_Subtype_Combo__c} &amp; &quot;  &quot;,
+		IF(
+		LEN({!VarCumModType}) + LEN ( {!Sobmod.Type_Subtype_Combo__c}) &gt;1941,
+		LEFT({!VarCumModType} &amp; &quot; -- &quot; &amp; {!Sobmod.Type_Subtype_Combo__c},1941)
+		&amp; &quot;...See individual System Changes for more information&quot;,
+		{!VarCumModType} &amp; &quot;--  &quot; &amp; {!Sobmod.Type_Subtype_Combo__c} &amp; &quot;  &quot;
+		)
+	)
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the value of the current object changed if the object is not contained in the cumulative variable</description>
+        <name>NoDupObjectsChanged</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   CONTAINS({!VarCumObjectsChanged},
+         TEXT({!SobjColLoopSC.Object_Changed__c}) &amp; &quot;  &quot;),
+     {!VarCumObjectsChanged},
+    IF(
+    LEN({!VarCumObjectsChanged}) =0 &amp;&amp;
+    LEN({!VarCumObjectsChanged}) + LEN(TEXT({!SobjColLoopSC.Object_Changed__c})) &lt; 1941,
+    TEXT({!SobjColLoopSC.Object_Changed__c}) &amp; &quot;  &quot;,
+    	IF(
+    	LEN({!VarCumObjectsChanged}) + LEN(TEXT({!SobjColLoopSC.Object_Changed__c})) &gt; 1941,
+    	LEFT({!VarCumObjectsChanged} &amp; &quot;  --  &quot; &amp; TEXT({!SobjColLoopSC.Object_Changed__c}),1941)
+    	&amp; &quot;...See individual System Changes for more information&quot;,
+    	{!VarCumObjectsChanged} &amp; &quot;--  &quot; &amp;
+    	TEXT({!SobjColLoopSC.Object_Changed__c}) &amp; &quot;  &quot;
+    	)
+    )
+)</expression>
+    </formulas>
+    <formulas>
+        <description>The formula which gives the cumulative value for testing evidence without duplication and with less than 2000 charecters</description>
+        <name>NoDupTestingEvidence</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	CONTAINS({!VARcumtestingevidence},
+			{!SobjColLoopSC.Testing_Evidence__c} &amp; &quot;  &quot;) ||
+                LEN({!SobjColLoopSC.Testing_Evidence__c}) = 0,
+	{!VARcumtestingevidence},
+		IF(
+		LEN({!VARcumtestingevidence}) = 0 &amp;&amp;
+		LEN({!VARcumtestingevidence}) + LEN({!SobjColLoopSC.Testing_Evidence__c}) &lt; 1941,
+		{!SobjColLoopSC.Testing_Evidence__c} &amp; &quot;  &quot;,
+			IF(
+			LEN({!SobjColLoopSC.Testing_Evidence__c}) + LEN({!VARcumtestingevidence}) &gt; 1941,
+			LEFT({!VARcumtestingevidence} &amp; &quot; -- &quot; &amp; {!SobjColLoopSC.Testing_Evidence__c}, 1941)
+			&amp; &quot;...See individual System Changes for more information&quot;,
+			{!VARcumtestingevidence} &amp; &quot;--  &quot; &amp; {!SobjColLoopSC.Testing_Evidence__c} &amp; &quot;  &quot;
+			)
+		)
+	)</expression>
+    </formulas>
+    <formulas>
+        <description>This returns the updated user instructions, making sure that the field is not over 2000 charectors and also adding a truncated field if so.</description>
+        <name>Nodupuserinstructions</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	CONTAINS({!VARcumuserinstruc},
+    	{!SobjColLoopSC.End_User_Instructions__c} &amp; &quot;  &quot;) || 
+               LEN({!SobjColLoopSC.End_User_Instructions__c}) = 0 ,
+    {!VARcumuserinstruc},
+    	IF(
+    		LEN({!VARcumuserinstruc}) = 0 &amp;&amp;
+    		LEN ({!SobjColLoopSC.End_User_Instructions__c}) &lt;1941,
+    		{!SobjColLoopSC.End_User_Instructions__c} &amp; &quot;  &quot;,
+    			IF(
+    			LEN({!SobjColLoopSC.End_User_Instructions__c}) + LEN({!VARcumuserinstruc}) &gt;1941,
+    			LEFT({!VARcumuserinstruc} &amp; &quot; -- &quot; &amp; {!SobjColLoopSC.End_User_Instructions__c},1941)
+    			&amp; &quot;...See individual System Changes for more information&quot;,
+    			{!VARcumuserinstruc} &amp; &quot;--  &quot; &amp; {!SobjColLoopSC.End_User_Instructions__c} &amp; &quot;  &quot;
+    			)
+    	)	
+)</expression>
+    </formulas>
+    <formulas>
+        <description>This truncates the description of change records so that they will fit into the 2000 charector maximum</description>
+        <name>TrucateDescriptionchange</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	LEN({!VarCumDescription}) = 0,
+	LEFT({!SobjColLoopSC.Description_of_Change__c},
+	 LEN({!SobjColLoopSC.Description_of_Change__c})-({!ExcessLengthofDesc}
+	 *((LEN({!SobjColLoopSC.Description_of_Change__c}) / {!LengthofDesc})*1.1))),
+	 {!VarCumDescription} &amp; &quot;... &quot; &amp; LEFT({!SobjColLoopSC.Description_of_Change__c},
+	 LEN({!SobjColLoopSC.Description_of_Change__c})-({!ExcessLengthofDesc}
+	 *((LEN({!SobjColLoopSC.Description_of_Change__c}) / {!LengthofDesc}) * 1.1)))
+	 )</expression>
+    </formulas>
+    <formulas>
+        <description>This formula returns the Cumulative Name of Items with all individual records being truncated.</description>
+        <name>TruncatedNameofItem</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	LEN({!VARcumnameofitem}) = 0,
+	LEFT({!SobjColLoopSC.Name_of_Item_Changed__c},
+	  LEN({!SobjColLoopSC.Name_of_Item_Changed__c}) - ({!ExcessLengthNamechanged}
+	  *((LEN({!SobjColLoopSC.Name_of_Item_Changed__c}) / {!LenofName})*1.1))),
+	  {!VARcumnameofitem} &amp; &quot; ...&quot; &amp; LEFT({!SobjColLoopSC.Name_of_Item_Changed__c},
+	  LEN({!SobjColLoopSC.Name_of_Item_Changed__c}) - ({!ExcessLengthNamechanged}
+	  *((LEN({!SobjColLoopSC.Name_of_Item_Changed__c}) / {!LenofName}) *1.1)))
+	)</expression>
+    </formulas>
+    <interviewLabel>AA - Test Flow for Updates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>System Change Order - Update Type-Subtype, object and nature.</label>
+    <loops>
+        <name>Determine_number_of_Created_Record</name>
+        <label>Determine number of Created Records</label>
+        <locationX>218</locationX>
+        <locationY>439</locationY>
+        <assignNextValueToReference>Sobtype</assignNextValueToReference>
+        <collectionReference>SObjCollectionType</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Determine_Number_of_Created_Records</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Lookup_Deleted_Type_Subtype</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_records_to_write_cumulative_values</name>
+        <label>Loop records to write cumulative values</label>
+        <locationX>339</locationX>
+        <locationY>306</locationY>
+        <assignNextValueToReference>SobjColLoopSC</assignNextValueToReference>
+        <collectionReference>SOColSystemChange</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_Cumulative_Remaining_Items</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_number_of_changes_created_modified_deleted</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_the_Modified_Entries</name>
+        <label>Loop the Modified Entries</label>
+        <locationX>96</locationX>
+        <locationY>124</locationY>
+        <assignNextValueToReference>Sobmod</assignNextValueToReference>
+        <collectionReference>SobjModified</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_the_number_of_records_modified</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Look_Up_Created_Records</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Review_Deleted_to_see_if_any_exist</name>
+        <label>Review Deleted to see if any exist</label>
+        <locationX>441</locationX>
+        <locationY>51</locationY>
+        <assignNextValueToReference>SobDeleted</assignNextValueToReference>
+        <collectionReference>SobcolDeleted</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_number_of_Deleted_Records</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Look_Up_Remaining_System_Change_Records</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Look_Up_Created_Records</name>
+        <label>Look Up Created Records</label>
+        <locationX>157</locationX>
+        <locationY>243</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Determine_number_of_Created_Record</targetReference>
+        </connector>
+        <filters>
+            <field>Nature_of_Change__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Create</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>System_Change__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarChangeOrderNumber</elementReference>
+            </value>
+        </filters>
+        <object>Child_System_Change__c</object>
+        <outputReference>SObjCollectionType</outputReference>
+        <queriedFields>Type_Subtype_Combo__c</queriedFields>
+        <queriedFields>Nature_of_Change__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <name>Look_Up_Remaining_System_Change_Records</name>
+        <label>Look Up Remaining System Change Records</label>
+        <locationX>473</locationX>
+        <locationY>171</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_records_to_write_cumulative_values</targetReference>
+        </connector>
+        <filters>
+            <field>System_Change__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarChangeOrderNumber</elementReference>
+            </value>
+        </filters>
+        <object>Child_System_Change__c</object>
+        <outputReference>SOColSystemChange</outputReference>
+        <queriedFields>Object_Changed__c</queriedFields>
+        <queriedFields>Description_of_Change__c</queriedFields>
+        <queriedFields>Chatter_Notification_Upon_Completion__c</queriedFields>
+        <queriedFields>Update_Information_on_Release__c</queriedFields>
+        <queriedFields>End_User_Instructions__c</queriedFields>
+        <queriedFields>Name_of_Item_Changed__c</queriedFields>
+        <queriedFields>Testing_Evidence__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <name>Lookup_Deleted_Type_Subtype</name>
+        <label>Lookup Deleted Type-Subtype</label>
+        <locationX>265</locationX>
+        <locationY>53</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Review_Deleted_to_see_if_any_exist</targetReference>
+        </connector>
+        <filters>
+            <field>Nature_of_Change__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Delete</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>System_Change__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarChangeOrderNumber</elementReference>
+            </value>
+        </filters>
+        <object>Child_System_Change__c</object>
+        <outputReference>SobcolDeleted</outputReference>
+        <queriedFields>Type_Subtype_Combo__c</queriedFields>
+        <queriedFields>Nature_of_Change__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <name>Lookup_Modified_Type_Subtype</name>
+        <label>Lookup Modified Type-Subtype</label>
+        <locationX>132</locationX>
+        <locationY>22</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_the_Modified_Entries</targetReference>
+        </connector>
+        <filters>
+            <field>Nature_of_Change__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Modify</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>System_Change__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarChangeOrderNumber</elementReference>
+            </value>
+        </filters>
+        <object>Child_System_Change__c</object>
+        <outputReference>SobjModified</outputReference>
+        <queriedFields>Type_Subtype_Combo__c</queriedFields>
+        <queriedFields>Name_of_Item_Changed__c</queriedFields>
+        <queriedFields>Object_Changed__c</queriedFields>
+        <queriedFields>Nature_of_Change__c</queriedFields>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_System_Change_Order</name>
+        <label>Update System Change Order</label>
+        <locationX>518</locationX>
+        <locationY>388</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarChangeOrderNumber</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Created__c</field>
+            <value>
+                <elementReference>VarCumCreatedType</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Deleted__c</field>
+            <value>
+                <elementReference>VarCumDeletedType</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Modified__c</field>
+            <value>
+                <elementReference>VarCumModType</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Objects_Changed__c</field>
+            <value>
+                <elementReference>VarCumObjectsChanged</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SystemChange__c</object>
+    </recordUpdates>
+    <startElementReference>Lookup_Modified_Type_Subtype</startElementReference>
+    <status>Active</status>
+    <variables>
+        <description>Number of Changes that are Created</description>
+        <name>NumberofCreated</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>The S object collection variable used for deleted nature of change to collect type-subtype.</description>
+        <name>SobcolDeleted</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <name>SobDeleted</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <name>SObjCollectionType</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <name>SobjColLoopSC</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <description>The Sobject variable for the collection of the modified records</description>
+        <name>SobjModified</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <description>Regular S-object variable for Modified Nature of Change type and subtype</description>
+        <name>Sobmod</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <name>Sobtype</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <description>The collection variables for all of the System Changes affiliated with the System Change Order</description>
+        <name>SOColSystemChange</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Child_System_Change__c</objectType>
+    </variables>
+    <variables>
+        <description>The total number of records other than type of sub-type which are being updated - used for truncation of fields depending on the number of total records</description>
+        <name>Totalotherupdates</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>The System Change Order Number that has been passed into the Flow by Process Builder</description>
+        <name>VarChangeOrderNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This the the cumulative created type of change-sub type.</description>
+        <name>VarCumCreatedType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This is the text variable that holds the cumulative value of the Type-Subtype without duplicates.</description>
+        <name>VarCumDeletedType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The Cumulative Description of Change for the System Change Order</description>
+        <name>VarCumDescription</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This collects the Modified Type-Subtype Changes from all of the records</description>
+        <name>VarCumModType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The cumulative value for the name of items changed.</description>
+        <name>VARcumnameofitem</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The Nature - Type and Subtype of change cumulative.</description>
+        <name>VarcumNatTypeSubtype</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The cumulative text of the objects changed</description>
+        <name>VarCumObjectsChanged</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Holds the value of all of the testing evidence records without duplication and at a length of under 2000 charectors</description>
+        <name>VARcumtestingevidence</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The cumulative End User Instructions</description>
+        <name>VARcumuserinstruc</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This is the initial cumulative description.  It is primarily used for Determining the length of the cumulative description field without any duplications.</description>
+        <name>VARinitialdescreption</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This creates a Cumualtive Name of Item field without duplicates, with no truncation for length</description>
+        <name>VARInitialName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The number of Type-Sub Types with the nature of deleted</description>
+        <name>VarNumberDeletedType</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>This is the number of created records</description>
+        <name>Varnumcreated</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>The number of record Types and Subtypes that are of the nature Modified</description>
+        <name>Varnumofmodifed</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+</Flow>

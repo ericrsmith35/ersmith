@@ -1,0 +1,8 @@
+<apex:page >
+    <apex:sectionheader title="Manager's Meeting Metrics" subtitle="NSE/OSP"/>
+    <apex:form >
+        <apex:pageblock >
+            <apex:outputText >NSE/OSP Metrics</apex:outputText>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Asset2</label>
+    <protected>false</protected>
+    <values>
+        <field>Case_Field_Work_Order_Queue__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Case_IT_Work_Order_Queue__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Case_NSE_Work_Order_Queue__c</field>
+        <value xsi:type="xsd:string">00GW0000001GehhMAC</value>
+    </values>
+    <values>
+        <field>Case_SD_Work_Order_Queue__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Case_Support_Work_Order_Queue__c</field>
+        <value xsi:type="xsd:string">00G32000002KtItEAK</value>
+    </values>
+    <values>
+        <field>Case_Support_Work_Order_Record_Type__c</field>
+        <value xsi:type="xsd:string">012320000001FXcAAM</value>
+    </values>
+    <values>
+        <field>Chatter_Feed_Salesforce_Questions__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>GWI_House_Internal__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Opp_Record_Type_Commercial__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Opp_Record_Type_Residential__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>

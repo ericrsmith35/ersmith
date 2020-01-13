@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>140</locationX>
+        <locationY>28</locationY>
+        <assignmentItems>
+            <assignToReference>vCaseId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>id</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Auto_add_followers_to_record</targetReference>
+        </connector>
+    </assignments>
+    <description>Case#49656 - Flow is kicked off by PB Case - Record Updates</description>
+    <interviewLabel>Chatter - Auto Add Subscribe to Case Feed {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Chatter - Auto Add Subscribe to Case Feed</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Auto_add_followers_to_record</name>
+        <label>Auto add followers to record</label>
+        <locationX>139</locationX>
+        <locationY>147</locationY>
+        <inputAssignments>
+            <field>ParentId</field>
+            <value>
+                <elementReference>vCaseId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SubscriberId</field>
+            <value>
+                <elementReference>vFollowerId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EntitySubscription</object>
+    </recordCreates>
+    <startElementReference>Auto_add_followers_to_record</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>vCaseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <name>vFollowerId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+</Flow>

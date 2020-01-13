@@ -1,0 +1,8 @@
+<apex:page >
+    <apex:sectionheader title="Manager's Meeting Metrics" subtitle="Sales"/>
+    <apex:form >
+        <apex:pageblock >
+            <apex:outputText >Sales Metrics</apex:outputText>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

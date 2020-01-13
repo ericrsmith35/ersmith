@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="whereValue" label="Result"/>
+    <design:attribute name="whereFormat" label="Format" default="Availablefor{0}__c = true"/> 
+</design:component>

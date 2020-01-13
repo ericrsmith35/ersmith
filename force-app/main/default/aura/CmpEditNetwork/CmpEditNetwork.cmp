@@ -1,0 +1,108 @@
+<aura:component implements="lightning:actionOverride,ltngfw:IntBase,force:hasRecordId" extends="ltngfw:CmpBase" controller="CmpEditNetworkCtrl">
+
+	<aura:attribute name="net" type="Network__c" default="{'sobjectType':'Network__c'}"/>
+	<aura:attribute name="netedit" type="Network__c" default="{'sobjectType':'Network__c'}"/>
+	<aura:attribute name="picklists" type="Object"/>
+	<aura:attribute name="selectedGroups" type="List"/>
+	<aura:attribute name="networkSizes" type="List"/>
+	<aura:set attribute="debugMode" value="false"/>
+
+	<force:recordData recordId="{!v.recordId}" targetRecord="{!v.netedit}" layoutType="FULL" targetFields="{!v.net}" aura:id="data"/>
+
+	<lightning:card title="" iconName="custom:custom21">
+		<aura:set attribute="title">
+			{!v.recordId == null ? 'New' : 'Edit'} Network
+		</aura:set>
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem padding="around-small" size="6">
+				<lightning:input type="text" label="Starting Address" value="{!v.netedit.Starting_Address__c}" required="true" onkeyup="{!c.detectType}" updateOn="keyup" onblur="{!c.validateAddress}"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<!-- <lightning:input type="text" label="Network Size" value="{!v.netedit.Network_Size__c}" required="true"/> -->
+				<lightning:select label="Network Size" value="{!v.netedit.Network_Size__c}" required="true" aura:id="networkpl">
+					<aura:iteration items="{!v.networkSizes}" var="pl">
+						<option text="{!pl.label}" value="{!pl.value}" selected="{!pl.value == v.netedit.Network_Size__c}"/>
+					</aura:iteration>
+				</lightning:select>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<lightning:select label="Type" value="{!v.netedit.Type__c}" disabled="true">
+					<aura:iteration items="{!v.picklists.Type__c}" var="pl">
+						<option text="{!pl.label}" value="{!pl.value}" selected="{!pl.value == v.netedit.Type__c}"/>
+					</aura:iteration>
+				</lightning:select>
+
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<lightning:select label="Usage" value="{!v.netedit.Usage__c}" required="true">
+					<aura:iteration items="{!v.picklists.Usage__c}" var="pl">
+						<option text="{!pl.label}" value="{!pl.value}" selected="{!pl.value == v.netedit.Usage__c}"/>
+					</aura:iteration>
+				</lightning:select>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<lightning:select label="Allocation Status" value="{!v.netedit.Allocation_Status__c}">
+					<aura:iteration items="{!v.picklists.Allocation_Status__c}" var="pl">
+						<option text="{!pl.label}" value="{!pl.value}" selected="{!pl.value == v.netedit.Allocation_Status__c}"/>
+					</aura:iteration>
+				</lightning:select>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="12">
+				<div aura:id="groupdiv"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<c:LightningLookup aura:id="pnet" sObjectField="Network__c.Parent_Network__c" parentChild="Child" svg="standard:account" displayedFieldName="Name" valueFieldName="Id" selectedValue="{!v.netedit.Parent_Network__c}" label="Parent Network"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<c:LightningLookup aura:id="cust" sObjectField="Network__c.Customer__c" parentChild="Child" svg="standard:account" displayedFieldName="Name" valueFieldName="Id" selectedValue="{!v.netedit.Customer__c}" label="Customer"/>
+			</lightning:layoutItem>
+
+			<aura:renderIf isTrue="{!v.netedit.Type__c == 'IPv6'}">
+				
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 1 End" value="{!v.netedit.Octet_1_End__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 2 End" value="{!v.netedit.Octet_2_End__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 3 End" value="{!v.netedit.Octet_3_End__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 4 End" value="{!v.netedit.Octet_4_End__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 5 End" value="{!v.netedit.Octet_5_End__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 6 End" value="{!v.netedit.Octet_6_End__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 7 End" value="{!v.netedit.Octet_7_End__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Octet 8 End" value="{!v.netedit.Octet_8_End__c}"/>
+				</lightning:layoutItem>
+			</aura:renderIf>
+		</lightning:layout>
+		<div class="slds-p-around_small slds-m-top_medium">
+			<lightning:button label="Save" onclick="{!c.save}" variant="brand"/>
+			<lightning:button label="Cancel" onclick="{!c.cancel}" />
+		</div>
+	</lightning:card>
+	
+</aura:component>

@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:availableForFlowScreens" access="global" >
+    
+    <aura:attribute name="AccountId"		type="String" />
+    <aura:attribute name="AccountName"		type="String" />
+    <aura:attribute name="ServiceAddressId"	type="String" />
+    
+    <div class="slds-modal__header slds-size--1-of-4">
+        <p class="slds-text-heading--label">{!v.AccountName}</p>
+        <h1 class="slds-page-header__title slds-m-right--small slds-truncate slds-align-left">Create New Service Address</h1>
+    </div>
+
+    <div class="slds-modal__content slds-p-around_medium slds-size--1-of-4" id="modal-content-id-1">
+        <lightning:recordEditForm aura:id="recordEditForm" 
+                                  objectApiName="Service_Address__c"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSaved}"
+                                  onerror="{!c.handleError}">
+            <lightning:messages />
+            <lightning:inputField fieldName="SANO__c" />
+            <lightning:inputField fieldName="SASN__c" />
+            <lightning:inputField fieldName="SATH__c" />
+            <lightning:inputField fieldName="City__c" />
+            <lightning:inputField fieldName="State__c" />     
+            <lightning:inputField fieldName="Zip__c" />     
+            <lightning:button aura:id="submit" type="submit" label="Create New Service Address" class="slds-m-top_medium" />
+        </lightning:recordEditForm>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,99 @@
+<!-- Project: Assets Phase 1								-->
+<!-- Created By: GWI, Eric Smith							-->
+<!-- VisualForce Page: OLI_SplitQty2						-->
+<!-- Description: VF page for product display and selection	-->
+<!-- 	Classes Utilized:	OLI_SplitQty2.apxc				-->
+<!-- 	 					OLI_SplitQty2_Tester.apxc		-->
+<!-- 														-->
+
+<apex:page controller="OLI_SplitQty2" id="thePage" tabStyle="Product2" sidebar="false" lightningStylesheets="true">  
+    
+    <!-- Style for Page Messages -->
+    <style>
+        .Messages { color: red; font-weight: strong;}
+        .StatusPicklist { }
+    </style>
+    
+    <!-- Javascript -->
+    <script>
+        // Script to provide pop-up on 'Cancel' button click
+        function confirmCancel() {
+            var isCancel = confirm("Are you sure you wish to cancel?");
+            if (isCancel) return true;
+      
+            return false;
+        }
+    </script>
+    
+    <!-- Section Header -->
+    <apex:sectionHeader title="Split Products by Quantity" />
+    
+    <!-- Steps for the end users -->
+    <h1>Directions:</h1>
+    <ol>
+        <li>Select the Product(s) you want to split by entering a quantity to split off and optionally enter a new Line Description.</li>
+		<li>The first (selected quantity) of Assets will be sequentially assigned to the split Products. </li>
+        <li>You can also change the Bill to Account, Deliver to Account and Service Address for any new splits.</li>
+		<li>You cannot split any Products that have already been Billed.</li>        
+    </ol>
+    
+    <!-- Form with Page Blocks and Sections -->
+    <apex:form >
+        
+        <!-- Page Block providing the user with Editable Table -->   
+        <apex:pageBlock >
+        
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!split}" value="Split"/>
+<!--            <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/> -->
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+            
+            <apex:messages styleClass="Messages"/>        
+            
+            <apex:pageBlockSection id="editableView" title="Eligible Products for Quantity Splits" columns="1" rendered="true" collapsible="false" >
+                <apex:pageBlockTable value="{!OLIlist1}" var="val">
+                
+                    <apex:column >
+                        <apex:facet name="header">Product Name</apex:facet>
+	                        <apex:outputLink value="/{!val.ID}" >{!val.Product_Name__c}</apex:outputLink>
+                    </apex:column>
+                
+                    <apex:column >
+                        <apex:facet name="header">Quantity</apex:facet>
+                        <apex:outputText value="{!FLOOR(val.Quantity)}" />
+                    </apex:column>
+               
+                    <apex:column >
+                        <apex:facet name="header">Split Qty</apex:facet>
+                        <apex:inputField value="{!val.Split_Qty__c}" />
+                    </apex:column>
+
+					<apex:column >
+                        <apex:facet name="header">Bill to Account</apex:facet>
+                        <apex:inputField value="{!val.Account__c}" />
+                    </apex:column> 
+
+					<apex:column >
+                        <apex:facet name="header">Deliver to Account</apex:facet>
+                        <apex:inputField value="{!val.Deliver_to_Account__c}" />
+                    </apex:column> 
+
+					<apex:column >
+                        <apex:facet name="header">Service Address</apex:facet>
+                        <apex:inputField value="{!val.Service_Address__c}" />
+                    </apex:column> 
+               
+                    <apex:column >
+                        <apex:facet name="header">Line Description</apex:facet>
+                        <apex:inputField value="{!val.Description}" />
+                    </apex:column> 
+                              
+                </apex:pageBlockTable>             
+            </apex:pageBlockSection>
+       
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

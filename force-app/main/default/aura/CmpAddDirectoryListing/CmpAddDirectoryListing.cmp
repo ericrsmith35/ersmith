@@ -1,0 +1,83 @@
+<aura:component implements="ltngfw:IntBase,flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" extends="ltngfw:CmpBase" controller="CmpAddDirectoryListingCtrl">
+	
+	<aura:attribute name="sndl" type="Service_Number_Directory_Listing__c" description="New directory listing"/>
+	<aura:attribute name="selectedDirs" type="Array"/>
+	<aura:attribute name="isBiz" type="Boolean" default="false"/>
+	<aura:attribute name="opp" type="Opportunity"/>
+
+	<aura:attribute name="tableCols" type="Object" description="Data table column properties for existing Service Numbers Directory Listings"/>
+	<aura:attribute name="dialog" type="Aura.Action" description="Promise returned from showing edit dialog. Need to store so we can close it after save"/>
+	<aura:attribute name="existingSNDL" type="Service_Number_Directory_Listing__c[]" description="List of service numbers directory listings already created for this opp"/>
+
+	<aura:handler event="c:EvtChangeLookup" action="{!c.handleLookupChange}"/>
+	<!-- for modal dialog -->
+	<lightning:overlayLibrary aura:id="modallib"/>
+
+	<lightning:card title="New Listing">
+		<lightning:layout horizontalAlign="spread" multipleRows="true" verticalAlign="center">
+
+			<lightning:layoutItem padding="around-small" size="2">
+				<ui:inputCheckbox label="Business Listing?" change="{!c.handleBusinessCheck}" aura:id="bl_check" value="{!v.isBiz}"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="5">
+				<c:LightningLookup label="Number" required="true" svg="standard:call" selectedValue="{!v.sndl.Service_Number__c}" 
+					sObjectField="Service_Number_Directory_Listing__c.Service_Number__c" displayedFieldName="Name" valueFieldName="Id" 
+					filteredFieldName="Opportunity__c" filterFieldValue="{!v.recordId}" cmpId="sndl_num" aura:id="n_lu"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="5">
+				<c:LightningLookup label="Service Address" required="true" svg="standard:address" selectedValue="{!v.sndl.Service_Address__c}" 
+					sObjectField="Service_Number_Directory_Listing__c.Service_Address__c" displayedFieldName="Name" valueFieldName="Id" 
+					cmpId="sndl_sa" aura:id="sa_lu" whereClause="{!'Id in (Select Service_Address__c from OpportunityLineItem where OpportunityId =\'' + v.recordId + '\')'}"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<div aura:id="dircontainer"/>
+			</lightning:layoutItem>
+			
+			<lightning:layoutItem padding="around-small" size="6">
+				<lightning:input type="text" label="Address Listing" class="slds-p-top_small" required="true" value="{!v.sndl.Address_Listing__c}"/>
+			</lightning:layoutItem>
+			
+
+			<aura:renderIf isTrue="{!v.isBiz}">
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<lightning:input type="text" label="Business Name" class="slds-p-top_small" required="true" value="{!v.sndl.Business_Name__c}"/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem padding="around-small" size="6">
+					<div aura:id="ypcontainer"/>
+				</lightning:layoutItem>
+
+				<aura:set attribute="else">
+					<lightning:layoutItem padding="around-small" size="6">
+						<lightning:input type="text" label="First Name" required="true" value="{!v.sndl.First_Name__c}"/>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem padding="around-small" size="6">
+						<lightning:input type="text" label="Last Name" required="true" value="{!v.sndl.Last_Name__c}"/>
+					</lightning:layoutItem>
+				</aura:set>
+
+			</aura:renderIf>
+
+		</lightning:layout>
+
+	</lightning:card>
+
+	<lightning:button label="Create" onclick="{!c.addNew}" variant="brand" />
+	
+	<hr/>
+
+	<lightning:card title="">
+		<aura:set attribute="title">
+			<lightning:icon iconName="standard:contact_list" size="small" class="slds-m-right_small slds-float_left"/>
+			<div class="slds-text-title_caps">Directory Listing ({!v.existingSNDL.length})</div>
+		</aura:set>
+		
+		<lightning:dataTable class="sndt" keyField="id" data="{!v.existingSNDL}" columns="{!v.tableCols}" hideCheckboxColumn="true" onrowaction="{!c.handleTableAction}"/>
+	</lightning:card>
+	
+</aura:component>

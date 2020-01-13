@@ -1,0 +1,4 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes">
+	<aura:attribute name="size" type="String" default="medium"/>
+	<div class="{!'slds-m-around-' + v.size}"/>
+</aura:component>

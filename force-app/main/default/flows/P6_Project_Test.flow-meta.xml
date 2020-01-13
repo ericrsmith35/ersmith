@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Completion_Toast_Message</name>
+        <label>Completion Toast Message</label>
+        <locationX>250</locationX>
+        <locationY>1655</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>cCompletionMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>success</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <description>Advance to the next stage(Ticket).  Add any other flow logic for the current ticket prior to this component.</description>
+        <name>Next_Stage</name>
+        <label>Next Stage</label>
+        <locationX>400</locationX>
+        <locationY>300</locationY>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentStage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Ticket2Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Ticket_2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Advance to the next stage(Ticket).  Add any other flow logic for the current ticket prior to this component.</description>
+        <name>Next_Stage_3</name>
+        <label>Next Stage</label>
+        <locationX>400</locationX>
+        <locationY>500</locationY>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentStage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Ticket3Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Ticket_3</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Advance to the next stage(Ticket).  Add any other flow logic for the current ticket prior to this component.</description>
+        <name>Next_Stage_4</name>
+        <label>Next Stage</label>
+        <locationX>400</locationX>
+        <locationY>700</locationY>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentStage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Ticket4Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Ticket_4</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Advance to the next stage(Ticket).  Add any other flow logic for the current ticket prior to this component.</description>
+        <name>Next_Stage_5</name>
+        <label>Next Stage</label>
+        <locationX>400</locationX>
+        <locationY>900</locationY>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentStage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Ticket5Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Ticket_5</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Advance to the next stage(Ticket).  Add any other flow logic for the current ticket prior to this component.</description>
+        <name>Next_Stage_6</name>
+        <label>Next Stage</label>
+        <locationX>400</locationX>
+        <locationY>1100</locationY>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentStage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Ticket6Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Ticket_6</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Advance to the next stage(Ticket).  Add any other flow logic for the current ticket prior to this component.</description>
+        <name>Next_Stage_7</name>
+        <label>Next Stage</label>
+        <locationX>400</locationX>
+        <locationY>1300</locationY>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentStage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Ticket7Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Ticket_7</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Advance to the next stage(Ticket).  Add any other flow logic for the current ticket prior to this component.</description>
+        <name>Next_Stage_8</name>
+        <label>Next Stage</label>
+        <locationX>400</locationX>
+        <locationY>1500</locationY>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentStage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Ticket8Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Ticket_8</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>cCompletionMessage</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Replace this with your completion message</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>Project Template Name</description>
+        <name>cProjectName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Sample Project Template Name</stringValue>
+        </value>
+    </constants>
+    <interviewLabel>P6 Project - Test {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>P6 Project - Test</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_1</name>
+        <label>Ticket 1</label>
+        <locationX>250</locationX>
+        <locationY>100</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Next_Stage</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket1Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_2</name>
+        <label>Ticket 2</label>
+        <locationX>250</locationX>
+        <locationY>300</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Next_Stage_3</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName_2</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket2Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine_2</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine_2</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed_2</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_3</name>
+        <label>Ticket 3</label>
+        <locationX>250</locationX>
+        <locationY>500</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Next_Stage_4</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName_3</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket3Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine_3</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine_3</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed_3</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_4</name>
+        <label>Ticket 4</label>
+        <locationX>250</locationX>
+        <locationY>700</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Next_Stage_5</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName_4</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket4Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine_4</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine_4</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed_4</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_5</name>
+        <label>Ticket 5</label>
+        <locationX>250</locationX>
+        <locationY>900</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Next_Stage_6</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName_5</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket5Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine_5</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine_5</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed_5</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_6</name>
+        <label>Ticket 6</label>
+        <locationX>250</locationX>
+        <locationY>1100</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Next_Stage_7</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName_6</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket6Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine_6</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine_6</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed_6</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_7</name>
+        <label>Ticket 7</label>
+        <locationX>250</locationX>
+        <locationY>1300</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Next_Stage_8</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName_7</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket7Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine_7</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine_7</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed_7</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Include any field updates on this screen and add any other required logic in the flow before the next Stage Change Assignment Node.</description>
+        <name>Ticket_8</name>
+        <label>Ticket 8</label>
+        <locationX>250</locationX>
+        <locationY>1500</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Completion_Toast_Message</targetReference>
+        </connector>
+        <fields>
+            <name>TicketName_8</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;{!cProjectName}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!Ticket8Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TopLine_8</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>BottomLine_8</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>0</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Ticket_Completed_8</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ticket Completed</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <stages>
+        <name>Ticket1Name</name>
+        <isActive>true</isActive>
+        <label>Ticket1Name</label>
+        <stageOrder>10</stageOrder>
+    </stages>
+    <stages>
+        <name>Ticket2Name</name>
+        <isActive>true</isActive>
+        <label>Ticket2Name</label>
+        <stageOrder>20</stageOrder>
+    </stages>
+    <stages>
+        <name>Ticket3Name</name>
+        <isActive>true</isActive>
+        <label>Ticket3Name</label>
+        <stageOrder>30</stageOrder>
+    </stages>
+    <stages>
+        <name>Ticket4Name</name>
+        <isActive>true</isActive>
+        <label>Ticket4Name</label>
+        <stageOrder>40</stageOrder>
+    </stages>
+    <stages>
+        <name>Ticket5Name</name>
+        <isActive>true</isActive>
+        <label>Ticket5Name</label>
+        <stageOrder>50</stageOrder>
+    </stages>
+    <stages>
+        <name>Ticket6Name</name>
+        <isActive>true</isActive>
+        <label>Ticket6Name</label>
+        <stageOrder>60</stageOrder>
+    </stages>
+    <stages>
+        <name>Ticket7Name</name>
+        <isActive>true</isActive>
+        <label>Ticket7Name</label>
+        <stageOrder>70</stageOrder>
+    </stages>
+    <stages>
+        <name>Ticket8Name</name>
+        <isActive>true</isActive>
+        <label>Ticket8Name</label>
+        <stageOrder>80</stageOrder>
+    </stages>
+    <startElementReference>Ticket_1</startElementReference>
+    <status>Active</status>
+    <variables>
+        <description>Automatically passed in from the Record Page</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

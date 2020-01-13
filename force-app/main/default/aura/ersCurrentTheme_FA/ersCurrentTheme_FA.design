@@ -1,0 +1,6 @@
+<design:component>
+
+    <design:attribute name="Theme" label="Current Theme Name" />
+    <design:attribute name="isLEX" label="In Lightning?" />
+    
+</design:component>

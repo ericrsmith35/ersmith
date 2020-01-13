@@ -1,0 +1,5 @@
+<apex:page standardController="Contract">
+    <flow:interview name="Contract_Test_for_Attachment">
+        <apex:param name="vCid" value="{!Contract.Id}"/>
+    </flow:interview>
+</apex:page>

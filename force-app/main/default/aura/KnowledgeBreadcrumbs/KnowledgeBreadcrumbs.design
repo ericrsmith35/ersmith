@@ -1,0 +1,5 @@
+<design:component label="AC Knowledge Breadcrumbs">
+    <design:attribute name="mainCommunityPage"
+                      label="Main Knowledge Page"
+                      description="Name of the main community page of Knowledge" />
+</design:component>

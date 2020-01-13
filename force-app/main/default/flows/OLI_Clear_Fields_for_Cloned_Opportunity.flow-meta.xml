@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>30</locationX>
+        <locationY>25</locationY>
+        <assignmentItems>
+            <assignToReference>vOppId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>006W000000AuJ2Q</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Clear_OLI_Fields</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>cEmptyDate</name>
+        <dataType>Date</dataType>
+    </constants>
+    <constants>
+        <name>cEmptyString</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue/>
+        </value>
+    </constants>
+    <description>Clear the Billing and Asset conversion fields on products left on a cloned Opportunity</description>
+    <interviewLabel>OLI - Clear Fields for Cloned Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OLI - Clear Fields for Cloned Opportunity</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Clear_OLI_Fields</name>
+        <label>Clear OLI Fields</label>
+        <locationX>176</locationX>
+        <locationY>143</locationY>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vOppId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Billing_Enabled__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Date_Sent_to_Billing__c</field>
+            <value>
+                <elementReference>cEmptyDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsConverted__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordUpdates>
+    <startElementReference>Clear_OLI_Fields</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>vOppId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

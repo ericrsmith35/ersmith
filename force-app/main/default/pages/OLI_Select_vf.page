@@ -1,0 +1,164 @@
+<!-- Project: Assets Phase 1                                                -->
+<!-- Created By: GWI, Eric Smith                                            -->
+<!-- VisualForce Page: OLI_Select_vp                                        -->
+<!-- Description: VF page for selecting Products for conversion to Assets   -->
+<!--    Classes Utilized:   OLI_Select_ap.apxc                              -->
+<!--                        OLI_Select_ap_Test.apxc                         -->
+<!--                        OLI_Wrapper.apxc                                -->
+<!--                                                                        -->
+
+<apex:page controller="OLI_Select_ap" id="thePage" tabStyle="Product2" sidebar="false" lightningStylesheets="true">  
+    
+    <!-- Style for Page Messages -->
+    <style>
+        .Messages { color: red; font-weight: strong;}
+        .StatusPicklist { }
+    </style>
+    
+    <!-- Javascript -->
+    <script>
+        // Script to provide pop-up on 'Cancel' button click
+        function confirmCancel() {
+            var isCancel = confirm("Are you sure you wish to cancel?");
+            if (isCancel) return true;      
+            return false;
+        }
+    </script>
+    
+    <!-- Section Header -->
+    <apex:sectionHeader title="Select Products for Asset Creation" />
+    
+    <!-- Form with Page Blocks and Sections -->
+    <apex:form >
+        
+        <!-- Page Block providing the user with Editable Table -->   
+        <apex:pageBlock >
+
+            <apex:pageBlockButtons location="{! IF(oSelect,'both','top')}">
+                <apex:commandButton action="{!create}" value="Create Assets" rendered="{!oSelect}"/>
+                <!-- <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/> -->
+                <apex:commandButton action="{!cancel}" value="Cancel" immediate="true"/>
+            </apex:pageBlockButtons>
+            
+            <apex:messages styleClass="Messages"/>        
+
+            <apex:pageBlockSection rendered="{! AND(oSelect=false,aSelect=false)}">
+                <apex:outputText value="The are no Products on this Opportunity still available to be converted or assigned to Assets"/>
+            </apex:pageBlockSection>            
+            
+            <apex:pageBlockSection id="editableView" title="Unconverted Product List View" columns="1" collapsible="true" rendered="{!oSelect}" >
+                <apex:pageBlockTable value="{!oProdW}" var="val">
+                
+                    <apex:column id="chkColumn">
+                        <apex:facet name="header">
+                            <apex:outputLabel >
+                                <apex:inputCheckbox value="{!chkSelection}" 
+                                                    title="Select All or Deselect All Products" >
+                                    <apex:actionSupport event="onchange" action="{!selectAll}" reRender="chkColumn"/>
+                                </apex:inputCheckbox>
+                            </apex:outputLabel>
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!val.isoProdSelected}"/>
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Product Name</apex:facet>
+                            <apex:outputLink value="/{!val.oliID}" >{!val.OLI.Product_Name__c}</apex:outputLink>
+                    </apex:column>
+                
+                    <apex:column >
+                        <apex:facet name="header">Quantity</apex:facet>
+                        <apex:outputText value="{!FLOOR(val.OLI.Quantity)}" />
+                    </apex:column>
+
+                    <apex:column >
+                        <apex:facet name="header">Bill to Account</apex:facet>
+                        <apex:outputField value="{!val.OLI.Account__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Deliver to Account</apex:facet>
+                        <apex:outputField value="{!val.OLI.Deliver_to_Account__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Service Address</apex:facet>
+                        <apex:outputField value="{!val.OLI.Service_Address__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Line Description</apex:facet>
+                        <apex:inputField value="{!val.OLI.Description}" />
+                    </apex:column> 
+                    
+                </apex:pageBlockTable>
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+        <!-- Section to assign existing Assets to negative quantity OLIS -->         
+        <apex:pageBlock rendered="{!aSelect}" >
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!cancel}" value="Done" immediate="true"/>
+            </apex:pageBlockButtons>
+            
+            <apex:outputPanel id="hidden" rendered="false"/>
+                               
+            <apex:pageBlockSection id="oliView" title="Unassigned Product List View" columns="1" collapsible="true" >
+                <apex:pageBlockTable value="{!oProdAW}" var="ol">
+                
+                    <apex:column id="chkAColumn">
+                        <apex:facet name="header">
+                            <apex:outputLabel rendered="false">
+                                <apex:inputCheckbox value="{!assSelection}">
+                                    <apex:actionSupport event="onchange" action="{!selectUnass}" reRender="chkAColumn"/>
+                                </apex:inputCheckbox>
+                            </apex:outputLabel>
+                        </apex:facet>
+                        <!-- <apex:inputCheckbox value="{!ol.isoProdSelected}" /> -->
+                        <apex:commandButton value="Assign Assets" action="{!assign}" reRender="hidden">
+                            <apex:param name="passID" value="{!ol.oliID}" assignTo="{!assignID}"/>
+                        </apex:commandButton>                      
+                        
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Product Name</apex:facet>
+                            <apex:outputLink value="/{!ol.oliID}" >{!ol.OLI.Product_Name__c}</apex:outputLink>
+                    </apex:column>
+                
+                    <apex:column >
+                        <apex:facet name="header">Quantity</apex:facet>
+                        <apex:outputText value="{!FLOOR(ol.OLI.Quantity)}" />
+                    </apex:column>
+
+                    <apex:column >
+                        <apex:facet name="header">Bill to Account</apex:facet>
+                        <apex:outputField value="{!ol.OLI.Account__c}" />                           
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Deliver to Account</apex:facet>
+                        <apex:outputField value="{!ol.OLI.Deliver_to_Account__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Service Address</apex:facet>
+                        <apex:outputField value="{!ol.OLI.Service_Address__c}" />
+                    </apex:column> 
+
+                    <apex:column >
+                        <apex:facet name="header">Line Description</apex:facet>
+                        <apex:inputField value="{!ol.OLI.Description}" />
+                    </apex:column> 
+                    
+                </apex:pageBlockTable>
+                
+            </apex:pageBlockSection> 
+       
+        </apex:pageBlock>            
+        
+    </apex:form>
+    
+</apex:page>

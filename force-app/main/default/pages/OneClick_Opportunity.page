@@ -1,0 +1,5 @@
+<apex:page id="page" standardController="Opportunity" showHeader="false" standardStylesheets="true" sidebar="false">
+    <apex:outputPanel id="opComp">
+        <OneClickUpdate:OneClickUpdateComponent id="cComp" object_api_name="Opportunity" record_id="{!$CurrentPage.parameters.id}"/>
+    </apex:outputPanel>
+</apex:page>

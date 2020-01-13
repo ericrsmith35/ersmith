@@ -1,0 +1,5 @@
+<aura:component implements="flowruntime:availableForLocalInvocableActions">
+    <aura:attribute name="origin" type="String" required="true" />
+    <aura:attribute name="destination" type="String" required="true" />
+    <aura:attribute name="distance" type="Decimal" />
+</aura:component>

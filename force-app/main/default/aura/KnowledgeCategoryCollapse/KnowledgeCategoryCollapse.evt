@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="KnowledgeCategoryCollapse">
+    <aura:attribute name="category" type="String"/>
+</aura:event>

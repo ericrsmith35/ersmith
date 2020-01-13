@@ -1,0 +1,60 @@
+<aura:component implements="ltngfw:IntBase,force:hasRecordId,flexipage:availableForAllPageTypes" extends="ltngfw:CmpBase" controller="CmpLinkAssetToNumberCtrl">
+	
+
+	<aura:attribute name="availableNumbers" type="Array"/>
+	<aura:attribute name="lstAssets" type="Array"/>  
+
+	<lightning:card title="Link Assets to Service Numbers">
+		<aura:set attribute="actions">
+			<lightning:button variant="brand" label="Save" onclick="{!c.saveAll}"/>
+		</aura:set>
+		<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+			<thead>
+				<tr class="slds-line-height_reset">
+					<th class="slds-text-title_caps" scope="col">
+						<div class="slds-truncate" title="Asset">Asset</div>
+					</th>
+
+					<th class="slds-text-title_caps" scope="col">
+						<div class="slds-truncate" title="Display ID">Display ID</div>
+					</th>
+
+					<th class="slds-text-title_caps" scope="col">
+						<div class="slds-truncate" title="Service Address">Service Address</div>
+					</th>
+
+					<th class="slds-text-title_caps" scope="col">
+						<div class="slds-truncate" title="Service Number">Service Number</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<aura:iteration items="{!v.lstAssets}" var="a" indexVar="i">
+					<tr class="slds-hint-parent" id="{!'trsingle_' + i}" data-id="{!a.Id}">
+						<th data-label="Asset" scope="row">
+							<div class="slds-truncate" title="{!a.asset.Name}">{!a.asset.Name}</div>
+						</th>
+
+						<td data-label="Display ID">
+							<div class="slds-truncate" title="{!a.asset.Display_ID__c}">{!a.asset.Display_ID__c}</div>
+						</td>
+
+						<td data-label="Service Address">
+							<div class="slds-truncate" title="{!a.asset.Service_Address_Name__c}">{!a.asset.Service_Address_Name__c}</div>
+						</td>
+
+						<td data-label="Service Number" class="selectdiv">
+							<lightning:select variant="label-hidden" value="{!a.sn}" onchange="{!c.picklistChange}" >
+								<aura:iteration items="{!v.availableNumbers}" var="n">
+									<option value="{!n.value}" text="{!n.label}"></option>
+								</aura:iteration>
+							</lightning:select>
+						</td>
+					</tr>
+				</aura:iteration>
+			</tbody>
+		</table>
+
+		<lightning:button variant="brand" label="Save" onclick="{!c.saveAll}" class="slds-m-top_medium slds-p-left_medium"/>
+	</lightning:card>
+</aura:component>

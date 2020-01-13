@@ -1,0 +1,20 @@
+<apex:page showHeader="false" sidebar="false">
+<style>
+#tweetwrapper {
+    padding: 20px 0px 0px 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 520px;
+    -moz-transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
+}
+</style>
+<div id="tweetwrapper">
+<a class="twitter-timeline" href="https://twitter.com/gwimaine" data-widget-id="661946729340760065">Tweets by @gwimaine</a> 
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+</apex:page>

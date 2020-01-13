@@ -1,0 +1,30 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:availableForFlowScreens" access="global" >
+    
+    <aura:attribute name="AccountId"	type="String" />
+    <aura:attribute name="AccountName"	type="String" />
+    <aura:attribute name="ContactId"	type="String" />
+    <aura:attribute name="ContactType"	type="String" />
+    
+    <div class="slds-modal__header slds-size--1-of-4">
+        <p class="slds-text-heading--label">{!v.AccountName}</p>
+        <h1 class="slds-page-header__title slds-m-right--small slds-truncate slds-align-left">Create New {!v.ContactType} Contact</h1>
+    </div>
+
+    <div class="slds-modal__content slds-p-around_medium slds-size--1-of-4" id="modal-content-id-1">
+        <lightning:recordEditForm aura:id="recordEditForm" 
+                                  objectApiName="Contact"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSaved}"
+                                  onerror="{!c.handleError}">
+            <lightning:messages />
+            <lightning:inputField fieldName="FirstName" />
+            <lightning:inputField fieldName="LastName" />
+            <lightning:inputField fieldName="Title" />
+            <lightning:inputField fieldName="Phone" />
+            <lightning:inputField fieldName="MobilePhone" />     
+            <lightning:inputField fieldName="Email" />     
+            <lightning:button aura:id="submit" type="submit" label="Create New Contact" class="slds-m-top_medium" />
+        </lightning:recordEditForm>
+    </div>
+    
+</aura:component>

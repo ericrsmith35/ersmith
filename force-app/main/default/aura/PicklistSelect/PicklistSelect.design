@@ -1,0 +1,6 @@
+<design:component >
+    <design:attribute name="objectName" label="Object Name" description="API name of object." required="true" default="Account"/>
+    <design:attribute name="fieldName" label="Field Name" description="API name of picklist field." required="true" default="Type"/>
+    <design:attribute name="label" label="Field Label" description="Field input label."/>
+    <design:attribute name="value" label="Selection" description="Input(Default Selection) - (Output)Selected picklist item."/>
+</design:component>

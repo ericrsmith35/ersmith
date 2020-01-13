@@ -1,0 +1,26 @@
+<apex:page standardcontroller="Opportunity" lightningStylesheets="true">
+    
+<!--
+Custom Visualforce page to confirm date and submit order to Service Delivery
+Eric Smith - GWI - June 2016
+-->
+    
+    <apex:messages />
+    <apex:sectionheader title="{!$ObjectType.Opportunity.label} Edit" subtitle="Submit to Service Delivery"/>
+    <chatter:feedwithfollowers entityId="{!Opportunity.Id}"/>
+    
+    <apex:form >
+        <apex:pageblock mode="edit" title="Hello {!$User.FirstName} -- Please confirm the Submitted Date">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+            
+            <apex:pageblocksection title="Submit" showheader="false" columns="1">              
+                <apex:inputfield value="{!Opportunity.Submitted__c}" />
+            </apex:pageblocksection>    
+            
+        </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

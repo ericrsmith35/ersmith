@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>39.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>Account information inline Visualforce page for Opportunity layout Command Button to assign Accounts and Service Addresses to the Opportunity Products</description>
+    <label>Account Information</label>
+</ApexPage>

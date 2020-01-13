@@ -1,0 +1,65 @@
+<!--
+    Generic Lightning Component to be used when updating a field from a button
+
+    Eric Smith - July 2018
+	4/25/19 - ers - Updated so the field update does not overwrite other record edits from the same page.
+
+    This replaces JavaScript buttons that were only used to set a field value.
+-->
+
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId" access="global" >
+
+    <!-- Parameters -->
+    <aura:attribute name="buttonLabel" type="String" />
+	<aura:attribute name="fieldName" type="String" />
+    <aura:attribute name="fieldValue" type="String" default="True" />
+    <aura:attribute name="fieldType" type="String" default="Boolean" />
+    <aura:attribute name="successMessage" type="String" default="" />
+    <aura:attribute name="fieldList" type="String[]" default="['Id']" />
+    
+    <!-- Variables -->
+    <aura:attribute name="buttonStyle" type="String" />
+    <aura:attribute name="newFieldValue_Boolean" type="Boolean" />
+    <aura:attribute name="newFieldValue_String" type="String" />
+    <aura:attribute name="newFieldValue_Date" type="Date" />
+    <aura:attribute name="newFieldValue_Datetime" type="Datetime" />
+    <aura:attribute name="newFieldValue_Time" type="Time" />
+    <aura:attribute name="newFieldValue_Integer" type="Integer" />
+    <aura:attribute name="newFieldValue_Long" type="Long" />
+    <aura:attribute name="newFieldValue_Decimal" type="Decimal" />
+    <aura:attribute name="newFieldValue_Double" type="Double" />
+    
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <!-- To implement LDS we need "target" attributes to show and save data, plus "force:recordData" -->
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="simpleRecord" type="Object" />
+    <aura:attribute name="recordError" type="String" />
+
+    <!-- Build the force:recordData component in the controller based on the input parameters -->
+    <div aura:id="recordDataContainer"/>   
+    
+    <!-- targetRecord -> Stores the result
+		 targetFields -> A simplified view of the fields on targetRecord. We refer to this object in the user interface markup.
+         targetError  -> Stores the error message, if any.
+	-->
+    
+	<!-- User Interface -->    
+
+    <!-- Display LDS errors if any -->
+	<aura:if isTrue="{!not(empty(v.recordError))}">
+    	<div class="recordError">
+        	<ui:message title="Error" severity="error" closable="true">
+            	{!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>
+
+    <!--    Button Interface -->
+    <div class="slds-card slds-p-around_x-small slds-card__body">
+        <!-- lightning:button class="slds-button_neutral" label="Cancel" onclick="{!c.handleCancel}" / -->
+        <lightning:button class="{!v.buttonStyle}" label="{!v.buttonLabel}" onclick="{!c.handleSaveRecord}" />
+    </div>
+
+</aura:component>

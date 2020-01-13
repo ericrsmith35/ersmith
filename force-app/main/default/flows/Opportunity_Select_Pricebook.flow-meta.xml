@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>26</locationX>
+        <locationY>22</locationY>
+        <assignmentItems>
+            <assignToReference>vOppId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>0063200001lW4iBAAS</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Load_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Pricebook_ID</name>
+        <label>Set Pricebook ID</label>
+        <locationX>355</locationX>
+        <locationY>375</locationY>
+        <assignmentItems>
+            <assignToReference>objOpportunity.Pricebook2Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>vPricebookId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Save_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>Default_Pricebook</name>
+        <choiceText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Default Pricebook: {!fDefaultPB}&lt;/FONT&gt;&lt;/DIV&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <elementReference>fDefaultPB</elementReference>
+        </value>
+    </choices>
+    <decisions>
+        <name>Any_Existing_Products</name>
+        <label>Any Existing Products?</label>
+        <locationX>352</locationX>
+        <locationY>137</locationY>
+        <defaultConnector>
+            <targetReference>Select_Pricebook</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO</defaultConnectorLabel>
+        <rules>
+            <name>YES</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>objOpportunity.wf_OLI_Total_Count__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <label>YES</label>
+        </rules>
+    </decisions>
+    <description>Used to select a Pricebook for an Opportunity</description>
+    <dynamicChoiceSets>
+        <name>Pricebook</name>
+        <dataType>String</dataType>
+        <displayField>Name</displayField>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Pricebook2</object>
+        <outputAssignments>
+            <assignToReference>vPricebookId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <formulas>
+        <name>fDefaultPB</name>
+        <dataType>String</dataType>
+        <expression>CASE(TEXT({!objOpportunity.Term_months__c}),
+&quot;12&quot;,&quot;12 Month Contract&quot;,
+&quot;24&quot;,&quot;24 Month Contract&quot;,
+&quot;36&quot;,&quot;36 Month Contract&quot;,
+&quot;48&quot;,&quot;48 Month Contract&quot;,
+&quot;60&quot;,&quot;60 Month Contract&quot;,
+&quot;Residential Price Book&quot;)</expression>
+    </formulas>
+    <interviewLabel>Opportunity - Select Pricebook {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity - Select Pricebook</label>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Pricebook_ID</name>
+        <label>Get Pricebook ID</label>
+        <locationX>168</locationX>
+        <locationY>251</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Any_Existing_Products</targetReference>
+        </connector>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>fDefaultPB</elementReference>
+            </value>
+        </filters>
+        <object>Pricebook2</object>
+        <outputAssignments>
+            <assignToReference>vPricebookId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Load_Opportunity</name>
+        <label>Load Opportunity</label>
+        <locationX>166</locationX>
+        <locationY>136</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Pricebook_ID</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vOppId</elementReference>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <outputReference>objOpportunity</outputReference>
+        <queriedFields>Term_months__c</queriedFields>
+        <queriedFields>Pricebook2Id</queriedFields>
+        <queriedFields>wf_OLI_Total_Count__c</queriedFields>
+        <queriedFields>Is_Residential__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Save_Opportunity</name>
+        <label>Save Opportunity</label>
+        <locationX>354</locationX>
+        <locationY>502</locationY>
+        <inputReference>objOpportunity</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Select_Pricebook</name>
+        <label>Select Pricebook</label>
+        <locationX>353</locationX>
+        <locationY>254</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Set_Pricebook_ID</targetReference>
+        </connector>
+        <fields>
+            <name>Term</name>
+            <fieldText>Term (months): {!objOpportunity.Term_months__c}
+Is Residential Customer? {!objOpportunity.Is_Residential__c}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Pricebook0</name>
+            <choiceReferences>Default_Pricebook</choiceReferences>
+            <choiceReferences>Pricebook</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Pricebook</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Load_Opportunity</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>objOpportunity</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>vOppId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vPricebookId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

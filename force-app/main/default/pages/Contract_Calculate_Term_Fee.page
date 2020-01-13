@@ -1,0 +1,6 @@
+<apex:page standardController="Contract">
+    <apex:sectionheader title="Contract {!Contract.ContractNumber}" subtitle="Calculate Term Fee"/>
+    <flow:interview name="Contract_Calculate_Termination_Fee" finishLocation="/{!Contract.Id}" >
+        <apex:param name="vContractID" value="{!Contract.Id}" />
+    </flow:interview>
+</apex:page>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>35</locationX>
+        <locationY>26</locationY>
+        <assignmentItems>
+            <assignToReference>vAssetID</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>02i0e00000aKcOd</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Asset</targetReference>
+        </connector>
+    </assignments>
+    <description>Set the value in the fShorten formula to match the length of the Short Description field in Asset</description>
+    <formulas>
+        <name>fShorten</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!vLong},40)</expression>
+    </formulas>
+    <interviewLabel>Asset - Short Description {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Asset - Short Description</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Asset</name>
+        <label>Get Asset</label>
+        <locationX>179</locationX>
+        <locationY>127</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Asset</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vAssetID</elementReference>
+            </value>
+        </filters>
+        <object>Asset</object>
+        <outputAssignments>
+            <assignToReference>vLong</assignToReference>
+            <field>Description</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>vShort</assignToReference>
+            <field>Short_Description__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Asset</name>
+        <label>Update Asset</label>
+        <locationX>176</locationX>
+        <locationY>250</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vAssetID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Short_Description__c</field>
+            <value>
+                <elementReference>fShorten</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Asset</object>
+    </recordUpdates>
+    <startElementReference>Get_Asset</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>vAssetID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vLong</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vShort</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

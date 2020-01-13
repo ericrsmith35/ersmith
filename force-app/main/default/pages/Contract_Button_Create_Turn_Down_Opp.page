@@ -1,0 +1,6 @@
+<apex:page standardController="Contract">
+    <apex:sectionheader title="Create Turn-Down Opportunity" subtitle="{!Contract.ContractNumber}"/>
+    <flow:interview name="Create_Turn_Down_Opportunity_from_Contract" finishLocation="/{!Contract.Id}" >
+        <apex:param name="vContractID" value="{!Contract.Id}" />
+    </flow:interview>
+</apex:page>

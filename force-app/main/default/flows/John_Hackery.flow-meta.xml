@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Test_Web_Page</name>
+        <label>Test Web Page</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <actionName>c:loadWebPage</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>url</name>
+            <value>
+                <stringValue>www.google.com</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>35</locationX>
+        <locationY>33</locationY>
+        <assignmentItems>
+            <assignToReference>vOppId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>0060e00001rOGBwAAO</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <formulas>
+        <name>fCongaURL</name>
+        <dataType>String</dataType>
+        <expression>&quot;https://composer.congamerge.com?serverUrl=&quot; &amp; {!$Api.Partner_Server_URL_370} &amp; &quot;&amp;id=&quot; &amp; {!vOppId}</expression>
+    </formulas>
+    <interviewLabel>John Hackery {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>John Hackery</label>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Opportunity</name>
+        <label>Get Opportunity</label>
+        <locationX>175</locationX>
+        <locationY>147</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Test_Web_Page</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vOppId</elementReference>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <outputReference>objOpp</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Contract_Special_Instructions__c</queriedFields>
+        <queriedFields>Contract_Start_Text__c</queriedFields>
+    </recordLookups>
+    <screens>
+        <name>Prepare_for_Service_Agreement_Creation</name>
+        <label>Prepare for Service Agreement Creation</label>
+        <locationX>365</locationX>
+        <locationY>149</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>OppDetails</name>
+            <fieldText>Prepare documents for: {!objOpp.Name}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>CongaLink</name>
+            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;A HREF=&quot;https://gwi--apxtconga4.na62.visual.force.com/apex/Conga_Composer?serverUrl=https%3A%2F%2Fgwi.my.salesforce.com%2Fservices%2FSoap%2Fu%2F37.0%2F00D6C0000008oXL&amp;amp;id=0060e00001rO3aj&amp;amp;QueryId=[ServiceAgreementO]a1A0e00000ApnET,[saolisrvaddr]a1A0e00000ApnNO,[ContactInfo]a1A0e00000ApnQy,[ConSig]a1A0e00000Apo1p,[OwnSig]a1A0e00000Apo2J&amp;amp;csvisible=1&amp;amp;CSRoutingType=SERIAL&amp;amp;qvar0id=a1A0e00000Apo1p&amp;amp;csrecipient1=%7Bqvar0%7D&amp;amp;qvar1id=a1A0e00000Apo2J&amp;amp;csrecipient2=%7Bqvar1%7D&amp;amp;TemplateId=a1B0e00000lJur0%2Ca1B0e00000lJurF%2Ca1B0e00000l7BQI&amp;amp;SC0=1&amp;amp;SC1=SalesforceFile&amp;amp;AC0=1&amp;amp;AC1=Service+Agreement+Created&amp;amp;DefaultPDF=1&amp;amp;FP0=1&amp;amp;OFN=SERVICE+AGREEMENT_GWI+House+Account+-+Internal+Users_180409&quot; TARGET=&quot;_blank&quot;&gt;Link&lt;/A&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Do_Nothing</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>objOpp</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>vOppId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

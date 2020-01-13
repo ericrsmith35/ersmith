@@ -1,0 +1,93 @@
+<!--
+
+ Lightning Component - Disconnect Notice
+   Display an Alert Notice on the Account or Case page if an Account has been flagged as disconnected/disabled
+
+ Classic:
+   Embed DisconnectNotice_Account.vfp in an Account page layout or embed DisconnectNotice_Case.vfp in a Case page layout
+   Put in a 1 column section, height 60
+
+ Lightning:
+   Insert this component in either an Account or a Case record page
+
+ Eric Smith - GWI - January 2018
+ ers - 5/18/18 - Updated to use System_ID_Name rather than old System_ID field
+
+-->
+
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <aura:attribute name="targetRecord" type="Object"/>
+    <aura:attribute name="targetFields" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="accountId" type="Id"/>
+    <aura:attribute name="isCase" type="Boolean"/>
+    <aura:attribute name="dFlag" type="Boolean"/>
+    <aura:attribute name="dType" type="String"/>
+    
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      layoutType="FULL"
+                      fields="DiscoFlag__c,DiscoType__c,Active__c,System_ID_Name__c"
+                      targetRecord="{!v.targetRecord}"
+                      targetFields="{!v.targetFields}"
+                      targetError="{!v.recordError}"
+                      />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.REFRESH}" />
+    <aura:handler event="force:refreshView" action="{!c.REFRESH}" />
+    
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>   
+    
+    <aura:if isTrue="{!v.targetFields.DiscoFlag__c}">
+        <!-- Displays the disconnect notice -->
+        <div class="notice-container slds-theme_error">
+            <!-- div class="slds-card__header slds-grid slds-p-bottom_small slds-m-bottom_none" -->
+            <div class="slds-media slds-media_center slds-has-flexi-truncate slds-m-around_x-small" >
+                <div class="slds-media__figure slds-align-top">
+                    <h2><lightning:icon class="icon"
+                                        iconName="utility:warning"
+                                        title="Disconnect Notice" /></h2>
+                </div>
+                <div class="slds-media__body">
+                    <!-- Inserts the type of disconnect, pulled from the flow, into the script -->
+                    <ui:outputRichText class="notice slds-text-heading_medium"
+                                       value="{!'This Account is Disabled for ' + v.targetFields.DiscoType__c}"/>                    
+                </div>
+            </div>
+        </div>
+        <!-- /div -->
+    </aura:if>
+    
+
+        <aura:if isTrue="{!v.targetFields.Active__c == false}">
+            <aura:if isTrue="{!v.targetFields.DiscoFlag__c == false}">
+                    <aura:if isTrue="{!v.targetFields.System_ID_Name__c != 'Islesboro - FttP'}">
+                <!-- Displays the disconnect notice -->
+                <div class="notice-container slds-theme_error">
+                    <!-- div class="slds-card__header slds-grid slds-p-bottom_small slds-m-bottom_none" -->
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate slds-m-around_x-small" >
+                        <div class="slds-media__figure slds-align-top">
+                            <h2><lightning:icon class="icon"
+                                                iconName="utility:warning"
+                                                title="Closed Notice" /></h2>
+                        </div>
+                        <div class="slds-media__body">
+                            <!-- Inserts the Closed Message -->
+                            <ui:outputRichText class="notice slds-text-heading_medium"
+                                               value="{!'This Account is not active in Plat'}"/>                    
+                        </div>
+                    </div>
+                </div>
+                <!-- /div -->
+            </aura:if>
+        </aura:if>
+    </aura:if>
+</aura:component>

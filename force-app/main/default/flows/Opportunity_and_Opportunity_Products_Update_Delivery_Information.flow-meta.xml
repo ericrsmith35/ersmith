@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Add_Items_to_the_S_Object_update_variable</name>
+        <label>Add Items to the S-Object update variable.</label>
+        <locationX>900</locationX>
+        <locationY>424</locationY>
+        <assignmentItems>
+            <assignToReference>SobjLoopProduct.Delivery_Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>VarDelivMethod</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SobjLoopProduct.Delivery_System_Owner__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>VarDeliverySysOwner</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_values_to_the_collection_variable</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assigns the loop variable to the collection S-object variable for a fast update.</description>
+        <name>Assign_values_to_the_collection_variable</name>
+        <label>Assign values to the collection variable</label>
+        <locationX>898</locationX>
+        <locationY>302</locationY>
+        <assignmentItems>
+            <assignToReference>SobjColUpdateLineItem</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>SobjLoopProduct</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_each_product</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_the_Track_Delivery_Box_checked</name>
+        <label>Is the Track Delivery Box checked</label>
+        <locationX>570</locationX>
+        <locationY>425</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_each_product</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Track Delivery Method not checked.</defaultConnectorLabel>
+        <rules>
+            <name>Track_Delivery_Method_is_checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>VarDelMethod</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Items_to_the_S_Object_update_variable</targetReference>
+            </connector>
+            <label>Track Delivery Method is checked</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Use_Default_Values_box_checked</name>
+        <label>Is the Use Default Values box checked?</label>
+        <locationX>251</locationX>
+        <locationY>285</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_each_product</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Use default values not checked</defaultConnectorLabel>
+        <rules>
+            <name>Use_Default_values_is_checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SobjLoopProduct.Accept_Default_Delivery_Method__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Lookup_Track_Delivery_Method_Status</targetReference>
+            </connector>
+            <label>Use Default values is checked.</label>
+        </rules>
+    </decisions>
+    <description>Updates the delivery information to the products directly from the defaults set on the opportunity object.  This also checks for products being selected for delivery tracking, and also for overrides to the defaults made during the product selection.</description>
+    <interviewLabel>Update Delivery Information {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity and Opportunity Products - Update Delivery Information</label>
+    <loops>
+        <description>We need to loop through each product, to determine if the Track Delivery Method is checked for that product.</description>
+        <name>Loop_through_each_product</name>
+        <label>Loop through each product</label>
+        <locationX>248</locationX>
+        <locationY>146</locationY>
+        <assignNextValueToReference>SobjLoopProduct</assignNextValueToReference>
+        <collectionReference>SobjColLineItems</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_the_Use_Default_Values_box_checked</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Opportunity_Products_to_Default_Values</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Lookup_Line_Items_for_the_Opportunity</name>
+        <label>Lookup Line Items for the Opportunity</label>
+        <locationX>68</locationX>
+        <locationY>35</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_each_product</targetReference>
+        </connector>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarOpportunityID</elementReference>
+            </value>
+        </filters>
+        <object>OpportunityLineItem</object>
+        <outputReference>SobjColLineItems</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Product2Id</queriedFields>
+        <queriedFields>Accept_Default_Delivery_Method__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>This will find the individual product, and look up the status of the track delivery method field.</description>
+        <name>Lookup_Track_Delivery_Method_Status</name>
+        <label>Lookup Track Delivery Method Status</label>
+        <locationX>253</locationX>
+        <locationY>422</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_the_Track_Delivery_Box_checked</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>SobjLoopProduct.Product2Id</elementReference>
+            </value>
+        </filters>
+        <object>Product2</object>
+        <outputAssignments>
+            <assignToReference>VarDelMethod</assignToReference>
+            <field>Track_Delivery_Method__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Opportunity_Products_to_Default_Values</name>
+        <label>Update Opportunity Products to Default Values</label>
+        <locationX>484</locationX>
+        <locationY>144</locationY>
+        <inputReference>SobjColUpdateLineItem</inputReference>
+    </recordUpdates>
+    <startElementReference>Lookup_Line_Items_for_the_Opportunity</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <description>The collection variable used for the look up of all line items associated with the opportunity</description>
+        <name>SobjColLineItems</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityLineItem</objectType>
+    </variables>
+    <variables>
+        <description>This is the S-object collection variable which stores the values for the updates to be made to the Opportunity Products.</description>
+        <name>SobjColUpdateLineItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityLineItem</objectType>
+    </variables>
+    <variables>
+        <description>This is the Sobject Variable for each part of the loop looking to see if track delivery method is checked</description>
+        <name>SobjLoopProduct</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityLineItem</objectType>
+    </variables>
+    <variables>
+        <description>This holds the ID of the Delivery System Owner for assignment to the Opportunity Line Items in the flow.  Passed in by Process Builder.</description>
+        <name>VarDeliverySysOwner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This comes from the process builder, and is the selected default delivery method from the opportunity object.</description>
+        <name>VarDelivMethod</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This variable holds the Track Delivery Method status from the Product, to determine if the delivery method and owner need to be updated.</description>
+        <name>VarDelMethod</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This is the opportunity ID for the Opportunity - Products set that is having the values updated.</description>
+        <name>VarOpportunityID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

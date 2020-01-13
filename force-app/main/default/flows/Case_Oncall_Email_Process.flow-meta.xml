@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Second_Attempt_Email</name>
+        <label>Send Second Attempt Email</label>
+        <locationX>109</locationX>
+        <locationY>628</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Create_Task_2</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ttbody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>ttSubject2</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>help@gwisupport.net</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fEmailAddresses2</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Third_Attempt_Email</name>
+        <label>Send Third Attempt Email</label>
+        <locationX>250</locationX>
+        <locationY>630</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Create_Task_3</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ttbody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>ttSubject3</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>help@gwisupport.net</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fEmailAddresses3</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>99</locationX>
+        <locationY>19</locationY>
+        <assignmentItems>
+            <assignToReference>vCaseId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>5000e00001Jz8m1</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vUserId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00560000001GT8V</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Lookup_Case</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>cAdditionalEmails1</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2072865219@vtext.com,support@staff.gwi.net,oncall-cts@staff.gwi.net,help@gwisupport.net</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>cAdditionalEmails2</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2072865219@vtext.com,support@staff.gwi.net,oncall-cts@staff.gwi.net,help@gwisupport.net</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>cAdditionalEmails3</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2072865219@vtext.com,support@staff.gwi.net,oncall-cts@staff.gwi.net,help@gwisupport.net</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Which_Attempt_is_this</name>
+        <label>Which Attempt is this?</label>
+        <locationX>104</locationX>
+        <locationY>496</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>X1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vOncallAttempt</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <label>1</label>
+        </rules>
+        <rules>
+            <name>X2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vOncallAttempt</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Second_Attempt_Email</targetReference>
+            </connector>
+            <label>2</label>
+        </rules>
+        <rules>
+            <name>X3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vOncallAttempt</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>3.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Third_Attempt_Email</targetReference>
+            </connector>
+            <label>3</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>fCaseid15</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!vCaseId}, 15)</expression>
+    </formulas>
+    <formulas>
+        <name>fCaseThread</name>
+        <dataType>String</dataType>
+        <expression>&quot;[ref:_&quot; &amp; LEFT({!$Organization.Id},5) &amp; SUBSTITUTE(RIGHT({!$Organization.Id},11), &quot;0&quot;, &quot;&quot; )&amp; &quot;._&quot; &amp; LEFT({!fCaseid15},5) &amp; SUBSTITUTE(Left(RIGHT({!fCaseid15},10), 5), &quot;0&quot;, &quot;&quot;) &amp; RIGHT({!fCaseid15},5) &amp; &quot;:ref]&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>fEmailAddresses1</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Email}+ &quot;, &quot; + {!cAdditionalEmails1}</expression>
+    </formulas>
+    <formulas>
+        <name>fEmailAddresses2</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Email}+ &quot;, &quot; + {!cAdditionalEmails2}</expression>
+    </formulas>
+    <formulas>
+        <name>fEmailAddresses3</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Email}+ &quot;, &quot; + {!cAdditionalEmails3}</expression>
+    </formulas>
+    <formulas>
+        <name>fGwi</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.GWI_Salesforce_Domain}</expression>
+    </formulas>
+    <formulas>
+        <name>fStaffUser</name>
+        <dataType>String</dataType>
+        <expression>{!$User.FirstName} &amp;&quot; &quot;&amp; {!$User.LastName}</expression>
+    </formulas>
+    <interviewLabel>Case - Oncall Email Process {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Case - Oncall Email Process</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Task_2</name>
+        <label>Create Task 2</label>
+        <locationX>116</locationX>
+        <locationY>733</locationY>
+        <assignRecordIdToReference>vTask2Id</assignRecordIdToReference>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>ttTaskbody2</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>ttTaskSubject2</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TaskSubtype</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>vCaseId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Task_3</name>
+        <label>Create Task 3</label>
+        <locationX>258</locationX>
+        <locationY>730</locationY>
+        <assignRecordIdToReference>vTask3Id</assignRecordIdToReference>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>ttTaskBody3</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>ttTaskSubject3</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TaskSubtype</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>vCaseId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
+    <recordLookups>
+        <name>Lookup_Account_Info</name>
+        <label>Lookup Account Info</label>
+        <locationX>101</locationX>
+        <locationY>209</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Lookup_User_Info</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>objCase.AccountId</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <outputReference>objAccount</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Lookup_Case</name>
+        <label>Lookup Case</label>
+        <locationX>98</locationX>
+        <locationY>113</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Lookup_Account_Info</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vCaseId</elementReference>
+            </value>
+        </filters>
+        <object>Case</object>
+        <outputReference>objCase</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>CaseNumber</queriedFields>
+        <queriedFields>AccountId</queriedFields>
+        <queriedFields>ContactId</queriedFields>
+        <queriedFields>ContactPhone</queriedFields>
+        <queriedFields>Impact__c</queriedFields>
+        <queriedFields>Description</queriedFields>
+        <queriedFields>Subject</queriedFields>
+        <queriedFields>Origin</queriedFields>
+        <queriedFields>OwnerId</queriedFields>
+        <queriedFields>Status</queriedFields>
+        <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>Case_Link__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Lookup_Contact_info</name>
+        <label>Lookup Contact info</label>
+        <locationX>95</locationX>
+        <locationY>400</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Which_Attempt_is_this</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>objCase.ContactId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>objContact</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Phone</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Lookup_User_Info</name>
+        <label>Lookup User Info</label>
+        <locationX>99</locationX>
+        <locationY>307</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Lookup_Contact_info</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>objCase.OwnerId</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputReference>objUser</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <startElementReference>Lookup_Case</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>ttbody</name>
+        <text>Support OnCall, 
+
+This customer has requested OnCall Support please contact them as soon as possible. They’re expecting your phone call within 30 minutes. 
+
+Subject:  {!objCase.Subject}
+
+Description: {!objCase.Description} 
+
+Regards, 
+{!fStaffUser}
+
+Ticket Number:  {!objCase.CaseNumber}
+Service Impact: {!objCase.Impact__c}
+Case Origin: {!objCase.Origin}
+Owner: {!objUser.Name}
+Status: {!objCase.Status} 
+Created Date/Time: {!objCase.CreatedDate} 
+
+Ticket Link: {!fGwi}{!vCaseId}
+
+{!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttSubject</name>
+        <text>OnCall - {!objCase.CaseNumber} - {!objAccount.Name} - {!objContact.Name} - {!objContact.Phone} {!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttSubject2</name>
+        <text>Second Attempt - OnCall - {!objCase.CaseNumber} - {!objAccount.Name} - {!objContact.Name} - {!objContact.Phone} {!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttSubject3</name>
+        <text>Third Attempt - OnCall - {!objCase.CaseNumber} - {!objAccount.Name} - {!objContact.Name} - {!objContact.Phone} {!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttTaskBody</name>
+        <text>Additional To:  {!cAdditionalEmails1}
+CC:
+Attachment:
+
+Support OnCall, 
+
+This customer has requested OnCall Support please contact them as soon as possible. They’re expecting your phone call within 30 minutes. 
+
+Subject:  {!objCase.Subject}
+
+Description: {!objCase.Description} 
+
+Regards, 
+{!fStaffUser}
+
+Ticket Number:  {!objCase.CaseNumber}
+Service Impact: {!objCase.Impact__c}
+Case Origin: {!objCase.Origin}
+Owner: {!objUser.Name}
+Status: {!objCase.Status} 
+Created Date/Time: {!objCase.CreatedDate} 
+
+Ticket Link: {!fGwi}{!vCaseId}
+
+{!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttTaskbody2</name>
+        <text>Additional To:  {!cAdditionalEmails2}
+CC:
+Attachment:
+
+Support OnCall, 
+
+This customer has requested OnCall Support please contact them as soon as possible. They’re expecting your phone call within 30 minutes. 
+
+Subject:  {!objCase.Subject}
+
+Description: {!objCase.Description} 
+
+Regards, 
+{!fStaffUser}
+
+Ticket Number:  {!objCase.CaseNumber}
+Service Impact: {!objCase.Impact__c}
+Case Origin: {!objCase.Origin}
+Owner: {!objUser.Name}
+Status: {!objCase.Status} 
+Created Date/Time: {!objCase.CreatedDate} 
+
+Ticket Link: {!fGwi}{!vCaseId}
+
+{!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttTaskBody3</name>
+        <text>Additional To:  {!cAdditionalEmails3}
+CC:
+Attachment:
+
+Support OnCall, 
+
+This customer has requested OnCall Support please contact them as soon as possible. They’re expecting your phone call within 30 minutes. 
+
+Subject:  {!objCase.Subject}
+
+Description: {!objCase.Description} 
+
+Regards, 
+{!fStaffUser}
+
+Ticket Number:  {!objCase.CaseNumber}
+Service Impact: {!objCase.Impact__c}
+Case Origin: {!objCase.Origin}
+Owner: {!objUser.Name}
+Status: {!objCase.Status} 
+Created Date/Time: {!objCase.CreatedDate} 
+
+Ticket Link: {!fGwi}{!vCaseId}
+
+{!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttTaskSubject1</name>
+        <text>Email:  OnCall - {!objCase.CaseNumber} - {!objAccount.Name} - {!objContact.Name} - {!objContact.Phone} {!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttTaskSubject2</name>
+        <text>Email:  Second Attempt - OnCall - {!objCase.CaseNumber} - {!objAccount.Name} - {!objContact.Name} - {!objContact.Phone} {!fCaseThread}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttTaskSubject3</name>
+        <text>Email:  Third Attempt - OnCall - {!objCase.CaseNumber} - {!objAccount.Name} - {!objContact.Name} - {!objContact.Phone} {!fCaseThread}</text>
+    </textTemplates>
+    <variables>
+        <name>objAccount</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>objCase</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>objContact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>objUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>User</objectType>
+    </variables>
+    <variables>
+        <name>vCaseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vOncallAttempt</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTask2Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTask3Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTaskId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vUserEmail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vUserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vUserName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email</name>
+        <label>Send Email</label>
+        <locationX>667</locationX>
+        <locationY>358</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Set_Review_Flag</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>ttSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>fUserEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fvsendto</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email2</name>
+        <label>Send Email</label>
+        <locationX>667</locationX>
+        <locationY>624</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Set_Good_Flag</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Email2</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>ttsubjectgj</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>fUserEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fvsendto2</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>36</locationX>
+        <locationY>25</locationY>
+        <assignmentItems>
+            <assignToReference>vTaskId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00TK000000V0SYe</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Activity_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Selected_Emails</name>
+        <label>Selected Emails</label>
+        <locationX>518</locationX>
+        <locationY>359</locationY>
+        <assignmentItems>
+            <assignToReference>vSendTo</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Mailto</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Email</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Selected_Emails2</name>
+        <label>Selected Emails</label>
+        <locationX>515</locationX>
+        <locationY>623</locationY>
+        <assignmentItems>
+            <assignToReference>vsendto2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Mailt_To2</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Email2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Good_Flag</name>
+        <label>Set Good Flag</label>
+        <locationX>828</locationX>
+        <locationY>622</locationY>
+        <assignmentItems>
+            <assignToReference>objTask.Sent_for_Review__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>objTask.Review_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>cGoodjob</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Save_Activity_Record2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Review_Flag</name>
+        <label>Set Review Flag</label>
+        <locationX>812</locationX>
+        <locationY>356</locationY>
+        <assignmentItems>
+            <assignToReference>objTask.Sent_for_Review__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>objTask.Review_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>cTraining_Op</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Save_Activity_Record</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>cGoodjob</name>
+        <choiceText>Good job</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Good Job</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Copy_Myself</name>
+        <choiceText>Copy Myself</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <elementReference>fUserEmail</elementReference>
+        </value>
+    </choices>
+    <choices>
+        <name>cTraining_Op</name>
+        <choiceText>Training Op</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Training Op</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>GWI</name>
+        <choiceText>GWI</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>supportmgmt@staff.gwi.net</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Third_Party_Support</name>
+        <choiceText>Third Party Support</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>gwiescalations@savilinx.com, supportmgmt@staff.gwi.net</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Good_Or_Bad</name>
+        <label>Good Or Bad</label>
+        <locationX>47</locationX>
+        <locationY>548</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Good_Job</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Case_Review_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>cGoodjob</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_Body_2</targetReference>
+            </connector>
+            <label>Good Job</label>
+        </rules>
+        <rules>
+            <name>Training_Opportunity</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Case_Review_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>cTraining_Op</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_Body</targetReference>
+            </connector>
+            <label>Training Opportunity</label>
+        </rules>
+    </decisions>
+    <description>Send selected Activity/Case to SaviLynx for review and update Sent for Review field.</description>
+    <formulas>
+        <name>fUserEmail</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Email}</expression>
+    </formulas>
+    <formulas>
+        <name>fvsendto</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(vSendTo,&quot;;&quot;,&quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>fvsendto2</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(vsendto2,&quot;;&quot;,&quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>vStaffUser</name>
+        <dataType>String</dataType>
+        <expression>{!$User.FirstName} &amp;&quot; &quot;&amp; {!$User.LastName}</expression>
+    </formulas>
+    <interviewLabel>Task - Send email to SaviLynx for Review {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Task - Send email to SaviLynx for Review</label>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Activity_Record</name>
+        <label>Get Activity Record</label>
+        <locationX>45</locationX>
+        <locationY>145</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Case_Details</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vTaskId</elementReference>
+            </value>
+        </filters>
+        <object>Task</object>
+        <outputReference>objTask</outputReference>
+        <queriedFields>CreatedById</queriedFields>
+        <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Subject</queriedFields>
+        <queriedFields>WhatId</queriedFields>
+        <queriedFields>Sent_for_Review__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Case_Details</name>
+        <label>Get Case Details</label>
+        <locationX>41</locationX>
+        <locationY>248</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_User_Details</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>objTask.WhatId</elementReference>
+            </value>
+        </filters>
+        <object>Case</object>
+        <outputReference>objCase</outputReference>
+        <queriedFields>CaseNumber</queriedFields>
+        <queriedFields>Subject</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_User_Details</name>
+        <label>Get User Details</label>
+        <locationX>45</locationX>
+        <locationY>355</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_this_Good_or_Bad</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>objTask.CreatedById</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputReference>objUser</outputReference>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Save_Activity_Record</name>
+        <label>Save Activity Record</label>
+        <locationX>955</locationX>
+        <locationY>348</locationY>
+        <inputReference>objTask</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Save_Activity_Record2</name>
+        <label>Save Activity Record</label>
+        <locationX>977</locationX>
+        <locationY>615</locationY>
+        <inputReference>objTask</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Email_Body</name>
+        <label>Email Body</label>
+        <locationX>363</locationX>
+        <locationY>354</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Selected_Emails</targetReference>
+        </connector>
+        <fields>
+            <name>Prompt</name>
+            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#FF0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Please add your comments to the email.&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Email</name>
+            <defaultValue>
+                <elementReference>ttEmailBody</elementReference>
+            </defaultValue>
+            <fieldText>Email</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Mailto</name>
+            <choiceReferences>GWI</choiceReferences>
+            <choiceReferences>Third_Party_Support</choiceReferences>
+            <choiceReferences>Copy_Myself</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Mail To</fieldText>
+            <fieldType>MultiSelectCheckboxes</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Email_Body_2</name>
+        <label>Email_Body_2</label>
+        <locationX>352</locationX>
+        <locationY>625</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Selected_Emails2</targetReference>
+        </connector>
+        <fields>
+            <name>Prompt2</name>
+            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#CC0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Please add your comments to the email.&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Email2</name>
+            <defaultValue>
+                <elementReference>ttemail2</elementReference>
+            </defaultValue>
+            <fieldText>Email</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Mailt_To2</name>
+            <choiceReferences>GWI</choiceReferences>
+            <choiceReferences>Third_Party_Support</choiceReferences>
+            <choiceReferences>Copy_Myself</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Mailt To</fieldText>
+            <fieldType>MultiSelectCheckboxes</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Is_this_Good_or_Bad</name>
+        <label>Is this Good or Bad</label>
+        <locationX>45</locationX>
+        <locationY>447</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Good_Or_Bad</targetReference>
+        </connector>
+        <fields>
+            <name>Prompt3</name>
+            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#CC0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Please select a Review Type.&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Case_Review_Type</name>
+            <choiceReferences>cGoodjob</choiceReferences>
+            <choiceReferences>cTraining_Op</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Case Review Type</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Get_Activity_Record</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>ttemail2</name>
+        <text>Case Selected for Review
+
+Good Job on 
+
+Case #{!objCase.CaseNumber} [{!objCase.Subject}] 
+
+This is in reference to the Activity [{!objTask.Subject}] created by {!objUser.Name} on {!objTask.CreatedDate}.
+
+Notes:
+
+
+Thank You,
+{!vStaffUser}</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Generic email template for SaviLynx review email</description>
+        <name>ttEmailBody</name>
+        <text>Case Selected for Review
+
+Case #{!objCase.CaseNumber} [{!objCase.Subject}] 
+
+This is in reference to the Activity [{!objTask.Subject}] created by {!objUser.Name} on {!objTask.CreatedDate}.
+
+Notes:
+
+
+Thank You,
+{!vStaffUser}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttSubject</name>
+        <text>Case #{!objCase.CaseNumber} Selected for Review</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttsubjectgj</name>
+        <text>Good Job on Case #{!objCase.CaseNumber}</text>
+    </textTemplates>
+    <variables>
+        <name>objCase</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <description>Placeholder for Activity record</description>
+        <name>objTask</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Task</objectType>
+    </variables>
+    <variables>
+        <name>objUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>User</objectType>
+    </variables>
+    <variables>
+        <name>vGoodjob</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>cGoodjob</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>vNotes</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vreviewtype</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vSendTo</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>edouglass+savi@staff.gwi.net</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>vsendto2</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>ID of Activity selected for SaviLynx review</description>
+        <name>vTaskId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vtrainingop</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>cTraining_Op</elementReference>
+        </value>
+    </variables>
+</Flow>

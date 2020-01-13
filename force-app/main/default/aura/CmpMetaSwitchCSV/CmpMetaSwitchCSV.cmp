@@ -1,0 +1,53 @@
+<aura:component implements="force:lightningQuickAction,ltngfw:IntBase,force:hasRecordId,flexipage:availableForAllPageTypes" extends="ltngfw:CmpBase" controller="CmpMetaSwitchCSVCtrl">
+	
+	<aura:attribute name="csvString" type="String"/>
+	<aura:attribute name="headers" type="String[]"/>
+	<aura:attribute name="assets" type="Object[]"/>
+	<aura:attribute name="bbimap" type="Object"/>
+
+	<aura:attribute name="selectedRows" type="List" default="[]"/>
+	<aura:attribute name="tableCols" type="List"/>
+	<aura:attribute name="templates" type="List"/>
+	<aura:attribute name="selectedTemplate" type="String"/>
+	<aura:attribute name="tempType" type="String"/>
+	<aura:attribute name="opp" type="Opportunity"/>
+	<aura:attribute name="templateRecords" type="Object"/>
+	<aura:attribute name="table" type="Aura.Component"/>
+
+	<aura:attribute name="eas" type="String"/>
+	<aura:attribute name="easPLs" type="List"/>
+
+
+	<force:recordData aura:id="forceRecordCmp"
+        recordId="{!v.recordId}"
+        fields="['Name']"
+        targetFields="{!v.opp}"/>
+
+	<lightning:select label="Default Metaswitch Template" required="true" value="{!v.selectedTemplate}" class="slds-m-bottom_medium" onchange="{!c.selectTemplate}">
+		<aura:iteration items="{!v.templates}" var="opt">
+			<option value="{!opt.value}">{!opt.label}</option>
+		</aura:iteration>
+	</lightning:select>
+
+	<aura:renderIf isTrue="{!v.selectedTemplate != 'null'}">
+		<aura:renderIf isTrue="{!v.tempType == 'Commercial'}">
+			<div class="slds-m-bottom_medium slds-p-around_small slds-border_top slds-border_bottom">
+				<lightning:select label="EAS Class of Service" value="{!v.eas}" class="slds-m-bottom_small">
+					<aura:iteration items="{!v.easPLs}" var="opt">
+						<option value="{!opt.value}" text="{!opt.label}"/>
+					</aura:iteration>
+				</lightning:select>
+				<lightning:button label="Apply to Selected" onclick="{!c.applyCOS}" variant="brand"/>
+			</div>
+		</aura:renderIf>
+
+		<div aura:id="dtbl"/>
+
+		<aura:set attribute="else">
+			<ui:message title="More Information Needed" severity="info">Please select a template</ui:message>
+		</aura:set>
+	</aura:renderIf>
+
+	<br/>
+	<lightning:button aura:id="downloadbtn" label="Download CSV Files" onclick="{!c.startBuild}"/>
+</aura:component>

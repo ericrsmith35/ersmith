@@ -1,0 +1,53 @@
+<!-- Project: Create new CPE to add to a Case as an Asset       -->
+<!-- Created By: Eric Smith - GWI - 12/2015						-->
+<!-- VisualForce Page: CreateCPE         		                -->
+<!-- Description: VF page for new CPE add                       -->
+<!-- Classes Utilized: CreateCPEextension					   	-->
+<!-- Test Classes: 												-->
+
+<!-- Activated by the 'Create New CPE' button on the CaseAsset	--> 
+<!-- 	Related List on the Case Page Layout(s)					-->
+
+<apex:page standardcontroller="Asset" extensions="CreateCPEextension">
+<apex:messages />
+	<apex:sectionheader title="{!$ObjectType.Asset.label} Edit" subtitle="{!IF(ISNULL(Asset.Name), 'New CPE Asset',Asset.Name)}"/>
+	<apex:form >
+		<apex:pageblock mode="edit" title="{!$ObjectType.Asset.label} Edit">
+			<apex:pageblockbuttons >
+				<apex:commandbutton value="Save" action="{!mySave}"/>
+				<apex:commandbutton value="Cancel" action="{!myCancel}"/>
+			</apex:pageblockbuttons>
+				<apex:pageblocksection title="CPE Asset Information" showheader="true" columns="2">
+					<apex:outputfield value="{!Asset.Name}"/>
+					<apex:outputfield value="{!Asset.AccountId}"/>
+					<apex:inputfield value="{!Asset.Product2Id}" required="false"/>
+					<apex:outputfield value="{!Asset.Service_Address__c}"/>
+               		<apex:inputfield value="{!Asset.Quantity}" required="false"/>
+					<apex:outputfield value="{!Asset.Asset_Type__c}"/>   
+					<apex:inputfield value="{!Asset.SerialNumber}" required="false"/>
+                    <apex:outputfield value="{!Asset.Status}"/>
+                    <apex:inputfield value="{!Asset.GWI_Asset_Tag_Number__c}" required="false"/>                      
+					<apex:inputfield value="{!Asset.InstallDate}" required="false"/>                
+					<apex:inputfield value="{!Asset.Customer_Owned__c}" required="false"/>
+                    <apex:inputfield value="{!Asset.In_Production__c}" required="false"/>
+                    <apex:inputfield value="{!Asset.IsCompetitorProduct}" required="false"/>
+					<apex:pageblocksectionitem />
+				</apex:pageblocksection>
+				<apex:pageblocksection title="Equipment Information" showheader="true" columns="2">
+					<apex:inputfield value="{!Asset.Manufacturer__c}" required="false"/>
+					<apex:inputfield value="{!Asset.Host_Name__c}" required="false"/>
+					<apex:inputfield value="{!Asset.Model__c}" required="false"/>
+					<apex:inputfield value="{!Asset.Orion_Name__c}" required="false"/>
+					<apex:inputfield value="{!Asset.Mfr_Part_Number__c}" required="false"/>
+					<apex:inputfield value="{!Asset.MAC_Address__c}" required="false"/>
+				</apex:pageblocksection>
+				<apex:pageblocksection title="Description Information" showheader="true" columns="1">
+					<apex:inputfield value="{!Asset.Description}" required="false"/>
+					<apex:inputfield value="{!Asset.Location_Description__c}" required="false"/>
+				</apex:pageblocksection>
+				<apex:pageblocksection title="Additional Information" showheader="false" columns="2">
+					<apex:pageblocksectionitem />
+				</apex:pageblocksection>
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page standardController="Opportunity" lightningStylesheets="true">
+    <apex:sectionheader title="Check for Contracts" subtitle="{!Opportunity.Name}"/>
+    <flow:interview name="Opportunity_Check_Select_Contract" finishLocation="/{!Opportunity.Id}" >
+        <apex:param name="vOppID" value="{!Opportunity.Id}" />
+    </flow:interview>
+</apex:page>

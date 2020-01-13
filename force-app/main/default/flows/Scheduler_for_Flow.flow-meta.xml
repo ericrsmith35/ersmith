@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Run_Log</name>
+        <label>Email Run Log</label>
+        <locationX>829</locationX>
+        <locationY>138</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Repeat</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ttRunLogBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>fRunLogSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fRunningUserEmail</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Email_Start_Log</name>
+        <label>Email Start Log</label>
+        <locationX>8</locationX>
+        <locationY>284</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Lookup_Waiting_FlowInterview</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ttStartLogBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>fStartLogSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fRunningUserEmail</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <description>Replace this element with Fast Lookup, Assignment, Loop, and any other elements that should take place prior database updates.</description>
+        <name>LOOKUPS</name>
+        <label>LOOKUPS</label>
+        <locationX>374</locationX>
+        <locationY>141</locationY>
+        <assignmentItems>
+            <assignToReference>vRemoveThis</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Log_Only</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Use this element to reset or increment variables that should be different with each run.</description>
+        <name>Prep_Next_Run</name>
+        <label>Prep Next Run</label>
+        <locationX>254</locationX>
+        <locationY>42</locationY>
+        <assignmentItems>
+            <assignToReference>vRunDateTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRunDateTimeIncremented</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vNextBatchDateTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fNextMinute</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vRunNow</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vFirstRun</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vBatchCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Run_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Run_Date_Time</name>
+        <label>Set Run Date/Time</label>
+        <locationX>94</locationX>
+        <locationY>44</locationY>
+        <assignmentItems>
+            <assignToReference>vRunDateTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRunDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Run_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Replace this element with Fast Create/Fast Update/Fast Delete elements as needed.</description>
+        <name>UPDATES</name>
+        <label>UPDATES</label>
+        <locationX>656</locationX>
+        <locationY>244</locationY>
+        <assignmentItems>
+            <assignToReference>vRemoveThis</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Email_Run_Log</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <description>The maximum number of records that should be processed at one time. Additional batches will be processed at 1-minute intervals to avoid flow limits.</description>
+        <name>cBatchLimit</name>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>100.0</numberValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>FlowInterview_Found</name>
+        <label>FlowInterview Found?</label>
+        <locationX>379</locationX>
+        <locationY>417</locationY>
+        <defaultConnector>
+            <targetReference>Wait</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>outcomeYes_FlowInterview_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Lookup_Waiting_FlowInterview</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Waiting_FlowInterview</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Log_Only</name>
+        <label>Log Only?</label>
+        <locationX>655</locationX>
+        <locationY>138</locationY>
+        <defaultConnector>
+            <targetReference>UPDATES</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Make Updates</defaultConnectorLabel>
+        <rules>
+            <name>outcomeLog_Only</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vLogOnly</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_Run_Log</targetReference>
+            </connector>
+            <label>Log Only</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines if the actions in the flow should be repeated on a schedule.</description>
+        <name>Repeat</name>
+        <label>Repeat?</label>
+        <locationX>828</locationX>
+        <locationY>44</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>outcomeRun_loop</name>
+            <conditionLogic>((1 AND 2) OR 3) AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>vRunNow</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vLogOnly</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>fNextBatch</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Flow.FaultMessage</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Prep_Next_Run</targetReference>
+            </connector>
+            <label>Run loop</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Run_Type</name>
+        <label>Run Type</label>
+        <locationX>94</locationX>
+        <locationY>134</locationY>
+        <defaultConnector>
+            <targetReference>Lookup_Waiting_FlowInterview</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <rules>
+            <name>outcomeRun_Now_or_Log_Only</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>vLogOnly</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vRunNow</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LOOKUPS</targetReference>
+            </connector>
+            <label>Run Now or Log Only</label>
+        </rules>
+        <rules>
+            <name>outcome1st_sched_run</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vFirstRun</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_Start_Log</targetReference>
+            </connector>
+            <label>1st sched run</label>
+        </rules>
+        <rules>
+            <name>outcomeNext_batch</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fNextBatch</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Wait</targetReference>
+            </connector>
+            <label>Next batch</label>
+        </rules>
+    </decisions>
+    <description>Template for scheduling recurring jobs using Visual Workflow.</description>
+    <formulas>
+        <description>Can be used to reconstruct a link to a Salesforce record. Sample values: &quot;https://na1.salesforce.com/&quot; or &quot;https://my_domain.my.salesforce.com/&quot;</description>
+        <name>fBaseURL</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_260}, FIND( &#39;/services&#39;, {!$Api.Partner_Server_URL_260}))</expression>
+    </formulas>
+    <formulas>
+        <description>Specifies whether to run a subsequent batch in a multi-batch run.  Set to FALSE by default.  When using batch size control, replace with a reference to a decision outcome, e.g. Next_Batch_Decision</description>
+        <name>fNextBatch</name>
+        <dataType>Boolean</dataType>
+        <expression>FALSE</expression>
+    </formulas>
+    <formulas>
+        <description>Establishes a date/time that is one minute after the current date/time. Used to establish wait times for multi-batch runs.</description>
+        <name>fNextMinute</name>
+        <dataType>DateTime</dataType>
+        <expression>{!$Flow.CurrentDateTime} + (1/1440)</expression>
+    </formulas>
+    <formulas>
+        <name>fRunDate</name>
+        <dataType>Date</dataType>
+        <expression>DATEVALUE({!vRunDateTime})</expression>
+    </formulas>
+    <formulas>
+        <description>CobinesvRunDate + vRunHour + vRunMinute to establish a complete DateTime value.</description>
+        <name>fRunDateTime</name>
+        <dataType>DateTime</dataType>
+        <expression>DATETIMEVALUE(
+    TEXT(
+      {!vRunDate}
+      ) &amp;
+  &quot; &quot; &amp;
+  {!vRunHour} &amp;
+  &quot;:&quot; &amp; 
+  {!vRunMinute} &amp;
+  &quot;:00&quot;
+  )</expression>
+    </formulas>
+    <formulas>
+        <description>Used to increment vRunDateTime based on the defined number of days between runs (vDaysBetween). Does not increment when running subsequent batches in a multi-batch run.</description>
+        <name>fRunDateTimeIncremented</name>
+        <dataType>DateTime</dataType>
+        <expression>IF({!fNextBatch},
+  {!vRunDateTime},
+  {!vRunDateTime} + {!vDaysBetween})</expression>
+    </formulas>
+    <formulas>
+        <description>Subject line for the Run Log email.</description>
+        <name>fRunLogSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Scheduler for Flow - Run Log &quot; &amp; TEXT({!$Flow.CurrentDateTime})</expression>
+    </formulas>
+    <formulas>
+        <description>Sets the email address of the running user.</description>
+        <name>fRunningUserEmail</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Email}</expression>
+    </formulas>
+    <formulas>
+        <description>Sets the full name of the running user.</description>
+        <name>fRunningUserName</name>
+        <dataType>String</dataType>
+        <expression>{!$User.FirstName} &amp; &quot; &quot; &amp; {!$User.LastName}</expression>
+    </formulas>
+    <formulas>
+        <description>Sets the username of the running user.</description>
+        <name>fRunningUserUsername</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Username}</expression>
+    </formulas>
+    <formulas>
+        <description>Subject for the Start Log email</description>
+        <name>fStartLogSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Scheduler for Flow - Start Log &quot; &amp; TEXT({!$Flow.CurrentDateTime})</expression>
+    </formulas>
+    <formulas>
+        <description>Represents the day after today. Used as the default value for vRunDate.</description>
+        <name>fTomorrow</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate} + 1</expression>
+    </formulas>
+    <interviewLabel>Scheduler for Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Scheduler for Flow</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Waiting_FlowInterview</name>
+        <label>Delete Waiting FlowInterview</label>
+        <locationX>658</locationX>
+        <locationY>413</locationY>
+        <connector>
+            <targetReference>Wait</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Email_Run_Log</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vFlowInterviewId</elementReference>
+            </value>
+        </filters>
+        <object>FlowInterview</object>
+    </recordDeletes>
+    <recordLookups>
+        <description>Looks for previous FlowInterviews (scheduled jobs) from this flow. Existing jobs are deleted to prevent duplicate running jobs.</description>
+        <name>Lookup_Waiting_FlowInterview</name>
+        <label>Lookup Waiting FlowInterview</label>
+        <locationX>181</locationX>
+        <locationY>286</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>FlowInterview_Found</targetReference>
+        </connector>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>vLastActivatedDateTime</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>InterviewLabel</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>Scheduler for Flow</stringValue>
+            </value>
+        </filters>
+        <object>FlowInterview</object>
+        <outputAssignments>
+            <assignToReference>vFlowInterviewId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <startElementReference>Set_Run_Date_Time</startElementReference>
+    <status>Draft</status>
+    <textTemplates>
+        <name>ttLinkBreak</name>
+        <text>~
+~</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Body for the Run Log email.</description>
+        <name>ttRunLogBody</name>
+        <text>Run log for job originally scheduled by {!fRunningUserName} ({!fRunningUserUsername}) on ({!vLastActivatedDateTime}).
+
+Run date/time: {!vRunDateTime}
+Run now: {!vRunNow}
+Log only: {!vLogOnly}
+Error message: {!$Flow.FaultMessage}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ttStartLogBody</name>
+        <text>Job scheduled by {!fRunningUserName} ({!fRunningUserUsername}) on ({!vLastActivatedDateTime})
+
+Initial run date/time: {!vRunDateTime}
+Interval between runs (days): {!vDaysBetween}</text>
+    </textTemplates>
+    <variables>
+        <description>A count of the number of records to be processed this run, used for batch size control.
+
+Populate this variable in your loop when using batch size control.</description>
+        <name>vBatchCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Number of days between runs (i.e. set to 7 to run every week, 0.5 to run every 12 hours, etc). Defaults to 1 (daily).</description>
+        <name>vDaysBetween</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>8</scale>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>When this value is TRUE and vRunNow and vLogOnly are FALSE, a Start Log email will be sent to the running user.</description>
+        <name>vFirstRun</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>ID for any pre-existing FlowInterview identifed in the Record Lookup element &quot;Lookup Waiting FlowInterview&quot;</description>
+        <name>vFlowInterviewId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Captures the date and time when the flow is initiated.</description>
+        <name>vLastActivatedDateTime</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Flow.CurrentDateTime</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <description>When TRUE, the flow sends an immediate run log via email. Avoids data updates and does not initiate a scheduled job.</description>
+        <name>vLogOnly</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>vNextBatchDateTime</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Variable used in placeholder Assignment elements, because these elements can&#39;t be left empty. Can be removed after placeholder Assignment elements have been removed.</description>
+        <name>vRemoveThis</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Defines the date for the initial scheduled job.</description>
+        <name>vRunDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>fTomorrow</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <description>Defines the date and time for the next scheduled job.</description>
+        <name>vRunDateTime</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The hour of day when the process will be run (UTC). Format &quot;00&quot; (military time). Defaults to 8am UTC (12am PST / 1am PDT). For time zones other than Pacific, you may want to change the Default Value.</description>
+        <name>vRunHour</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>08</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>The minute of the hour when the process will be run. Defaults to &quot;01&quot;.</description>
+        <name>vRunMinute</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>01</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Whe TRUE, runs the job immediately, including data updates.  Does not initiate a scheduled job.</description>
+        <name>vRunNow</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <waits>
+        <name>Wait</name>
+        <label>Wait</label>
+        <locationX>375</locationX>
+        <locationY>289</locationY>
+        <defaultConnectorLabel>[Default Path]</defaultConnectorLabel>
+        <waitEvents>
+            <name>Next_batch_event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fNextBatch</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LOOKUPS</targetReference>
+            </connector>
+            <eventType>AlarmEvent</eventType>
+            <inputParameters>
+                <name>AlarmTime</name>
+                <value>
+                    <elementReference>vNextBatchDateTime</elementReference>
+                </value>
+            </inputParameters>
+            <label>Next batch</label>
+        </waitEvents>
+        <waitEvents>
+            <name>Wait_until_vRunDateTime</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fNextBatch</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LOOKUPS</targetReference>
+            </connector>
+            <eventType>AlarmEvent</eventType>
+            <inputParameters>
+                <name>AlarmTime</name>
+                <value>
+                    <elementReference>vRunDateTime</elementReference>
+                </value>
+            </inputParameters>
+            <label>Wait until vRunDateTime</label>
+        </waitEvents>
+    </waits>
+</Flow>

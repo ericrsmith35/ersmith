@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>rf</name>
+        <label>rf</label>
+        <locationX>172</locationX>
+        <locationY>226</locationY>
+        <actionName>c:navigateToSObject</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>SObject</name>
+            <value>
+                <elementReference>vOpportunityId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>Test Refresh {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Test Refresh</label>
+    <processType>Flow</processType>
+    <startElementReference>rf</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>vOpportunityId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

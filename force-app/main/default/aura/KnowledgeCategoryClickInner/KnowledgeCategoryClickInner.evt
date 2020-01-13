@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="KnowledgeCategoryClickInner">
+    <aura:attribute name="categoryName" type="String" />
+    <aura:attribute name="categoryLabel" type="String" />
+</aura:event>

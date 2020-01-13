@@ -1,0 +1,39 @@
+<aura:component description="KnowledgeCategories" controller="KnowledgeCategoriesController" access="global">
+    <aura:attribute name="mainCommunityPage" type="String" access="global"/>
+    <aura:attribute name="filters" type="Object" access="global"/>
+    <aura:attribute name="isChildCmp" type="Boolean" access="global" />
+
+    <aura:attribute name="categoriesOpened" type="Boolean" default="true" />
+    <aura:attribute name="categoryItems" type="KnowledgeCategoryWrapper[]" />
+    <aura:attribute name="openedCats" type="String[]" default="[]" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.filters}" action="{!c.updateCategoryItems}"/>
+    <aura:handler name="knowledgeCategoryClickedInner" event="c:KnowledgeCategoryClickInner" action="{!c.handleCategoryClicked}" />
+    <aura:handler name="knowledgeCategoryCollapse" event="c:KnowledgeCategoryCollapse" action="{!c.handleCollapseCategory}" />
+
+    <aura:registerEvent name="knowledgeCategoryResetInner" type="c:KnowledgeCategoryResetInner"/>
+
+    <lightning:layout class="slds-grid--vertical slds-navigation-list--vertical filters-block">
+        <lightning:layoutItem class="slds-m-bottom--medium filter-selector">
+            <div class="{!v.categoriesOpened ? 'tree-list opened' : 'tree-list'}">
+                <h3 class="slds-m-bottom--xx-small title slds-p-around--medium">{!$Label.c.hCategory}
+                    <aura:if isTrue="{!and(not(empty(v.filters.category)), v.filters.category.length > 0)}">
+                        <span class="{!v.isChildCmp ? 'clear-filter slds-p-left--xx-small' : 'slds-hide'}">(<a href="javascript:void(0)" onclick="{!c.clearCategoryFilters}">Clear</a>)</span>
+                    </aura:if>
+                    <lightning:buttonIcon class="arrow" iconName="utility:chevrondown" variant="bare" onclick="{!c.toggleCategories}" size="large" alternativeText="Toggle" />
+                </h3>
+                <ul class="cats">
+                    <aura:iteration items="{!v.categoryItems}" var="item">
+                        <li class="group">
+                            <span>{!item.Label}</span>
+                            <aura:if isTrue="{!and(not(empty(item.Children)), item.Children.length > 0)}">
+                                <c:KnowledgeCategoryItems items="{!item.Children}" filters="{!v.filters}" isChildCmp="{!v.isChildCmp}" mainCommunityPage="{!v.mainCommunityPage}" />
+                            </aura:if>
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

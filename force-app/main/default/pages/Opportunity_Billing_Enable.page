@@ -1,0 +1,33 @@
+<apex:page standardcontroller="Opportunity">
+    <apex:messages />
+    <apex:sectionheader title="{!$ObjectType.Opportunity.label} Edit" subtitle="Billing Enable Opportunity"/>
+    
+    <chatter:feedwithfollowers entityId="{!Opportunity.Id}"/>
+    
+    <apex:form >
+        <apex:pageblock mode="edit" title="{!$ObjectType.Opportunity.label} Edit">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" rendered="{!Opportunity.wf_OK_to_Bill__c}" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+            
+            <apex:pageblocksection title="Billing Enabled Details" showheader="true" columns="1">
+                <apex:outputtext label="Delivery Stage" value="{!Opportunity.Delivery_Stage__c}"/>
+                <apex:pageblocksectionitem />
+                <apex:inputfield value="{!Opportunity.Inst_Date__c}" required="true"/>
+                <apex:inputfield value="{!Opportunity.Billing_Enabled_Ticket__c}" required="true"/>
+                <apex:inputfield value="{!Opportunity.Billable_Date__c}" required="true"/>
+                <apex:inputfield value="{!Opportunity.Bill_To_Account__c}" required="true"/>
+                <apex:outputtext label="Bill To Account PlatID" value="{!Opportunity.Bill_To_Account_PlatID__c}"/>
+                <apex:pageblocksectionitem />
+                <apex:inputfield value="{!Opportunity.CSD_Progress_Notes__c}" style="width: 500px; height: 100px" />
+                <apex:pageblocksectionitem />
+                <apex:outputtext label="Please Note:" value="The Save button will not appear if either the Opportunity's Account or the Bill To Account is missing a Plat Version or Plat ID."/>
+                <apex:pageblocksectionitem />
+                                                                
+            </apex:pageblocksection>    
+            
+        </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

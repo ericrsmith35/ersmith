@@ -1,0 +1,11 @@
+<apex:page standardController="Opportunity" lightningStylesheets="true">
+  <apex:form >
+     <apex:pageBlock title="Hello {!$User.FirstName} -- Please confirm the Ready to Process Date">
+      <p/> <p/>
+      <apex:inputField value="{!Opportunity.Process_Date__c}"/>
+      <p/> <p/>
+      <p/> <p/>
+      <apex:commandButton action="{!save}" value="Submit"/>
+     </apex:pageBlock>
+  </apex:form>
+</apex:page>

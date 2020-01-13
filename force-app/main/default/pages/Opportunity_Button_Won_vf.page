@@ -1,0 +1,6 @@
+<apex:page standardController="Opportunity" extensions="SetFlowReturnExtension">
+    <apex:sectionheader title="Set Opportunity to Closed Won" subtitle="{!Opportunity.Name}"/>
+    <flow:interview interview="{!aFlow}" name="Opportunity_Button_Won" finishlocation="{!finishPageRef}">
+        <apex:param name="vOppID" value="{!Opportunity.Id}"/>
+    </flow:interview>
+</apex:page>

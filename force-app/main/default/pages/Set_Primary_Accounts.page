@@ -1,0 +1,5 @@
+<apex:page standardController="Opportunity">
+    <flow:interview name="Opportunity_Assign_Accounts" finishLocation="/{!Opportunity.Id}" >
+        <apex:param name="varOppId" value="{!Opportunity.Id}" />
+    </flow:interview>
+</apex:page>

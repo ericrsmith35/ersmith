@@ -1,0 +1,5 @@
+<aura:tokens extends="force:base" >
+    <aura:token name="popBorderColor" value="#F2A100"/>
+    <aura:token name="popIconColor" value="#F7BC5B"/>
+    <aura:token name="popBackgroundColor" value="#FDEDEA"/>  
+</aura:tokens>

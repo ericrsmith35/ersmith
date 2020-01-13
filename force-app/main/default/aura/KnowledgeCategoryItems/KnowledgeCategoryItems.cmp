@@ -1,0 +1,30 @@
+<aura:component description="KnowledgeCategoryItems">
+    <aura:attribute name="items" type="KnowledgeCategoryWrapper[]" />
+    <aura:attribute name="filters" type="Object" />
+    <aura:attribute name="isChildCmp" type="Boolean" />
+    <aura:attribute name="level" type="Integer" default="1" />
+    <aura:attribute name="opened" type="Boolean" />
+    <aura:attribute name="mainCommunityPage" type="String"/>
+
+    <aura:registerEvent name="knowledgeCategoryClickedInner" type="c:KnowledgeCategoryClickInner"/>
+    <aura:registerEvent name="knowledgeCategoryCollapse" type="c:KnowledgeCategoryCollapse"/>
+
+    <ul class="{!if(and(v.opened, true), 'opened', '')}">
+        <aura:iteration items="{!v.items}" var="item">
+            <li class="">
+                <aura:if isTrue="{!and(not(empty(item.Children)), item.Children.length > 0)}">
+                    <lightning:buttonIcon iconName="{!item.opened ? 'utility:dash' : 'utility:add'}" variant="bare"
+                                          onclick="{! c.collapseCategories }" alternativeText="Open" value="{!item.Name}"
+                                          aura:id="collapseButton" class="collapse-button" />
+                </aura:if>
+                <a class="{!if(item.selected, 'selected level_' + v.level, 'level_' + v.level)}" href="{!if(v.isChildCmp, 'javascript:void(0);', $SfdcSite.pathPrefix
+                        + '/s/' + v.mainCommunityPage + '#category=' + item.Name)}"
+                   data-id="{!item.Name}" data-label="{!item.Label}" onclick="{!c.filterByCategory}">{!item.Label}</a>
+                <aura:if isTrue="{!and(not(empty(item.Children)), item.Children.length > 0)}">
+                    <c:KnowledgeCategoryItems items="{!item.Children}" filters="{!v.filters}" isChildCmp="{!v.isChildCmp}"
+                                              level="{!v.level + 1}" opened="{!item.opened}" mainCommunityPage="{!v.mainCommunityPage}" />
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>
+</aura:component>

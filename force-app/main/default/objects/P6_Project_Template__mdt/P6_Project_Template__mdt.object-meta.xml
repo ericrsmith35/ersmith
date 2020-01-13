@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Parameters for populating the values in the Flow Template [P6 Kickoff Project - Template] 
+All values are available to the Flow except for the Stage Names.  These have to be generated in the Flow [P6 Kickoff Project - Generate Stage Names] and be put into the new Flow and deployed via VS Code.</description>
+    <label>P6 Project Template</label>
+    <pluralLabel>P6 Project Template</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

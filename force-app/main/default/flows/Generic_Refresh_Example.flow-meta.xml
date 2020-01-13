@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Generic Refresh Example {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Generic Refresh Example</label>
+    <processType>Flow</processType>
+    <screens>
+        <name>Ask_For_SOID</name>
+        <label>Ask For SOID</label>
+        <locationX>275</locationX>
+        <locationY>122</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Redirect</targetReference>
+        </connector>
+        <fields>
+            <name>Salesforce_Object_ID</name>
+            <dataType>String</dataType>
+            <fieldText>Salesforce Object ID</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Redirect</name>
+        <label>Redirect</label>
+        <locationX>280</locationX>
+        <locationY>268</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Redirect_Lightning</name>
+            <extensionName>c:Generic_Refresh</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>SOID</name>
+                <value>
+                    <elementReference>Salesforce_Object_ID</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>OutputBecause</assignToReference>
+                <name>SOID</name>
+            </outputParameters>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Ask_For_SOID</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>OutputBecause</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,85 @@
+<aura:component implements="ltngfw:IntBase,flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" extends="ltngfw:CmpBase" controller="CmpAddServiceNumbersCtrl">
+
+	<aura:attribute name="num" type="Service_Number__c" description="New phone number"/>
+	<aura:attribute name="block" type="Integer" description="Number of block numbers"/>
+	<aura:attribute name="picklistDef" type="Object" description="Definition object for picklist values used on this page"/>
+
+	<aura:attribute name="tableCols" type="Object" description="Data table column properties for existing Service Numbers"/>
+	<aura:attribute name="dialog" type="Aura.Action" description="Promise returned from showing edit dialog. Need to store so we can close it after save"/>
+	<aura:attribute name="existingNumbers" type="Service_Number__c[]" description="List of service numbers already created for this opp"/>
+
+	<aura:attribute name="opp" type="Opportunity" description="The opp data"/>
+
+	<force:recordData aura:id="recordData" layoutType="FULL" targetFields="{!v.opp}" mode="VIEW" recordId="{!v.recordId}"/>
+
+	<!-- for modal dialog -->
+	<lightning:overlayLibrary aura:id="modallib"/>
+	<div>
+		This Opportunity has {!v.existingNumbers.length} of {!v.opp.Service_Numbers_Needed__c} numbers created.
+	</div>
+	<lightning:card title="{!'New Line ' + v.num.Name}">
+		<lightning:layout horizontalAlign="spread" multipleRows="true">
+
+			<lightning:layoutItem padding="around-small" size="2">
+				<lightning:input type="text" label="Number" required="true" value="{!v.num.Name}"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="2">
+				<lightning:select label="Type" value="{!v.num.Type__c}" required="true">
+					<aura:iteration items="{!v.picklistDef.Type__c}" var="pl">
+						<option text="{!pl.label}" value="{!pl.value}"/>
+					</aura:iteration>
+				</lightning:select>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="2">
+				<lightning:select label="Product" value="{!v.num.Product__c}" required="true">
+					<aura:iteration items="{!v.picklistDef.Product__c}" var="pl">
+						<option text="{!pl.label}" value="{!pl.value}"/>
+					</aura:iteration>
+				</lightning:select>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="2">
+				<lightning:input type="text" label="Hunt Group" value="{!v.num.Hunt_Group__c}"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="2">
+				<lightning:input type="text" label="Caller ID" value="{!v.num.Caller_ID__c}" maxlength="15"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="2">
+				<lightning:input type="number" label="Block Size" value="{!v.block}"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="4">
+				<!-- calling features -->
+				<div aura:id="features_div"/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem padding="around-small" size="6">
+				<lightning:textarea label="Notes" value="{!v.num.Notes__c}"/>
+			</lightning:layoutItem>
+
+		</lightning:layout>
+
+	</lightning:card>
+
+	<lightning:buttonGroup>
+		<lightning:button label="Create Single" onclick="{!c.addNew}" variant="brand" class="slds-float_left"/>
+		<lightning:button label="Create Block" onclick="{!c.addNew}" variant="neutral" class="slds-float_left"/>
+	</lightning:buttonGroup>
+	
+	
+	<hr/>
+
+	<lightning:card title="">
+		<aura:set attribute="title">
+			<lightning:icon iconName="standard:call" size="small" class="slds-m-right_small slds-float_left"/>
+			<div class="slds-text-title_caps">Service Numbers ({!v.existingNumbers.length})</div>
+		</aura:set>
+		
+		<lightning:dataTable class="sndt" keyField="id" data="{!v.existingNumbers}" columns="{!v.tableCols}" hideCheckboxColumn="true" onrowaction="{!c.handleTableAction}"/>
+	</lightning:card>
+
+</aura:component>

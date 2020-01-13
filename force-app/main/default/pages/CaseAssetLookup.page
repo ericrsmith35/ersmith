@@ -1,0 +1,89 @@
+<!-- Project: Create new record to add to a Case as an Asset    -->
+<!-- Created By: Eric Smith - GWI - 12/2015						-->
+<!-- VisualForce Page: CaseAssetLookup         		            -->
+<!-- Description: VF page for selecting an Asset for a Case     -->
+<!-- Classes Utilized: CustomAssetLookupController, 			-->
+<!--                   CaseAssetLookupController			   	-->
+<!-- Test Classes: 												-->
+
+<!-- Activated by the 'Add Asset' button on the CaseAsset's		--> 
+<!-- Related List on the Case Page Layout(s)					-->
+
+<apex:page controller="CaseAssetLookupController" id="Page" tabstyle="CaseAsset__c">
+    
+    <!-- JavaScript to override the Standard Lookup process		-->    
+    <script type="text/javascript"> 
+    function openLookup(baseURL, width, modified, searchParam){
+        var originalbaseURL = baseURL;
+        var originalwidth = width;
+        var originalmodified = modified;
+        var originalsearchParam = searchParam;
+        
+        var lookupType = baseURL.substr(baseURL.length-3, 3);
+        if (modified == '1') baseURL = baseURL + searchParam;
+        
+        var isCustomLookup = false;
+        
+        // "02i" is the lookup type for the CaseAsset object
+        if(lookupType == "02i"){
+            
+            var urlArr = baseURL.split("&");
+            var txtId = '';
+            if(urlArr.length > 2) {
+                urlArr = urlArr[1].split('=');
+                txtId = urlArr[1];
+            }
+            
+            // Set url of the Custom Lookup page
+            baseURL = "/apex/CustomAssetLookup?txt=" + txtId;
+            
+            // Add Support Partner Community prefix
+            baseURL = "{!$Site.Prefix}" + baseURL;
+            
+            // Add the id of apex:form control "myForm"
+            baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");
+            if (modified == '1') {
+                baseURL = baseURL + "&lksearch=" + searchParam;
+            }
+            
+            // Pass parameter of Account ID to filter the Asset lookup
+            baseURL = baseURL + "&aid=\'{!ca.AccountLookup__c}\'";
+            
+            // Pass parameter of Case ID to set value in new CaseAsset record
+            baseURL = baseURL + "&cid={!ca.Case__c}";
+            
+            // Pass parameter of Service Address to set value in new CPE Asset record
+            baseURL = baseURL + "&srvadr={!ca.SrvAdr__c}";
+            
+            // Identify the ID of inputField that is the lookup to be customized
+            if(txtId.indexOf('Asset') > -1 ){
+                isCustomLookup = true;
+            }
+        }
+        
+        if(isCustomLookup == true){
+            openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
+        }
+        else {
+            if (modified == '1') originalbaseURL = originalbaseURL + originalsearchParam;
+            openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
+        } 
+    }
+    </script>
+    
+    <apex:sectionHeader title="New Case Asset"  subtitle="Select Asset" />
+    
+    <apex:form id="myForm">  
+        <apex:PageBlock id="PageBlock">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!mySave}"/>
+                <apex:commandbutton value="Cancel" action="{!myCancel}"/>
+            </apex:pageblockbuttons>       
+            <apex:pageBlockSection columns="1" title="Custom Lookup">
+                <apex:inputField id="Asset" value="{!ca.Asset__c}" required="false" />
+                <apex:outputField value="{!ca.Case__c}"/>
+            </apex:pageBlockSection>
+        </apex:PageBlock>
+    </apex:form>
+    
+</apex:page>
