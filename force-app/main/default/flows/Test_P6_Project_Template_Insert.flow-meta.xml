@@ -314,6 +314,7 @@
         </rules>
     </decisions>
     <interviewLabel>Test - P6 Project Template Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
     <label>Test - P6 Project Template Insert</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -492,6 +493,16 @@
             <fieldText>Ticket 2 Completed</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>Ticket2Name</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket_3_Completed</name>
@@ -499,6 +510,16 @@
             <fieldText>Ticket 3 Completed</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>Ticket3Name</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket_4_Completed</name>
@@ -506,6 +527,16 @@
             <fieldText>Ticket 4 Completed</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>Ticket4Name</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket_5_Completed</name>
@@ -513,6 +544,16 @@
             <fieldText>Ticket 5 Completed</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>vNewStage</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <pausedText>&lt;p&gt;You can resume this project from the Actions &amp;amp; Recommendations component.&lt;/p&gt;</pausedText>
         <showFooter>true</showFooter>
@@ -878,7 +919,13 @@
         <label>Ticket8Name</label>
         <stageOrder>80</stageOrder>
     </stages>
-    <startElementReference>Ticket_1</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Ticket_1</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Call_Insert_5</name>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <description>Redirect based on which Project Template is running.</description>
+        <name>Which_Process_Name</name>
+        <label>Which Process Name</label>
+        <locationX>398</locationX>
+        <locationY>139</locationY>
+        <defaultConnector>
+            <targetReference>No_Match</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Match</defaultConnectorLabel>
+        <rules>
+            <name>Residential_Loop_Replacement_Request</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vProjectName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Residential - Loop Replacement Request</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Which_Ticket</targetReference>
+            </connector>
+            <label>Residential - Loop Replacement Request</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Ticket</name>
+        <label>Which Ticket #?</label>
+        <locationX>247</locationX>
+        <locationY>375</locationY>
+        <defaultConnector>
+            <targetReference>No_Match</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Ticket Match</defaultConnectorLabel>
+        <rules>
+            <name>T05_Prov_Schedule_Dispatch_for_Install</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vTicketNumber</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>5.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>T05</targetReference>
+            </connector>
+            <label>T05 - Prov - Schedule Dispatch for Install</label>
+        </rules>
+    </decisions>
+    <description>Handle all extra processing for P6 Projects.  Passed in variables include recordId, Project Name, Additional Info, Rich Text flag &amp; Ticket Number (1-30).  Returned variables include updated Additional Info.</description>
+    <interviewLabel>P6 Pr {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>P6 Project - Sub - Extra Processing</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>No_Match</name>
+        <label>No Match</label>
+        <locationX>115</locationX>
+        <locationY>224</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px; color: rgb(195, 11, 11);&quot;&gt;There was no match for the requested extra processing for this Template &amp;amp; Ticket!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Project Name:&lt;/b&gt; {!vProjectName}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Ticket #:&lt;/b&gt; {!vTicketNumber}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>T05</name>
+        <label>T05</label>
+        <locationX>254</locationX>
+        <locationY>569</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>T5</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(182, 21, 21);&quot;&gt;Once we have implemented Field Squared, you will be directed to a dispatch screen.  For now, manually process the dispatch in WorkTrack.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Which_Process_Name</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vAdditionalInfo</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vProjectName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketNumber</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+</Flow>

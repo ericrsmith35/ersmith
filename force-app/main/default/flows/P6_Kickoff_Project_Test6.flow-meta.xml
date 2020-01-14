@@ -10098,379 +10098,193 @@ Individual components can have their visibility filtered by whether or not athe 
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-  <stages>
-
-    <description>Initial Kickoff Ticket</description>
-
-    <name>Kickoff_Project</name>
-
-    <isActive>true</isActive>
-
-    <label>Kickoff Project</label>
-
-    <stageOrder>1</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_01</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Add New Rate</label>
-
-    <stageOrder>10</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_02</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Select CFA</label>
-
-    <stageOrder>20</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_03</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Place New Loop Order</label>
-
-    <stageOrder>30</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_04</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Monitor Loop Order</label>
-
-    <stageOrder>40</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_05</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Schedule Dispatch for Install</label>
-
-    <stageOrder>50</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_06</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Move in Switch</label>
-
-    <stageOrder>60</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_07</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Update TA5K</label>
-
-    <stageOrder>70</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_08</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Place Disconnect for Old Loop Order</label>
-
-    <stageOrder>80</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_09</name>
-
-    <isActive>false</isActive>
-
-    <label>Prov - Remove Old CFA</label>
-
-    <stageOrder>90</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_10</name>
-
-    <isActive>false</isActive>
-
-    <label>Residential - Billing Enable (Remove Old Rate and Bill New Rate)</label>
-
-    <stageOrder>100</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_11</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_11</label>
-
-    <stageOrder>110</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_12</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_12</label>
-
-    <stageOrder>120</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_13</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_13</label>
-
-    <stageOrder>130</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_14</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_14</label>
-
-    <stageOrder>140</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_15</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_15</label>
-
-    <stageOrder>150</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_16</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_16</label>
-
-    <stageOrder>160</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_17</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_17</label>
-
-    <stageOrder>170</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_18</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_18</label>
-
-    <stageOrder>180</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_19</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_19</label>
-
-    <stageOrder>190</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_20</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_20</label>
-
-    <stageOrder>200</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_21</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_21</label>
-
-    <stageOrder>210</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_22</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_22</label>
-
-    <stageOrder>220</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_23</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_23</label>
-
-    <stageOrder>230</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_24</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_24</label>
-
-    <stageOrder>240</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_25</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_25</label>
-
-    <stageOrder>250</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_26</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_26</label>
-
-    <stageOrder>260</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_27</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_27</label>
-
-    <stageOrder>270</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_28</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_28</label>
-
-    <stageOrder>280</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_29</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_29</label>
-
-    <stageOrder>290</stageOrder>
-
-  </stages>
-
-  <stages>
-
-    <name>TicketName_30</name>
-
-    <isActive>false</isActive>
-
-    <label>TicketName_30</label>
-
-    <stageOrder>300</stageOrder>
-
-  </stages>
+    <stages>
+        <description>Initial Kickoff Ticket</description>
+        <name>Kickoff_Project</name>
+        <isActive>true</isActive>
+        <label>Kickoff Project</label>
+        <stageOrder>1</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_01</name>
+        <isActive>false</isActive>
+        <label>Prov - Add New Rate</label>
+        <stageOrder>10</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_02</name>
+        <isActive>false</isActive>
+        <label>Prov - Select CFA</label>
+        <stageOrder>20</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_03</name>
+        <isActive>false</isActive>
+        <label>Prov - Place New Loop Order</label>
+        <stageOrder>30</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_04</name>
+        <isActive>false</isActive>
+        <label>Prov - Monitor Loop Order</label>
+        <stageOrder>40</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_05</name>
+        <isActive>false</isActive>
+        <label>Prov - Schedule Dispatch for Install</label>
+        <stageOrder>50</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_06</name>
+        <isActive>false</isActive>
+        <label>Prov - Move in Switch</label>
+        <stageOrder>60</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_07</name>
+        <isActive>false</isActive>
+        <label>Prov - Update TA5K</label>
+        <stageOrder>70</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_08</name>
+        <isActive>false</isActive>
+        <label>Prov - Place Disconnect for Old Loop Order</label>
+        <stageOrder>80</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_09</name>
+        <isActive>false</isActive>
+        <label>Prov - Remove Old CFA</label>
+        <stageOrder>90</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_10</name>
+        <isActive>false</isActive>
+        <label>Residential - Billing Enable (Remove Old Rate and Bill New Rate)</label>
+        <stageOrder>100</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_11</name>
+        <isActive>false</isActive>
+        <label>TicketName_11</label>
+        <stageOrder>110</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_12</name>
+        <isActive>false</isActive>
+        <label>TicketName_12</label>
+        <stageOrder>120</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_13</name>
+        <isActive>false</isActive>
+        <label>TicketName_13</label>
+        <stageOrder>130</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_14</name>
+        <isActive>false</isActive>
+        <label>TicketName_14</label>
+        <stageOrder>140</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_15</name>
+        <isActive>false</isActive>
+        <label>TicketName_15</label>
+        <stageOrder>150</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_16</name>
+        <isActive>false</isActive>
+        <label>TicketName_16</label>
+        <stageOrder>160</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_17</name>
+        <isActive>false</isActive>
+        <label>TicketName_17</label>
+        <stageOrder>170</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_18</name>
+        <isActive>false</isActive>
+        <label>TicketName_18</label>
+        <stageOrder>180</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_19</name>
+        <isActive>false</isActive>
+        <label>TicketName_19</label>
+        <stageOrder>190</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_20</name>
+        <isActive>false</isActive>
+        <label>TicketName_20</label>
+        <stageOrder>200</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_21</name>
+        <isActive>false</isActive>
+        <label>TicketName_21</label>
+        <stageOrder>210</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_22</name>
+        <isActive>false</isActive>
+        <label>TicketName_22</label>
+        <stageOrder>220</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_23</name>
+        <isActive>false</isActive>
+        <label>TicketName_23</label>
+        <stageOrder>230</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_24</name>
+        <isActive>false</isActive>
+        <label>TicketName_24</label>
+        <stageOrder>240</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_25</name>
+        <isActive>false</isActive>
+        <label>TicketName_25</label>
+        <stageOrder>250</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_26</name>
+        <isActive>false</isActive>
+        <label>TicketName_26</label>
+        <stageOrder>260</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_27</name>
+        <isActive>false</isActive>
+        <label>TicketName_27</label>
+        <stageOrder>270</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_28</name>
+        <isActive>false</isActive>
+        <label>TicketName_28</label>
+        <stageOrder>280</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_29</name>
+        <isActive>false</isActive>
+        <label>TicketName_29</label>
+        <stageOrder>290</stageOrder>
+    </stages>
+    <stages>
+        <name>TicketName_30</name>
+        <isActive>false</isActive>
+        <label>TicketName_30</label>
+        <stageOrder>300</stageOrder>
+    </stages>
     <start>
         <locationX>113</locationX>
         <locationY>269</locationY>
@@ -10478,7 +10292,7 @@ Individual components can have their visibility filtered by whether or not athe 
             <targetReference>Get_Metadata</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <description>This flow will handle all custom processing for the P6 Project Templates</description>
         <name>Extra_Processing_Flow</name>

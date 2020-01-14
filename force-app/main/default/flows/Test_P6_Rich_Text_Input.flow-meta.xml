@@ -43,7 +43,7 @@
             <targetReference>disp</targetReference>
         </connector>
         <fields>
-            <name>IRT</name>
+            <name>IRT2</name>
             <extensionName>c:inputRichTextFSC_LWC</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <isRequired>true</isRequired>
@@ -52,11 +52,115 @@
                 <name>value</name>
             </outputParameters>
         </fields>
+        <fields>
+            <name>NB</name>
+            <extensionName>c:navigationButtonFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Toggle On</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label2</name>
+                <value>
+                    <stringValue>Toggle Off</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>destinationType2</name>
+                <value>
+                    <stringValue>xxx</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>destinationType</name>
+                <value>
+                    <stringValue>xxx</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>vB1</assignToReference>
+                <name>fire</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>vB2</assignToReference>
+                <name>fire2</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>ass</name>
+            <extensionName>flowruntime:toggle</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Assign</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>vAss</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>on</name>
+            <fieldText>&lt;p&gt;ON&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>vAss</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>off</name>
+            <fieldText>&lt;p&gt;OFF&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>RTI</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>RTI</targetReference>
+        </connector>
+    </start>
     <status>Draft</status>
+    <variables>
+        <name>vAss</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vB1</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vB2</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>vT</name>
         <dataType>String</dataType>

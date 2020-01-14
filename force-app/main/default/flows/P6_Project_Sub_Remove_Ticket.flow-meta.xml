@@ -373,8 +373,14 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <startElementReference>Which_Ticket</startElementReference>
-    <status>Active</status>
+    <start>
+        <locationX>587</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Which_Ticket</targetReference>
+        </connector>
+    </start>
+    <status>Obsolete</status>
     <variables>
         <name>vTicketCompleted01</name>
         <dataType>Boolean</dataType>

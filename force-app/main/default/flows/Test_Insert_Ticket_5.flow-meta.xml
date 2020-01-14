@@ -34,7 +34,13 @@
         <label>TicketName05</label>
         <stageOrder>50</stageOrder>
     </stages>
-    <startElementReference>Insert_Ticket_5</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Insert_Ticket_5</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>vNewTicket</name>

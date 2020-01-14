@@ -243,8 +243,8 @@
     <assignments>
         <name>Do_Nothing</name>
         <label>Do Nothing</label>
-        <locationX>849</locationX>
-        <locationY>287</locationY>
+        <locationX>826</locationX>
+        <locationY>282</locationY>
         <assignmentItems>
             <assignToReference>vDoNothing</assignToReference>
             <operator>Assign</operator>
@@ -3420,8 +3420,8 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Case_0</name>
         <label>Get Case</label>
-        <locationX>1623</locationX>
-        <locationY>324</locationY>
+        <locationX>1621</locationX>
+        <locationY>355</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Ticket_Screen</targetReference>
@@ -3944,7 +3944,7 @@ IF({!vTicketSelected_30},30,
 Individual components can have their visibility filtered by whether or not athe current Flow Active Stages contains the ticket (Stage) name.</description>
         <name>Ticket_Screen</name>
         <label>Ticket Screen</label>
-        <locationX>1919</locationX>
+        <locationX>1920</locationX>
         <locationY>117</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -3956,6 +3956,46 @@ Individual components can have their visibility filtered by whether or not athe 
             <name>ProjectHeader</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 18px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;&lt;u&gt;{!cProjectName}&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;u style=&quot;font-size: 12px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;﻿&lt;/u&gt;&lt;span style=&quot;font-size: 12px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;{!vProjectDescription}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>DisplayList</name>
+            <extensionName>flowruntime:toggle</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Show a List of All Tickets in this Project</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleActive</name>
+                <value>
+                    <stringValue>Ticket List</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleInactive</name>
+                <value>
+                    <stringValue>Hidden</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>ShowList</name>
+            <fieldText>&lt;p&gt;{!fTicketList}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>DisplayList.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Line1</name>

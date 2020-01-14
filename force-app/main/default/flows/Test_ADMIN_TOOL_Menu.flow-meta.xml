@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Launch_Flow</name>
+        <label>Launch Flow</label>
+        <locationX>673</locationX>
+        <locationY>294</locationY>
+        <actionName>c:OpenURL</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>url</name>
+            <value>
+                <elementReference>fFlowURL</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Launch_Flow_New_Tab</name>
+        <label>Launch Flow (New Tab)</label>
+        <locationX>1210</locationX>
+        <locationY>149</locationY>
+        <actionName>c:ersFlowLauncher</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>flowAPIName</name>
+            <value>
+                <elementReference>vSelectedFlow</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <name>FlowDisplayMode</name>
+        <label>FlowDisplayMode</label>
+        <locationX>472</locationX>
+        <locationY>295</locationY>
+        <defaultConnectorLabel>Modal</defaultConnectorLabel>
+        <rules>
+            <name>New_Tab</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vNewTab</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Launch_Flow</targetReference>
+            </connector>
+            <label>New Tab</label>
+        </rules>
+    </decisions>
     <description>Test using Flow Picker &amp; Launch Modal</description>
+    <formulas>
+        <name>fFlowURL</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; &quot;/flow/&quot; &amp; {!vSelectedFlow}</expression>
+    </formulas>
     <interviewLabel>Test - ADMIN TOOL Menu {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Test - ADMIN TOOL Menu</label>
     <processMetadataValues>
@@ -19,7 +74,7 @@
     <screens>
         <name>Admin_Tool_Menu</name>
         <label>Admin Tool Menu</label>
-        <locationX>220</locationX>
+        <locationX>218</locationX>
         <locationY>152</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -38,21 +93,65 @@
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>selectedFlowApiName</name>
-                <value>
-                    <stringValue>ADMIN TOOL</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
                 <name>label</name>
                 <value>
                     <stringValue>Select an ADMIN TOOL:</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>searchString</name>
+                <value>
+                    <stringValue>ADMIN</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>componentWidth</name>
+                <value>
+                    <stringValue>12</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>vSelectedFlow</assignToReference>
                 <name>selectedFlowApiName</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>Nothing</name>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>DisplayMode</name>
+            <extensionName>flowruntime:toggle</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Display Mode</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleActive</name>
+                <value>
+                    <stringValue>New Tab</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleInactive</name>
+                <value>
+                    <stringValue>Pop-up Modal</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>vNewTab</assignToReference>
+                <name>value</name>
             </outputParameters>
         </fields>
         <showFooter>true</showFooter>
@@ -66,16 +165,32 @@
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>FlowDisplayMode</targetReference>
+        </connector>
         <fields>
             <name>Selected</name>
-            <fieldText>&lt;p&gt;{!vSelectedFlow}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;{!vSelectedFlow}&lt;/p&gt;&lt;p&gt;{!vNewTab}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>Admin_Tool_Menu</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Admin_Tool_Menu</targetReference>
+        </connector>
+    </start>
     <status>Draft</status>
+    <variables>
+        <name>vNewTab</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>vSelectedFlow</name>
         <dataType>String</dataType>

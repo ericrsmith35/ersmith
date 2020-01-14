@@ -1104,6 +1104,23 @@ Individual components can have their visibility filtered by whether or not athe 
             <name>Ticket01Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName01}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName01</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted01</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton01</name>
@@ -1126,6 +1143,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected01</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName01</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted01</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine01</name>
@@ -1144,11 +1178,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName01</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted01</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket02Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName02}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName02</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted02</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton02</name>
@@ -1171,6 +1239,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected02</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName02</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted02</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine02</name>
@@ -1189,11 +1274,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName02</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted02</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket03Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName03}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName03</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted03</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton03</name>
@@ -1216,6 +1335,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected03</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName03</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted03</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine03</name>
@@ -1234,11 +1370,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName03</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted03</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket04Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName04}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName04</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted04</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton04</name>
@@ -1261,6 +1431,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected04</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName04</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted04</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine04</name>
@@ -1279,11 +1466,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName04</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted04</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket05Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName05}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName05</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted05</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton05</name>
@@ -1306,6 +1527,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected05</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName05</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted05</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine05</name>
@@ -1324,11 +1562,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName05</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted05</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket06Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName06}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName06</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted06</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton06</name>
@@ -1351,6 +1623,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected06</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName06</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted06</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine06</name>
@@ -1369,11 +1658,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName06</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted06</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket07Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName07}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName07</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted07</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton07</name>
@@ -1396,6 +1719,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected07</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName07</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted07</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine07</name>
@@ -1414,11 +1754,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName07</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted07</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket08Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName08}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName08</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted08</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton08</name>
@@ -1441,6 +1815,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected08</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName08</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted08</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine08</name>
@@ -1459,11 +1850,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName08</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted08</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket09Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName09}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName09</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted09</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton09</name>
@@ -1486,6 +1911,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected09</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName09</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted09</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine09</name>
@@ -1504,11 +1946,45 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName09</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted09</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Ticket10Display</name>
             <fieldText>&lt;p&gt;&lt;b&gt;{!TicketName10}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName10</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted10</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketButton10</name>
@@ -1531,6 +2007,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 <assignToReference>vTicketSelected10</assignToReference>
                 <name>fire</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName10</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted10</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>TicketLine10</name>
@@ -1549,6 +2042,23 @@ Individual components can have their visibility filtered by whether or not athe 
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>TicketName10</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>vTicketCompleted10</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>BottomLine</name>
@@ -1638,8 +2148,14 @@ Individual components can have their visibility filtered by whether or not athe 
         <label>TicketName10</label>
         <stageOrder>100</stageOrder>
     </stages>
-    <startElementReference>Save_Ticket_Names</startElementReference>
-    <status>Active</status>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Save_Ticket_Names</targetReference>
+        </connector>
+    </start>
+    <status>Obsolete</status>
     <subflows>
         <name>Reset_All_Active_and_Set_the_Current_Stage</name>
         <label>Reset All Active and Set the Current Stage</label>

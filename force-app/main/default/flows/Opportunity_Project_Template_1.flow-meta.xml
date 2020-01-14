@@ -176,7 +176,13 @@
         <label>Stage_30</label>
         <stageOrder>30</stageOrder>
     </stages>
-    <startElementReference>Step_1</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Step_1</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>recordId</name>
