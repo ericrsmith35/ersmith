@@ -6,11 +6,11 @@
             "c/flowPickerFSC": [
                 "flowPickerFSC/flowPickerFSC.js"
             ],
-            "c/quickChoiceFSC": [
-                "quickChoiceFSC/quickChoiceFSC.js"
-            ],
             "c/formfactorFlowHelperLwc": [
                 "formfactorFlowHelperLwc/formfactorFlowHelperLwc.js"
+            ],
+            "c/quickChoiceFSC": [
+                "quickChoiceFSC/quickChoiceFSC.js"
             ],
             "c/toastMessage": [
                 "toastMessage/toastMessage.js"
