@@ -1,3 +1,5 @@
+/* https://forcepanda.wordpress.com/2020/01/15/how-to-clone-records-using-flows-one-flow-to-clone-them-all-spring20delight/ */
+
 public class CloneRecordFlowActionClass {
     
     @InvocableMethod(label='Clone Record')
