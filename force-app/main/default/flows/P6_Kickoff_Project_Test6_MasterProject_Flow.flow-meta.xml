@@ -287,6 +287,13 @@
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentRecord</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Get_Subject</targetReference>
         </connector>
@@ -300,7 +307,7 @@
             <assignToReference>vUserId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>FindPeers</elementReference>
+                <elementReference>FindPeersSubs</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -1530,16 +1537,31 @@
             <label>YES</label>
         </rules>
     </decisions>
-    <description>Gets called by Custom Stage Flow and is passed in the Project(Template) name and Stages and Stage Label values</description>
+    <description>Gets called by Custom Stage Flow and is passed in the Project(Template) name and Stages and Stage Label values
+1/21/20 - ers - Collect additional info on Kickoff</description>
     <dynamicChoiceSets>
-        <name>FindPeers</name>
+        <name>FindPeersSubs</name>
         <dataType>String</dataType>
         <displayField>Name</displayField>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <filters>
             <field>ManagerId</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>fUsersManagerId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ManagerId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>fUser</elementReference>
             </value>
         </filters>
         <object>User</object>
@@ -1704,152 +1726,152 @@
     <formulas>
         <name>fAssignButtonLabel_01</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_01},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_01},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_02</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_02},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_02},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_03</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_03},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_03},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_04</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_04},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_04},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_05</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_05},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_05},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_06</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_06},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_06},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_07</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_07},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_07},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_08</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_08},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_08},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_09</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_09},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_09},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_10</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_10},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_10},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_11</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_11},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_11},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_12</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_12},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_12},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_13</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_13},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_13},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_14</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_14},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_14},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_15</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_15},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_15},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_16</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_16},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_16},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_17</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_17},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_17},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_18</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_18},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_18},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_19</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_19},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_19},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_20</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_20},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_20},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_21</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_21},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_21},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_22</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_22},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_22},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_23</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_23},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_23},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_24</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_24},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_24},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_25</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_25},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_25},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_26</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_26},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_26},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_27</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_27},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_27},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_28</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_28},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_28},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_29</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_29},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_29},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignButtonLabel_30</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_30},&quot;&quot;,&quot;Assign&quot;)</expression>
+        <expression>IF({!vTicketAssigned_30},&quot;&quot;,&quot;Assign a Task&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedTicketName</name>
@@ -1890,152 +1912,152 @@
     <formulas>
         <name>fAssignedToLabel_01</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_01},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_01},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_02</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_02},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_02},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_03</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_03},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_03},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_04</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_04},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_04},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_05</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_05},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_05},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_06</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_06},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_06},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_07</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_07},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_07},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_08</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_08},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_08},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_09</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_09},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_09},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_10</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_10},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_10},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_11</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_11},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_11},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_12</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_12},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_12},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_13</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_13},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_13},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_14</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_14},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_14},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_15</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_15},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_15},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_16</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_16},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_16},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_17</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_17},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_17},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_18</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_18},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_18},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_19</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_19},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_19},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_20</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_20},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_20},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_21</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_21},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_21},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_22</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_22},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_22},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_23</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_23},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_23},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_24</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_24},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_24},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_25</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_25},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_25},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_26</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_26},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_26},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_27</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_27},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_27},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_28</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_28},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_28},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_29</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_29},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_29},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignedToLabel_30</name>
         <dataType>String</dataType>
-        <expression>IF({!vTicketAssigned_30},&quot;This Ticket is Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
+        <expression>IF({!vTicketAssigned_30},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>fAssignTicket_01</name>
@@ -2969,6 +2991,18 @@ IF({!vTicketSelected_30},30,
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Delivery_Method__c</field>
+            <value>
+                <elementReference>vDeliveryMethod</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Delivery_System_Owner__c</field>
+            <value>
+                <elementReference>vDeliverySystemOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Opportunity__c</field>
             <value>
                 <elementReference>fOpportunityId</elementReference>
@@ -2978,6 +3012,12 @@ IF({!vTicketSelected_30},30,
             <field>Project_Completed__c</field>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Service_Address__c</field>
+            <value>
+                <elementReference>vServiceAddress</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3015,6 +3055,18 @@ IF({!vTicketSelected_30},30,
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Delivery_Method__c</field>
+            <value>
+                <elementReference>vDeliveryMethod</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Delivery_System_Owner__c</field>
+            <value>
+                <elementReference>vDeliverySystemOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Kickoff__c</field>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
@@ -3024,6 +3076,12 @@ IF({!vTicketSelected_30},30,
             <field>Opportunity__c</field>
             <value>
                 <elementReference>fOpportunityId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Service_Address__c</field>
+            <value>
+                <elementReference>vServiceAddress</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3121,6 +3179,18 @@ IF({!vTicketSelected_30},30,
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Delivery_Method__c</field>
+            <value>
+                <elementReference>vDeliveryMethod</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Delivery_System_Owner__c</field>
+            <value>
+                <elementReference>vDeliverySystemOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Number__c</field>
             <value>
                 <elementReference>vTicketNumber</elementReference>
@@ -3130,6 +3200,12 @@ IF({!vTicketSelected_30},30,
             <field>Opportunity__c</field>
             <value>
                 <elementReference>fOpportunityId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Service_Address__c</field>
+            <value>
+                <elementReference>vServiceAddress</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3149,7 +3225,7 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Case</name>
         <label>Get Case</label>
-        <locationX>466</locationX>
+        <locationX>465</locationX>
         <locationY>596</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -3163,6 +3239,14 @@ IF({!vTicketSelected_30},30,
             </value>
         </filters>
         <object>Case</object>
+        <outputAssignments>
+            <assignToReference>vRecordTypeId</assignToReference>
+            <field>RecordTypeId</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>vServiceAddress</assignToReference>
+            <field>Service_Address__c</field>
+        </outputAssignments>
         <outputAssignments>
             <assignToReference>vName</assignToReference>
             <field>Subject</field>
@@ -3358,8 +3442,24 @@ IF({!vTicketSelected_30},30,
         </filters>
         <object>Opportunity</object>
         <outputAssignments>
+            <assignToReference>vDeliveryMethod</assignToReference>
+            <field>Default_Delivery_Method__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>vDeliverySystemOwner</assignToReference>
+            <field>Delivery_System_Owner__c</field>
+        </outputAssignments>
+        <outputAssignments>
             <assignToReference>vName</assignToReference>
             <field>Name</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>vServiceAddress</assignToReference>
+            <field>Primary_Service_Address__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>vRecordTypeId</assignToReference>
+            <field>RecordTypeId</field>
         </outputAssignments>
     </recordLookups>
     <recordLookups>
@@ -3503,14 +3603,14 @@ IF({!vTicketSelected_30},30,
         <description>DisplayText</description>
         <name>DEBUG_Screen</name>
         <label>DEBUG</label>
-        <locationX>858</locationX>
-        <locationY>276</locationY>
+        <locationX>851</locationX>
+        <locationY>264</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>debug</name>
-            <fieldText>&lt;p&gt;Task ID[{!vTaskId}]&lt;/p&gt;&lt;p&gt;Desc[{!ttDescription}]&lt;/p&gt;&lt;p&gt;Opp[{!fOpportunityId}]&lt;/p&gt;&lt;p&gt;Owner[{!vUserId}]&lt;/p&gt;&lt;p&gt;Subject[{!fTaskSubject}]&lt;/p&gt;&lt;p&gt;WhatId[{!vAssignedId}]&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;recordId[{!recordId}]&lt;/p&gt;&lt;p&gt;Task ID[{!vTaskId}]&lt;/p&gt;&lt;p&gt;Desc[{!ttDescription}]&lt;/p&gt;&lt;p&gt;Opp[{!fOpportunityId}]&lt;/p&gt;&lt;p&gt;Owner[{!vUserId}]&lt;/p&gt;&lt;p&gt;Subject[{!fTaskSubject}]&lt;/p&gt;&lt;p&gt;WhatId[{!vAssignedId}]&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -3519,8 +3619,8 @@ IF({!vTicketSelected_30},30,
     <screens>
         <name>Get_Assignee</name>
         <label>Get Assignee</label>
-        <locationX>2802</locationX>
-        <locationY>360</locationY>
+        <locationX>2759</locationX>
+        <locationY>352</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -3540,7 +3640,7 @@ IF({!vTicketSelected_30},30,
         <fields>
             <name>Assign_This_Ticket_To</name>
             <choiceReferences>SelectPrompt</choiceReferences>
-            <choiceReferences>FindPeers</choiceReferences>
+            <choiceReferences>FindPeersSubs</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Assign This Ticket To:</fieldText>
             <fieldType>DropdownBox</fieldType>
@@ -3626,6 +3726,163 @@ IF({!vTicketSelected_30},30,
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>ServiceAddress</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Primary_Service_Address__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Service Address</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Opportunity</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>vServiceAddress</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>vServiceAddress</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>DeliveryMethod</name>
+            <extensionName>c:quickChoiceFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>masterLabel</name>
+                <value>
+                    <stringValue>Delivery Method</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>displayMode</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>inputMode</name>
+                <value>
+                    <stringValue>Picklist Field</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>vDeliveryMethod</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>allowNoneToBeChosen</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectName</name>
+                <value>
+                    <stringValue>Opportunity</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>fieldName</name>
+                <value>
+                    <stringValue>Default_Delivery_Method__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordTypeId</name>
+                <value>
+                    <elementReference>vRecordTypeId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectAndFieldName</name>
+                <value>
+                    <stringValue>Opportunity.Default_Delivery_Method__c</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>vDeliveryMethod</assignToReference>
+                <name>value</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>DeliverySystemOwner</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Delivery_System_Owner__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Delivery System Owner</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Opportunity</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>vDeliverySystemOwner</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>vDeliverySystemOwner</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>Linex</name>
+            <extensionName>c:horizontalRuleFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>color</name>
+                <value>
+                    <elementReference>vLineColor</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>thicknessPixels</name>
+                <value>
+                    <stringValue>2</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>verticalMarginPixels</name>
+                <value>
+                    <stringValue>12</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
             <name>TicketList</name>
@@ -7448,17 +7705,17 @@ Individual components can have their visibility filtered by whether or not athe 
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
-                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
-                    <operator>Contains</operator>
-                    <rightValue>
-                        <elementReference>vStageName_18</elementReference>
-                    </rightValue>
-                </conditions>
-                <conditions>
                     <leftValueReference>vTicketCompleted_18</leftValueReference>
                     <operator>NotEqualTo</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>$Flow.ActiveStages</leftValueReference>
+                    <operator>Contains</operator>
+                    <rightValue>
+                        <elementReference>vStageName_18</elementReference>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -11608,6 +11865,20 @@ Individual components can have their visibility filtered by whether or not athe 
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>vDeliveryMethod</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vDeliverySystemOwner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>vDoNothing</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
@@ -11676,6 +11947,13 @@ Individual components can have their visibility filtered by whether or not athe 
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>vRecordTypeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>vRefreshSelected</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
@@ -11688,6 +11966,13 @@ Individual components can have their visibility filtered by whether or not athe 
     <variables>
         <name>vRichText</name>
         <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vServiceAddress</name>
+        <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
