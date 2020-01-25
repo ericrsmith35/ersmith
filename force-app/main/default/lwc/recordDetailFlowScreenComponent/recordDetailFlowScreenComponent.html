@@ -1,0 +1,104 @@
+<!-- 
+Lightning Web Component for Flow Screens:       recordDetailFlowScreenComponent
+
+The RecordDetail component provides new ways to display record fields in Flow screens. 
+Flow excels in providing fine control over field combinations, but sometimes you just want to show 
+a bunch of fields from a record in one place without a lot of configuration. This component handles 
+all the formatting, provides 2 column layout, and takes advantage of additional goodies that the platform provides.
+
+Additional components packaged with this LWC:
+
+                    Lightning Web Components:   toastMessage
+
+                    Apex Classes:               <none>
+                    
+                    Labels:                     NotSupportedMessage
+
+                    Flows:                      Edit Contact Sample
+
+1/24/20 -   Eric Smith -    Version 1.3
+                            Added on option to display and handle a Cancel button when in Edit mode
+                            Added an option to support flow navigation on record save and cancel                           
+                            Included descriptive labels and help text for Flow parameters
+
+-->
+    <template>
+        <div class="container">
+       
+            <template if:true={loadFinished}>
+                <div class="slds-box slds-theme_default">
+                    <template if:true={isError}>
+                        <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme--error" role="alert">
+                            <template for:each={errors} for:item="error">
+                                <h2 key={error}> {error} </h2>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:false={isError}>
+                        <template if:true={isViewMode}>
+                            <lightning-record-view-form
+                                    record-id={recordId}
+                                    record-type-id={recordTypeId}
+                                    object-api-name={objectApiName}>
+                                <lightning-layout multiple-rows="true">
+                                    <template for:each={fieldData} for:item="field">
+                                        <lightning-layout-item key={field.fieldName} size={elementSize}>
+                                            <lightning-output-field if:false={field.isError} field-name={field.fieldName}>
+                                            </lightning-output-field>
+                                            <div if:true={field.isError} class="slds-text-color_destructive">
+                                                {field.errorMessage}
+                                            </div>
+                                        </lightning-layout-item>
+                                    </template>
+                                </lightning-layout>
+                            </lightning-record-view-form>
+                        </template>
+                        <template if:false={isViewMode}>
+                            <lightning-record-edit-form
+                                    record-id={recordId}
+                                    record-type-id={recordTypeId}
+                                    object-api-name={objectApiName}
+                                    onsuccess={handleSuccess}
+                                    onerror={handleError}
+                            >
+                                <lightning-layout multiple-rows="true">
+                                    <template for:each={fieldData} for:item="field">
+                                        <lightning-layout-item key={field.fieldName} size={elementSize}>
+                                            <lightning-input-field if:false={field.isError} field-name={field.fieldName}>
+                                            </lightning-input-field>
+                                            <div if:true={field.isError}
+                                                 class="slds-text-color_destructive slds-align_absolute-center">
+                                                {field.errorMessage}
+                                            </div>
+                                        </lightning-layout-item>
+                                    </template>
+                                    <lightning-layout-item size=12>
+                                        <lightning-button
+                                                class="slds-m-top_small slds-p-left_small slds-float--right"
+                                                variant="brand"
+                                                type="submit"
+                                                name="save"
+                                                label="Save">
+                                        </lightning-button>
+                                        <template if:true={flowDisplayCancelButton}>
+                                            <lightning-button
+                                                    class="slds-m-top_small slds-float--right"
+                                                    variant="neutral"
+                                                    type="button"
+                                                    name="cancel"
+                                                    label="Cancel"
+                                                    onclick={handleCancel}>
+                                            </lightning-button>                                            
+                                        </template>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </lightning-record-edit-form>
+                        </template>
+                    </template>
+                </div>
+            </template>
+            <div class="toast-message">
+                <c-toast-message></c-toast-message>
+            </div>
+        </div>
+    </template>
