@@ -226,63 +226,63 @@
             <assignToReference>vStageLabel_02</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Select CFA</stringValue>
+                <stringValue>L_Prov - Select CFA</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_03</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Place New Loop Order</stringValue>
+                <stringValue>L_Prov - Place New Loop Order</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_04</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Monitor Loop Order</stringValue>
+                <stringValue>L_Prov - Monitor Loop Order</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_05</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Schedule Dispatch for Install</stringValue>
+                <stringValue>L_Prov - Schedule Dispatch for Install</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_06</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Move in Switch</stringValue>
+                <stringValue>L_Prov - Move in Switch</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_07</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Update TA5K</stringValue>
+                <stringValue>L_Prov - Update TA5K</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_08</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Place Disconnect for Old Loop Order</stringValue>
+                <stringValue>L_Prov - Place Disconnect for Old Loop Order</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_09</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Prov - Remove Old CFA</stringValue>
+                <stringValue>L_Prov - Remove Old CFA</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vStageLabel_10</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Residential - Billing Enable (Remove Old Rate and Bill New Rate)</stringValue>
+                <stringValue>L_Residential - Billing Enable (Remove Old Rate and Bill New Rate)</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -450,55 +450,55 @@
     <stages>
         <name>Stage_02</name>
         <isActive>false</isActive>
-        <label>Prov - Select CFA</label>
+        <label>S_Prov - Select CFA</label>
         <stageOrder>20</stageOrder>
     </stages>
     <stages>
         <name>Stage_03</name>
         <isActive>false</isActive>
-        <label>Prov - Place New Loop Order</label>
+        <label>S_Prov - Place New Loop Order</label>
         <stageOrder>30</stageOrder>
     </stages>
     <stages>
         <name>Stage_04</name>
         <isActive>false</isActive>
-        <label>Prov - Monitor Loop Order</label>
+        <label>S_Prov - Monitor Loop Order</label>
         <stageOrder>40</stageOrder>
     </stages>
     <stages>
         <name>Stage_05</name>
         <isActive>false</isActive>
-        <label>Prov - Schedule Dispatch for Install</label>
+        <label>S_Prov - Schedule Dispatch for Install</label>
         <stageOrder>50</stageOrder>
     </stages>
     <stages>
         <name>Stage_06</name>
         <isActive>false</isActive>
-        <label>Prov - Move in Switch</label>
+        <label>S_Prov - Move in Switch</label>
         <stageOrder>60</stageOrder>
     </stages>
     <stages>
         <name>Stage_07</name>
         <isActive>false</isActive>
-        <label>Prov - Update TA5K</label>
+        <label>S_Prov - Update TA5K</label>
         <stageOrder>70</stageOrder>
     </stages>
     <stages>
         <name>Stage_08</name>
         <isActive>false</isActive>
-        <label>Prov - Place Disconnect for Old Loop Order</label>
+        <label>S_Prov - Place Disconnect for Old Loop Order</label>
         <stageOrder>80</stageOrder>
     </stages>
     <stages>
         <name>Stage_09</name>
         <isActive>false</isActive>
-        <label>Prov - Remove Old CFA</label>
+        <label>S_Prov - Remove Old CFA</label>
         <stageOrder>90</stageOrder>
     </stages>
     <stages>
         <name>Stage_10</name>
         <isActive>false</isActive>
-        <label>Residential - Billing Enable (Remove Old Rate and Bill New Rate)</label>
+        <label>S_Residential - Billing Enable (Remove Old Rate and Bill New Rate)</label>
         <stageOrder>100</stageOrder>
     </stages>
     <stages>

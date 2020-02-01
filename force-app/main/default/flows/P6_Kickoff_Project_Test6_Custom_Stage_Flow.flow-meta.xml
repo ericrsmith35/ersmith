@@ -432,6 +432,13 @@
                 <stringValue>Residential - Loop Replacement Request</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Flow.CurrentRecord</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Run_Master_Project_Flow</targetReference>
         </connector>
@@ -639,7 +646,7 @@
             <targetReference>Set_Stage_Labels</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Run_Master_Project_Flow</name>
         <label>Run Master Project Flow</label>
@@ -649,7 +656,7 @@
         <inputAssignments>
             <name>recordId</name>
             <value>
-                <elementReference>vCallingRecordId</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1021,7 +1028,7 @@
     </subflows>
     <variables>
         <description>Id of the record on the page the Project was called from</description>
-        <name>vCallingRecordId</name>
+        <name>recordId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>

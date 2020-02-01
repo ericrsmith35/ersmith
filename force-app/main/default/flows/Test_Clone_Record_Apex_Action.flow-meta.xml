@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Clone_Account</name>
+        <label>Clone Account</label>
+        <locationX>368</locationX>
+        <locationY>108</locationY>
+        <actionName>CloneRecordFlowActionClass</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Results</targetReference>
+        </connector>
+        <inputParameters>
+            <name>recordToClone</name>
+            <value>
+                <elementReference>Get_Account_to_Clone</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>Test - Clone Record Apex Action {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Test - Clone Record Apex Action</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Account_to_Clone</name>
+        <label>Get Account to Clone</label>
+        <locationX>204</locationX>
+        <locationY>108</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Clone_Account</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vAccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Results</name>
+        <label>Results</label>
+        <locationX>527</locationX>
+        <locationY>108</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>IDs</name>
+            <fieldText>&lt;p&gt;Input Record: {!vAccountId}&lt;/p&gt;&lt;p&gt;Clone Record: {!Clone_Account.clonedRecordId}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Account_to_Clone</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>vAccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

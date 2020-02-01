@@ -12,11 +12,11 @@
             "c/quickChoiceFSC": [
                 "quickChoiceFSC/quickChoiceFSC.js"
             ],
-            "c/toastMessage": [
-                "toastMessage/toastMessage.js"
-            ],
             "c/recordDetailFlowScreenComponent": [
                 "recordDetailFlowScreenComponent/recordDetailFlowScreenComponent.js"
+            ],
+            "c/toastMessage": [
+                "toastMessage/toastMessage.js"
             ]
         }
     },

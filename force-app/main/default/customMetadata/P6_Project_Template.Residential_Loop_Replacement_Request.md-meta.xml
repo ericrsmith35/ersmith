@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Residential - Loop Replacement Request</label>
+    <protected>false</protected>
+    <values>
+        <field>Completion_Message__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Line_Color__c</field>
+        <value xsi:type="xsd:string">#f08080</value>
+    </values>
+    <values>
+        <field>Project_Description__c</field>
+        <value xsi:type="xsd:string">Plat 6 Project Template for a Residential Loop Replacement Request</value>
+    </values>
+    <values>
+        <field>Project_Name__c</field>
+        <value xsi:type="xsd:string">Residential - Loop Replacement Request</value>
+    </values>
+    <values>
+        <field>Rich_Text__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_01_FlowAPI__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_01_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Add New Rate</value>
+    </values>
+    <values>
+        <field>Ticket_01_Parent__c</field>
+        <value xsi:type="xsd:double">0.0</value>
+    </values>
+    <values>
+        <field>Ticket_01_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_01_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_02_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Select CFA</value>
+    </values>
+    <values>
+        <field>Ticket_02_Parent__c</field>
+        <value xsi:type="xsd:double">0.0</value>
+    </values>
+    <values>
+        <field>Ticket_02_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_03_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Place New Loop Order</value>
+    </values>
+    <values>
+        <field>Ticket_03_Parent__c</field>
+        <value xsi:type="xsd:double">2.0</value>
+    </values>
+    <values>
+        <field>Ticket_03_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_04_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Monitor Loop Order</value>
+    </values>
+    <values>
+        <field>Ticket_04_Parent__c</field>
+        <value xsi:type="xsd:double">3.0</value>
+    </values>
+    <values>
+        <field>Ticket_04_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_05_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Schedule Dispatch for Install</value>
+    </values>
+    <values>
+        <field>Ticket_05_Parent__c</field>
+        <value xsi:type="xsd:double">3.0</value>
+    </values>
+    <values>
+        <field>Ticket_05_Process__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Ticket_06_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Move in Switch</value>
+    </values>
+    <values>
+        <field>Ticket_06_Parent__c</field>
+        <value xsi:type="xsd:double">4.0</value>
+    </values>
+    <values>
+        <field>Ticket_06_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_07_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Update TA5K</value>
+    </values>
+    <values>
+        <field>Ticket_07_Parent__c</field>
+        <value xsi:type="xsd:double">4.0</value>
+    </values>
+    <values>
+        <field>Ticket_07_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_08_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Place Disconnect for Old Loop Order</value>
+    </values>
+    <values>
+        <field>Ticket_08_Parent__c</field>
+        <value xsi:type="xsd:double">5.0</value>
+    </values>
+    <values>
+        <field>Ticket_08_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_09_Name__c</field>
+        <value xsi:type="xsd:string">Prov - Remove Old CFA</value>
+    </values>
+    <values>
+        <field>Ticket_09_Parent__c</field>
+        <value xsi:type="xsd:double">5.0</value>
+    </values>
+    <values>
+        <field>Ticket_09_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_10_Name__c</field>
+        <value xsi:type="xsd:string">Residential - Billing Enable (Remove Old Rate and Bill New Rate)</value>
+    </values>
+    <values>
+        <field>Ticket_10_Parent__c</field>
+        <value xsi:type="xsd:double">9.0</value>
+    </values>
+    <values>
+        <field>Ticket_10_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_11_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_11_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_11_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_12_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_12_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_12_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_13_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_13_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_13_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_14_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_14_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_14_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_15_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_15_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_15_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_16_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_16_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_16_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_17_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_17_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_17_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_18_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_18_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_18_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_19_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_19_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_19_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_20_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_20_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_20_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_21_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_21_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_21_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_22_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_22_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_22_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_23_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_23_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_23_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_24_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_24_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_24_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_25_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_25_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_25_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_26_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_26_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_26_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_27_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_27_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_27_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_28_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_28_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_28_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_29_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_29_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_29_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Ticket_30_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_30_Parent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Ticket_30_Process__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+</CustomMetadata>

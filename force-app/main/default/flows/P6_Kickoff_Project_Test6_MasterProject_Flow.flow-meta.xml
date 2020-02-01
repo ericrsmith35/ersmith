@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Completion_Message</name>
         <label>Completion Message</label>
-        <locationX>2475</locationX>
+        <locationX>2571</locationX>
         <locationY>753</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
@@ -20,11 +20,196 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Get_Flow_URL</name>
+        <label>Get Flow URL</label>
+        <locationX>2921</locationX>
+        <locationY>722</locationY>
+        <actionName>GenerateFlowLink</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Run_Flow</targetReference>
+        </connector>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <elementReference>vFlowAPIName</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>vFlowUrl</assignToReference>
+            <name>flowLink</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Ticket_Count</name>
+        <label>Get Ticket Count</label>
+        <locationX>779</locationX>
+        <locationY>1099</locationY>
+        <actionName>CountRecordsAndFields</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Prepare_for_Parsing</targetReference>
+        </connector>
+        <inputParameters>
+            <name>fieldName</name>
+            <value>
+                <stringValue>Name</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>fieldValue</name>
+            <value>
+                <stringValue>foobar</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inputCollection</name>
+            <value>
+                <elementReference>Get_Template_Tickets</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>vTicketCount</assignToReference>
+            <name>totalNumber</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Ticket_Info_Flow</name>
+        <label>Get Ticket Info - Flow</label>
+        <locationX>673</locationX>
+        <locationY>947</locationY>
+        <actionName>ExtractStringsFromCollection</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Ticket_Info_Group</targetReference>
+        </connector>
+        <inputParameters>
+            <name>fieldName</name>
+            <value>
+                <stringValue>Flow_API_Name__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inputCollection</name>
+            <value>
+                <elementReference>Get_Template_Tickets</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>colTicketFlowAPIs</assignToReference>
+            <name>stringList</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Ticket_Info_Group</name>
+        <label>Get Ticket Info - Group</label>
+        <locationX>779</locationX>
+        <locationY>947</locationY>
+        <actionName>ExtractStringsFromCollection</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Ticket_Count</targetReference>
+        </connector>
+        <inputParameters>
+            <name>fieldName</name>
+            <value>
+                <stringValue>Group__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inputCollection</name>
+            <value>
+                <elementReference>Get_Template_Tickets</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>colTicketGroups</assignToReference>
+            <name>stringList</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Ticket_Info_Parent</name>
+        <label>Get Ticket Info - Parent</label>
+        <locationX>454</locationX>
+        <locationY>947</locationY>
+        <actionName>ExtractStringsFromCollection</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Ticket_Info_Type</targetReference>
+        </connector>
+        <inputParameters>
+            <name>fieldName</name>
+            <value>
+                <stringValue>Parent_Ticket_Number__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inputCollection</name>
+            <value>
+                <elementReference>Get_Template_Tickets</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>colParentTickets</assignToReference>
+            <name>stringList</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Ticket_Info_Type</name>
+        <label>Get Ticket Info - Type</label>
+        <locationX>566</locationX>
+        <locationY>947</locationY>
+        <actionName>ExtractStringsFromCollection</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Ticket_Info_Flow</targetReference>
+        </connector>
+        <inputParameters>
+            <name>fieldName</name>
+            <value>
+                <stringValue>Type__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inputCollection</name>
+            <value>
+                <elementReference>Get_Template_Tickets</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>colTicketTypes</assignToReference>
+            <name>stringList</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Run_Flow</name>
+        <label>Run Flow</label>
+        <locationX>2921</locationX>
+        <locationY>880</locationY>
+        <actionName>c:navigateEverywhereLFA</actionName>
+        <actionType>component</actionType>
+        <connector>
+            <targetReference>Check_for_Ticket_Selection_2</targetReference>
+        </connector>
+        <inputParameters>
+            <name>destinationUrl</name>
+            <value>
+                <elementReference>vFlowUrl</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>destinationType</name>
+            <value>
+                <stringValue>url</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <description>Add all tickets based on their parent ticket being completed</description>
         <name>Add_Tickets</name>
         <label>Add Tickets</label>
-        <locationX>1018</locationX>
+        <locationX>1114</locationX>
         <locationY>818</locationY>
         <assignmentItems>
             <assignToReference>vAddTicket_01</assignToReference>
@@ -241,22 +426,38 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Clear_Ticket_Assigned</name>
+        <label>Clear Ticket Assigned</label>
+        <locationX>2655</locationX>
+        <locationY>97</locationY>
+        <assignmentItems>
+            <assignToReference>vTicketAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_for_Ticket_Assignment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Get_Project_Header_Values</name>
         <label>Get Project Header Values</label>
-        <locationX>567</locationX>
+        <locationX>467</locationX>
         <locationY>264</locationY>
         <assignmentItems>
             <assignToReference>vRichText</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Metadata.Rich_Text__c</elementReference>
+                <elementReference>Get_Template_Header_Details.Rich_Text__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>vProjectDescription</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Metadata.Project_Description__c</elementReference>
+                <elementReference>Get_Template_Header_Details.Project_Description__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -270,7 +471,7 @@
             <assignToReference>vLineColor</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Metadata.Line_Color__c</elementReference>
+                <elementReference>Get_Template_Header_Details.Line_Color__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -294,6 +495,13 @@
                 <elementReference>recordId</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketLoopCounter</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Get_Subject</targetReference>
         </connector>
@@ -301,13 +509,20 @@
     <assignments>
         <name>Get_User_Id</name>
         <label>Get User Id</label>
-        <locationX>2932</locationX>
-        <locationY>360</locationY>
+        <locationX>3031</locationX>
+        <locationY>97</locationY>
         <assignmentItems>
             <assignToReference>vUserId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>FindPeersSubs</elementReference>
+                <elementReference>Assign_a_Task_for_this_Ticket_To</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vAssigneeName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fAssigneeName</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -315,9 +530,46 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Prepare_for_Parsing</name>
+        <label>Prepare for Parsing</label>
+        <locationX>446</locationX>
+        <locationY>1161</locationY>
+        <assignmentItems>
+            <assignToReference>vParentTickets</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fStringParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketTypes</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fStringType</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlows</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fStringFlow</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroups</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fStringGroup</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Values_01</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Reset_Refresh_Flag</name>
         <label>Reset Refresh Flag</label>
-        <locationX>1918</locationX>
+        <locationX>2014</locationX>
         <locationY>236</locationY>
         <assignmentItems>
             <assignToReference>vRefreshSelected</assignToReference>
@@ -340,7 +592,7 @@
     <assignments>
         <name>Save_Additional_Info</name>
         <label>Save Additional Info</label>
-        <locationX>2374</locationX>
+        <locationX>2470</locationX>
         <locationY>289</locationY>
         <assignmentItems>
             <assignToReference>vAdditionalInfo</assignToReference>
@@ -384,7 +636,7 @@
     <assignments>
         <name>Set_Additional_Info_Ticket_Number</name>
         <label>Set Additional Info &amp; Ticket Number</label>
-        <locationX>2344</locationX>
+        <locationX>2440</locationX>
         <locationY>505</locationY>
         <assignmentItems>
             <assignToReference>vAdditionalInfo</assignToReference>
@@ -428,7 +680,7 @@
     <assignments>
         <name>Set_Parent_Ticket</name>
         <label>Set Parent Ticket</label>
-        <locationX>1475</locationX>
+        <locationX>1571</locationX>
         <locationY>1035</locationY>
         <assignmentItems>
             <assignToReference>vParentTicket</assignToReference>
@@ -451,7 +703,7 @@
     <assignments>
         <name>Set_Selected_for_Completion_Ticket</name>
         <label>Set Selected for Completion Ticket</label>
-        <locationX>2462</locationX>
+        <locationX>2558</locationX>
         <locationY>505</locationY>
         <assignmentItems>
             <assignToReference>vTicketSelected_01</assignToReference>
@@ -670,7 +922,7 @@
     <assignments>
         <name>Set_Ticket_Assigned</name>
         <label>Set Ticket Assigned #</label>
-        <locationX>2932</locationX>
+        <locationX>3028</locationX>
         <locationY>574</locationY>
         <assignmentItems>
             <assignToReference>vTicketAssigned_01</assignToReference>
@@ -897,7 +1149,7 @@
         <description>Set a Ticket number to True if you want to branch to a process/flow rather than just marking as Completed</description>
         <name>Set_Ticket_Process_Flags</name>
         <label>Set Ticket Process Flags</label>
-        <locationX>879</locationX>
+        <locationX>779</locationX>
         <locationY>749</locationY>
         <assignmentItems>
             <assignToReference>vTicketProcess_01</assignToReference>
@@ -1120,15 +1372,159 @@
             <targetReference>Add_Tickets</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Set_Ticket_Values</name>
+        <label>Set Ticket Values</label>
+        <locationX>92</locationX>
+        <locationY>973</locationY>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_01</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Values_01</name>
+        <label>Set Values_01</label>
+        <locationX>278</locationX>
+        <locationY>1126</locationY>
+        <assignmentItems>
+            <assignToReference>vParent_01</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fGetNextParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vParentTickets</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRemoveParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vParent_02</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fGetNextParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vParentTickets</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRemoveParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vParent_03</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fGetNextParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vParentTickets</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRemoveParent</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Values_02</name>
+        <label>Set Values_02</label>
+        <locationX>353</locationX>
+        <locationY>1201</locationY>
+        <assignmentItems>
+            <assignToReference>vParent_02</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fGetNextParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vParentTickets</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRemoveParent</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Values_03</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Values_03</name>
+        <label>Set Values_03</label>
+        <locationX>428</locationX>
+        <locationY>1276</locationY>
+        <assignmentItems>
+            <assignToReference>vParent_03</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fGetNextParent</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vParentTickets</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRemoveParent</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
     <choices>
         <name>SelectPrompt</name>
-        <choiceText>------ Select ------</choiceText>
+        <choiceText>{!fUserName}</choiceText>
         <dataType>String</dataType>
+        <value>
+            <elementReference>fUser</elementReference>
+        </value>
     </choices>
+    <decisions>
+        <name>Button_Selected</name>
+        <label>Button Selected?</label>
+        <locationX>2845</locationX>
+        <locationY>98</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Cancel</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vCancel</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Clear_Ticket_Assigned</targetReference>
+            </connector>
+            <label>Cancel</label>
+        </rules>
+        <rules>
+            <name>Assign</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vAssign</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_User_Id</targetReference>
+            </connector>
+            <label>Assign</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Check_for_Ticket_Assignment</name>
         <label>Check for Ticket Assignment</label>
-        <locationX>2552</locationX>
+        <locationX>2647</locationX>
         <locationY>364</locationY>
         <defaultConnector>
             <targetReference>Check_for_Ticket_Process_2</targetReference>
@@ -1153,7 +1549,7 @@
     <decisions>
         <name>Check_for_Ticket_Process_2</name>
         <label>Check for Ticket Process</label>
-        <locationX>2553</locationX>
+        <locationX>2649</locationX>
         <locationY>583</locationY>
         <defaultConnector>
             <targetReference>Check_for_Ticket_Selection_2</targetReference>
@@ -1170,7 +1566,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Extra_Processing_Flow</targetReference>
+                <targetReference>Get_Flow_URL</targetReference>
             </connector>
             <label>Process Ticket Selected</label>
         </rules>
@@ -1178,7 +1574,7 @@
     <decisions>
         <name>Check_for_Ticket_Selection_2</name>
         <label>Check for Ticket Selection</label>
-        <locationX>2553</locationX>
+        <locationX>2649</locationX>
         <locationY>882</locationY>
         <defaultConnector>
             <targetReference>Project_Complete</targetReference>
@@ -1203,7 +1599,7 @@
     <decisions>
         <name>First_Pass</name>
         <label>First Pass?</label>
-        <locationX>1138</locationX>
+        <locationX>1234</locationX>
         <locationY>685</locationY>
         <defaultConnector>
             <targetReference>Create_Ticket_Record</targetReference>
@@ -1228,7 +1624,7 @@
     <decisions>
         <name>Get_Assigned_Completed_Flag</name>
         <label>Get Assigned Completed Flag</label>
-        <locationX>1384</locationX>
+        <locationX>1480</locationX>
         <locationY>218</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1265,7 +1661,7 @@
     <decisions>
         <name>Get_Subject</name>
         <label>Get Subject</label>
-        <locationX>559</locationX>
+        <locationX>459</locationX>
         <locationY>408</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1302,7 +1698,7 @@
     <decisions>
         <name>Project_Complete</name>
         <label>Project Complete?</label>
-        <locationX>1470</locationX>
+        <locationX>1566</locationX>
         <locationY>867</locationY>
         <defaultConnector>
             <targetReference>Reset_All_Active_and_Set_the_Current_Stage</targetReference>
@@ -1334,7 +1730,7 @@
     <decisions>
         <name>Project_Complete_0</name>
         <label>Project Complete?</label>
-        <locationX>1630</locationX>
+        <locationX>1726</locationX>
         <locationY>543</locationY>
         <defaultConnector>
             <targetReference>Refresh_Button_Clicked_0</targetReference>
@@ -1366,7 +1762,7 @@
     <decisions>
         <name>Refresh_Button_Clicked</name>
         <label>Refresh Button Clicked?</label>
-        <locationX>2299</locationX>
+        <locationX>2395</locationX>
         <locationY>50</locationY>
         <defaultConnector>
             <targetReference>Save_Additional_Info</targetReference>
@@ -1391,7 +1787,7 @@
     <decisions>
         <name>Refresh_Button_Clicked_0</name>
         <label>Refresh Button Clicked?</label>
-        <locationX>1386</locationX>
+        <locationX>1482</locationX>
         <locationY>460</locationY>
         <defaultConnector>
             <targetReference>Get_Assigned_Completed_Flag</targetReference>
@@ -1416,7 +1812,7 @@
     <decisions>
         <name>Refresh_Button_Clicked_0_0</name>
         <label>Refresh Button Clicked?</label>
-        <locationX>931</locationX>
+        <locationX>1027</locationX>
         <locationY>478</locationY>
         <defaultConnector>
             <targetReference>Reset_All_Active_and_Set_the_Current_Stage</targetReference>
@@ -1441,7 +1837,7 @@
     <decisions>
         <name>Reset_Assigned_Completed_Flag</name>
         <label>Reset Assigned Completed Flag</label>
-        <locationX>1911</locationX>
+        <locationX>2007</locationX>
         <locationY>502</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1478,7 +1874,7 @@
     <decisions>
         <name>Reset_Assigned_Completed_Flag_0</name>
         <label>Reset Assigned Completed Flag</label>
-        <locationX>1874</locationX>
+        <locationX>1970</locationX>
         <locationY>755</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1515,7 +1911,7 @@
     <decisions>
         <name>User_Selected</name>
         <label>User Selected?</label>
-        <locationX>2924</locationX>
+        <locationX>3022</locationX>
         <locationY>237</locationY>
         <defaultConnector>
             <targetReference>Get_Assignee</targetReference>
@@ -1538,11 +1934,19 @@
         </rules>
     </decisions>
     <description>Gets called by Custom Stage Flow and is passed in the Project(Template) name and Stages and Stage Label values
-1/21/20 - ers - Collect additional info on Kickoff</description>
+1/21/20 - ers - Collect additional info on Kickoff
+1/31/20 - ers - Navigate to Flow &amp; Switch from Metadata to Custom Objects</description>
     <dynamicChoiceSets>
         <name>FindPeersSubs</name>
         <dataType>String</dataType>
         <displayField>Name</displayField>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>fUser</elementReference>
+            </value>
+        </filters>
         <filters>
             <field>IsActive</field>
             <operator>EqualTo</operator>
@@ -2060,6 +2464,11 @@
         <expression>IF({!vTicketAssigned_30},&quot;This Ticket has a Task Assigned to &quot; &amp; {!vAssigneeName},&quot;&quot;)</expression>
     </formulas>
     <formulas>
+        <name>fAssigneeName</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!vAssigneeName},{!fUserName})</expression>
+    </formulas>
+    <formulas>
         <name>fAssignTicket_01</name>
         <dataType>Boolean</dataType>
         <expression>IF({!vClickAssign_01},true,{!vTicketAssigned_01})</expression>
@@ -2517,7 +2926,7 @@
     <formulas>
         <name>fCompletionMessage</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!Metadata.Completion_Message__c}),&quot;All tickets in this &quot; &amp; {!vProjectName} &amp; &quot; have been completed!&quot;,{!Metadata.Completion_Message__c})</expression>
+        <expression>IF(ISBLANK({!Get_Template_Header_Details.Completion_Message__c}),&quot;All tickets in this &quot; &amp; {!vProjectName} &amp; &quot; have been completed!&quot;,{!Get_Template_Header_Details.Completion_Message__c})</expression>
     </formulas>
     <formulas>
         <name>fCRLF</name>
@@ -2527,7 +2936,13 @@
     <formulas>
         <name>fDueDate</name>
         <dataType>Date</dataType>
-        <expression>TODAY()</expression>
+        <expression>BLANKVALUE({!Due_Date},TODAY())</expression>
+    </formulas>
+    <formulas>
+        <name>fGetNextParent</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(LEFT({!vParentTickets},FIND(&quot;,&quot;,{!vParentTickets})-1))</expression>
+        <scale>0</scale>
     </formulas>
     <formulas>
         <name>fObject</name>
@@ -2551,6 +2966,31 @@
         <name>fRefreshColor</name>
         <dataType>String</dataType>
         <expression>IF({!vAssignedTicketCompleted},&quot;#1B5297&quot;,{!vLineColor})</expression>
+    </formulas>
+    <formulas>
+        <name>fRemoveParent</name>
+        <dataType>String</dataType>
+        <expression>RIGHT({!vParentTickets},LEN({!vParentTickets})-FIND(&quot;,&quot;,{!vParentTickets}))</expression>
+    </formulas>
+    <formulas>
+        <name>fStringFlow</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(SUBSTITUTE({!colTicketFlowAPIs},&quot;[&quot;,&quot;&quot;),&quot;]&quot;,&quot;&quot;)&amp;&quot;,&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>fStringGroup</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(SUBSTITUTE({!colTicketGroups},&quot;[&quot;,&quot;&quot;),&quot;]&quot;,&quot;&quot;)&amp;&quot;,&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>fStringParent</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(SUBSTITUTE({!colParentTickets},&quot;[&quot;,&quot;&quot;),&quot;]&quot;,&quot;&quot;)&amp;&quot;,&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>fStringType</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(SUBSTITUTE({!colTicketTypes},&quot;[&quot;,&quot;&quot;),&quot;]&quot;,&quot;&quot;)&amp;&quot;,&quot;</expression>
     </formulas>
     <formulas>
         <name>fTaskSubject</name>
@@ -2886,7 +3326,7 @@ IF({!vTicketSelected_30},30,
     <loops>
         <name>For_Each_Completed_Assigned_ProvTicket</name>
         <label>For Each Completed Assigned ProvTicket</label>
-        <locationX>2139</locationX>
+        <locationX>2235</locationX>
         <locationY>612</locationY>
         <assignNextValueToReference>objAssignedProvTicket</assignNextValueToReference>
         <collectionReference>colAssignedProvTickets</collectionReference>
@@ -2897,6 +3337,18 @@ IF({!vTicketSelected_30},30,
         <noMoreValuesConnector>
             <targetReference>Reset_Assigned_Completed_Flag</targetReference>
         </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Tickets</name>
+        <label>Loop Tickets</label>
+        <locationX>215</locationX>
+        <locationY>780</locationY>
+        <assignNextValueToReference>objProjectTemplateTicket</assignNextValueToReference>
+        <collectionReference>Get_Template_Tickets</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_Ticket_Values</targetReference>
+        </nextValueConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -2914,7 +3366,7 @@ IF({!vTicketSelected_30},30,
     <recordCreates>
         <name>Create_Assigned_Ticket</name>
         <label>Create Assigned Ticket</label>
-        <locationX>3076</locationX>
+        <locationX>3172</locationX>
         <locationY>360</locationY>
         <assignRecordIdToReference>vAssignedId</assignRecordIdToReference>
         <connector>
@@ -2973,7 +3425,7 @@ IF({!vTicketSelected_30},30,
     <recordCreates>
         <name>Create_Completed_Record</name>
         <label>Create Completed Record</label>
-        <locationX>1769</locationX>
+        <locationX>1865</locationX>
         <locationY>753</locationY>
         <connector>
             <targetReference>Reset_Assigned_Completed_Flag_0</targetReference>
@@ -3037,10 +3489,10 @@ IF({!vTicketSelected_30},30,
     <recordCreates>
         <name>Create_Kickoff_Record</name>
         <label>Create Kickoff Record</label>
-        <locationX>722</locationX>
+        <locationX>622</locationX>
         <locationY>749</locationY>
         <connector>
-            <targetReference>Set_Ticket_Process_Flags</targetReference>
+            <targetReference>Get_Ticket_Info_Parent</targetReference>
         </connector>
         <inputAssignments>
             <field>Additional_Info__c</field>
@@ -3101,7 +3553,7 @@ IF({!vTicketSelected_30},30,
     <recordCreates>
         <name>Create_Task</name>
         <label>Create Task</label>
-        <locationX>3076</locationX>
+        <locationX>3172</locationX>
         <locationY>574</locationY>
         <assignRecordIdToReference>vTaskId</assignRecordIdToReference>
         <connector>
@@ -3154,8 +3606,8 @@ IF({!vTicketSelected_30},30,
     <recordCreates>
         <name>Create_Ticket_Record</name>
         <label>Create Ticket Record</label>
-        <locationX>938</locationX>
-        <locationY>617</locationY>
+        <locationX>1034</locationX>
+        <locationY>616</locationY>
         <assignRecordIdToReference>vProvTicketId</assignRecordIdToReference>
         <connector>
             <targetReference>Refresh_Button_Clicked_0_0</targetReference>
@@ -3225,7 +3677,7 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Case</name>
         <label>Get Case</label>
-        <locationX>465</locationX>
+        <locationX>365</locationX>
         <locationY>596</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -3239,6 +3691,14 @@ IF({!vTicketSelected_30},30,
             </value>
         </filters>
         <object>Case</object>
+        <outputAssignments>
+            <assignToReference>vDeliveryMethod</assignToReference>
+            <field>Delivery_Method__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>vDeliverySystemOwner</assignToReference>
+            <field>Delivery_System_Owner__c</field>
+        </outputAssignments>
         <outputAssignments>
             <assignToReference>vRecordTypeId</assignToReference>
             <field>RecordTypeId</field>
@@ -3255,7 +3715,7 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Case_0</name>
         <label>Get Case</label>
-        <locationX>1630</locationX>
+        <locationX>1726</locationX>
         <locationY>378</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -3277,7 +3737,7 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Completed_Assigned_Tickets</name>
         <label>Get Completed Assigned Tickets</label>
-        <locationX>2245</locationX>
+        <locationX>2341</locationX>
         <locationY>289</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -3312,12 +3772,9 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Metadata</name>
         <label>Get Metadata</label>
-        <locationX>431</locationX>
-        <locationY>264</locationY>
+        <locationX>518</locationX>
+        <locationY>137</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Project_Header_Values</targetReference>
-        </connector>
         <filters>
             <field>Project_Name__c</field>
             <operator>EqualTo</operator>
@@ -3427,7 +3884,7 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Opportunity</name>
         <label>Get Opportunity</label>
-        <locationX>671</locationX>
+        <locationX>571</locationX>
         <locationY>596</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -3465,7 +3922,7 @@ IF({!vTicketSelected_30},30,
     <recordLookups>
         <name>Get_Opportunity_0</name>
         <label>Get Opportunity</label>
-        <locationX>1619</locationX>
+        <locationX>1728</locationX>
         <locationY>109</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -3484,10 +3941,52 @@ IF({!vTicketSelected_30},30,
             <field>Assigned_ProvTicket_Completed__c</field>
         </outputAssignments>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Template_Header_Details</name>
+        <label>Get Template Header Details</label>
+        <locationX>196</locationX>
+        <locationY>264</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Template_Tickets</targetReference>
+        </connector>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vProjectName</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Project_Template__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Template_Tickets</name>
+        <label>Get Template Tickets</label>
+        <locationX>337</locationX>
+        <locationY>264</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Project_Header_Values</targetReference>
+        </connector>
+        <filters>
+            <field>Project_Template__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Template_Header_Details.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Project_Template_Ticket__c</object>
+        <sortField>Ticket_Number__c</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Assigned_ProvTicket</name>
         <label>Update Assigned ProvTicket</label>
-        <locationX>1147</locationX>
+        <locationX>1243</locationX>
         <locationY>392</locationY>
         <connector>
             <targetReference>Reset_All_Active_and_Set_the_Current_Stage</targetReference>
@@ -3510,7 +4009,7 @@ IF({!vTicketSelected_30},30,
     <recordUpdates>
         <name>Update_Case</name>
         <label>Update Case</label>
-        <locationX>1829</locationX>
+        <locationX>1925</locationX>
         <locationY>382</locationY>
         <connector>
             <targetReference>Reset_Refresh_Flag</targetReference>
@@ -3533,7 +4032,7 @@ IF({!vTicketSelected_30},30,
     <recordUpdates>
         <name>Update_Case_0</name>
         <label>Update Case</label>
-        <locationX>2006</locationX>
+        <locationX>2102</locationX>
         <locationY>710</locationY>
         <connector>
             <targetReference>Completion_Message</targetReference>
@@ -3556,7 +4055,7 @@ IF({!vTicketSelected_30},30,
     <recordUpdates>
         <name>Update_Opportunity</name>
         <label>Update Opportunity</label>
-        <locationX>2015</locationX>
+        <locationX>2111</locationX>
         <locationY>388</locationY>
         <connector>
             <targetReference>Reset_Refresh_Flag</targetReference>
@@ -3579,7 +4078,7 @@ IF({!vTicketSelected_30},30,
     <recordUpdates>
         <name>Update_Opportunity_0</name>
         <label>Update Opportunity</label>
-        <locationX>2342</locationX>
+        <locationX>2438</locationX>
         <locationY>792</locationY>
         <connector>
             <targetReference>Completion_Message</targetReference>
@@ -3603,8 +4102,8 @@ IF({!vTicketSelected_30},30,
         <description>DisplayText</description>
         <name>DEBUG_Screen</name>
         <label>DEBUG</label>
-        <locationX>851</locationX>
-        <locationY>264</locationY>
+        <locationX>1239</locationX>
+        <locationY>244</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -3619,13 +4118,13 @@ IF({!vTicketSelected_30},30,
     <screens>
         <name>Get_Assignee</name>
         <label>Get Assignee</label>
-        <locationX>2759</locationX>
-        <locationY>352</locationY>
+        <locationX>2853</locationX>
+        <locationY>363</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Get_User_Id</targetReference>
+            <targetReference>Button_Selected</targetReference>
         </connector>
         <fields>
             <name>Header</name>
@@ -3638,13 +4137,24 @@ IF({!vTicketSelected_30},30,
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>Assign_This_Ticket_To</name>
+            <name>Assign_a_Task_for_this_Ticket_To</name>
             <choiceReferences>SelectPrompt</choiceReferences>
             <choiceReferences>FindPeersSubs</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Assign This Ticket To:</fieldText>
+            <defaultSelectedChoiceReference>SelectPrompt</defaultSelectedChoiceReference>
+            <fieldText>Assign a Task for this Ticket To:</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Due_Date</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>fDueDate</elementReference>
+            </defaultValue>
+            <fieldText>Due Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
         <fields>
             <name>UserLine</name>
@@ -3678,11 +4188,24 @@ IF({!vTicketSelected_30},30,
             <inputParameters>
                 <name>label</name>
                 <value>
+                    <stringValue>Cancel</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label2</name>
+                <value>
                     <stringValue>Assign</stringValue>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <outputParameters>
+                <assignToReference>vCancel</assignToReference>
+                <name>fire</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>vAssign</assignToReference>
+                <name>fire2</name>
+            </outputParameters>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
@@ -3690,7 +4213,7 @@ IF({!vTicketSelected_30},30,
     <screens>
         <name>Kickoff_Screen</name>
         <label>Kickoff Screen</label>
-        <locationX>565</locationX>
+        <locationX>465</locationX>
         <locationY>749</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -3952,7 +4475,7 @@ IF({!vTicketSelected_30},30,
 Individual components can have their visibility filtered by whether or not athe current Flow Active Stages contains the ticket (Stage) name.</description>
         <name>Ticket_Screen</name>
         <label>Ticket Screen</label>
-        <locationX>1920</locationX>
+        <locationX>2016</locationX>
         <locationY>117</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -10125,56 +10648,17 @@ Individual components can have their visibility filtered by whether or not athe 
         <stageOrder>1</stageOrder>
     </stages>
     <start>
-        <locationX>269</locationX>
+        <locationX>50</locationX>
         <locationY>264</locationY>
         <connector>
-            <targetReference>Get_Metadata</targetReference>
+            <targetReference>Get_Template_Header_Details</targetReference>
         </connector>
     </start>
     <status>Draft</status>
     <subflows>
-        <description>This flow will handle all custom processing for the P6 Project Templates</description>
-        <name>Extra_Processing_Flow</name>
-        <label>Extra Processing Flow</label>
-        <locationX>2814</locationX>
-        <locationY>732</locationY>
-        <connector>
-            <targetReference>Check_for_Ticket_Selection_2</targetReference>
-        </connector>
-        <flowName>P6_Project_Sub_Extra_Processing</flowName>
-        <inputAssignments>
-            <name>recordId</name>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>vAdditionalInfo</name>
-            <value>
-                <elementReference>vAdditionalInfo</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>vProjectName</name>
-            <value>
-                <elementReference>vProjectName</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>vTicketNumber</name>
-            <value>
-                <elementReference>vTicketNumber</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>vAdditionalInfo</assignToReference>
-            <name>vAdditionalInfo</name>
-        </outputAssignments>
-    </subflows>
-    <subflows>
         <name>Reset_All_Active_and_Set_the_Current_Stage</name>
         <label>Reset All Active and Set the Current Stage</label>
-        <locationX>1478</locationX>
+        <locationX>1574</locationX>
         <locationY>580</locationY>
         <connector>
             <targetReference>Project_Complete_0</targetReference>
@@ -11052,6 +11536,34 @@ Individual components can have their visibility filtered by whether or not athe 
         <objectType>Assigned_ProvTicket__c</objectType>
     </variables>
     <variables>
+        <name>colParentTickets</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>colTicketFlowAPIs</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>colTicketGroups</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>colTicketTypes</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>colUsers</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
@@ -11074,6 +11586,14 @@ Individual components can have their visibility filtered by whether or not athe 
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Assigned_ProvTicket__c</objectType>
+    </variables>
+    <variables>
+        <name>objProjectTemplateTicket</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Project_Template_Ticket__c</objectType>
     </variables>
     <variables>
         <description>Holds the Record ID of the record on the Lightning Record Page that this component is called from</description>
@@ -11402,6 +11922,13 @@ Individual components can have their visibility filtered by whether or not athe 
         </value>
     </variables>
     <variables>
+        <name>vAssign</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>vAssignedId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -11635,6 +12162,13 @@ Individual components can have their visibility filtered by whether or not athe 
     <variables>
         <name>vAssigneeName</name>
         <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vCancel</name>
+        <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
@@ -11893,6 +12427,20 @@ Individual components can have their visibility filtered by whether or not athe 
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>vFlowAPIName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vFlowUrl</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>vLineColor</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -11907,12 +12455,43 @@ Individual components can have their visibility filtered by whether or not athe 
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>vParent_01</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vParent_02</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vParent_03</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
         <name>vParentTicket</name>
         <dataType>Number</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vParentTickets</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>vProcessSelected</name>
@@ -12923,6 +13502,36 @@ Individual components can have their visibility filtered by whether or not athe 
         </value>
     </variables>
     <variables>
+        <name>vTicketCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketFlows</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroups</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketLoopCounter</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
         <name>vTicketName</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -13446,6 +14055,13 @@ Individual components can have their visibility filtered by whether or not athe 
         <value>
             <booleanValue>false</booleanValue>
         </value>
+    </variables>
+    <variables>
+        <name>vTicketTypes</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>vTotalStageCount</name>

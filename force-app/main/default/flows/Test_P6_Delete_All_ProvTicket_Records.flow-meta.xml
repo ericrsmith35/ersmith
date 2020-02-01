@@ -163,8 +163,8 @@
     <recordUpdates>
         <name>Clear_Test_Opp_Flag</name>
         <label>Clear Test Opp Flag</label>
-        <locationX>984</locationX>
-        <locationY>653</locationY>
+        <locationX>1129</locationX>
+        <locationY>352</locationY>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
