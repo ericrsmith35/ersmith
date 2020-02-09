@@ -55,12 +55,47 @@
         <name>Complete_Ticket_02</name>
         <label>Complete Ticket 02</label>
         <locationX>1146</locationX>
-        <locationY>463</locationY>
+        <locationY>462</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_02</assignToReference>
+            <assignToReference>vTicketParent_02</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_02</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_02</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_02</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_02</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_02</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -73,10 +108,45 @@
         <locationX>1276</locationX>
         <locationY>463</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_03</assignToReference>
+            <assignToReference>vTicketParent_03</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_03</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_03</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_03</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_03</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_03</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -89,10 +159,45 @@
         <locationX>1406</locationX>
         <locationY>465</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_04</assignToReference>
+            <assignToReference>vTicketParent_04</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_04</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_04</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_04</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_04</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_04</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -105,10 +210,45 @@
         <locationX>1536</locationX>
         <locationY>463</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_05</assignToReference>
+            <assignToReference>vTicketParent_05</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_05</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_05</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_05</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_05</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_05</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -121,10 +261,45 @@
         <locationX>1666</locationX>
         <locationY>463</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_06</assignToReference>
+            <assignToReference>vTicketParent_06</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_06</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_06</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_06</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_06</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_06</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -137,10 +312,45 @@
         <locationX>1796</locationX>
         <locationY>463</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_07</assignToReference>
+            <assignToReference>vTicketParent_07</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_07</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_07</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_07</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_07</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_07</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -153,10 +363,45 @@
         <locationX>1926</locationX>
         <locationY>463</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_08</assignToReference>
+            <assignToReference>vTicketParent_08</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_08</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_08</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_08</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_08</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_08</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -169,10 +414,45 @@
         <locationX>2056</locationX>
         <locationY>463</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_09</assignToReference>
+            <assignToReference>vTicketParent_09</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_09</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_09</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_09</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_09</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_09</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -185,10 +465,45 @@
         <locationX>2186</locationX>
         <locationY>463</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_10</assignToReference>
+            <assignToReference>vTicketParent_10</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_10</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_10</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_10</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_10</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_10</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -201,10 +516,45 @@
         <locationX>1017</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_11</assignToReference>
+            <assignToReference>vTicketParent_11</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_11</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_11</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_11</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_11</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_11</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -217,10 +567,45 @@
         <locationX>1147</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_12</assignToReference>
+            <assignToReference>vTicketParent_12</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_12</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_12</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_12</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_12</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_12</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -233,10 +618,45 @@
         <locationX>1277</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_13</assignToReference>
+            <assignToReference>vTicketParent_13</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_13</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_13</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_13</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_13</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_13</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -249,10 +669,45 @@
         <locationX>1407</locationX>
         <locationY>829</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_14</assignToReference>
+            <assignToReference>vTicketParent_14</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_14</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_14</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_14</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_14</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_14</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -265,10 +720,45 @@
         <locationX>1537</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_15</assignToReference>
+            <assignToReference>vTicketParent_15</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_15</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_15</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_15</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_15</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_15</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -281,10 +771,45 @@
         <locationX>1667</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_16</assignToReference>
+            <assignToReference>vTicketParent_16</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_16</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_16</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_16</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_16</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_16</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -297,10 +822,45 @@
         <locationX>1797</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_17</assignToReference>
+            <assignToReference>vTicketParent_17</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_17</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_17</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_17</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_17</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_17</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -313,10 +873,45 @@
         <locationX>1927</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_18</assignToReference>
+            <assignToReference>vTicketParent_18</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_18</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_18</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_18</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_18</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_18</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -329,10 +924,45 @@
         <locationX>2057</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_19</assignToReference>
+            <assignToReference>vTicketParent_19</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_19</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_19</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_19</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_19</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_19</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -345,10 +975,45 @@
         <locationX>2187</locationX>
         <locationY>827</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_20</assignToReference>
+            <assignToReference>vTicketParent_20</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_20</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_20</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_20</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_20</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_20</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -361,10 +1026,45 @@
         <locationX>1017</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_21</assignToReference>
+            <assignToReference>vTicketParent_21</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_21</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_21</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_21</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_21</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_21</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -377,10 +1077,45 @@
         <locationX>1147</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_22</assignToReference>
+            <assignToReference>vTicketParent_22</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_22</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_22</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_22</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_22</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_22</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -393,10 +1128,45 @@
         <locationX>1277</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_23</assignToReference>
+            <assignToReference>vTicketParent_23</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_23</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_23</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_23</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_23</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_23</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -409,10 +1179,45 @@
         <locationX>1407</locationX>
         <locationY>1195</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_24</assignToReference>
+            <assignToReference>vTicketParent_24</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_24</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_24</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_24</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_24</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_24</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -425,10 +1230,45 @@
         <locationX>1537</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_25</assignToReference>
+            <assignToReference>vTicketParent_25</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_25</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_25</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_25</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_25</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_25</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -441,10 +1281,45 @@
         <locationX>1667</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_26</assignToReference>
+            <assignToReference>vTicketParent_26</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_26</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_26</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_26</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_26</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_26</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -457,10 +1332,45 @@
         <locationX>1797</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_27</assignToReference>
+            <assignToReference>vTicketParent_27</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_27</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_27</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_27</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_27</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_27</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -473,10 +1383,45 @@
         <locationX>1927</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_28</assignToReference>
+            <assignToReference>vTicketParent_28</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_28</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_28</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_28</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_28</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_28</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -489,10 +1434,45 @@
         <locationX>2057</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_29</assignToReference>
+            <assignToReference>vTicketParent_29</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_29</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_29</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_29</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_29</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_29</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -505,10 +1485,45 @@
         <locationX>2187</locationX>
         <locationY>1191</locationY>
         <assignmentItems>
-            <assignToReference>vTicketCompleted_30</assignToReference>
+            <assignToReference>vTicketParent_30</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>objProjectTemplateTicket.Parent_Ticket_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketType_30</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketFlow_30</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Flow_API_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketGroup_30</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>objProjectTemplateTicket.Group__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketProcess_30</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketProcess</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vTicketAssign_30</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fTicketAssign</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -527,6 +1542,9 @@
                 <elementReference>Get_Ticket_Data</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Ticket_Data</targetReference>
+        </connector>
     </assignments>
     <decisions>
         <name>Which_Ticket</name>
@@ -1014,7 +2032,7 @@
         <dataType>Boolean</dataType>
         <expression>AND(
 {!objProjectTemplateTicket.Flow_API_Name__c} &lt;&gt; &quot;&quot;,
-{!objProjectTemplateTicket.Type__c} = &quot;Assign&quot;
+TEXT({!objProjectTemplateTicket.Type__c}) = &quot;Assign&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -1022,7 +2040,7 @@
         <dataType>Boolean</dataType>
         <expression>AND(
 {!objProjectTemplateTicket.Flow_API_Name__c} &lt;&gt; &quot;&quot;,
-{!objProjectTemplateTicket.Type__c} = &quot;Action&quot;
+TEXT({!objProjectTemplateTicket.Type__c}) = &quot;Action&quot;
 )</expression>
     </formulas>
     <interviewLabel>P6 Project - Sub - Retrieve Ticket Data {!$Flow.CurrentDateTime}</interviewLabel>
@@ -1030,11 +2048,14 @@
     <loops>
         <name>Loop_through_Ticket_Data</name>
         <label>Loop through Ticket Data</label>
-        <locationX>453</locationX>
-        <locationY>172</locationY>
+        <locationX>235</locationX>
+        <locationY>834</locationY>
         <assignNextValueToReference>objProjectTemplateTicket</assignNextValueToReference>
         <collectionReference>Get_Ticket_Data</collectionReference>
         <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Which_Ticket</targetReference>
+        </nextValueConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -1052,8 +2073,8 @@
     <recordLookups>
         <name>Get_Ticket_Data</name>
         <label>Get Ticket Data</label>
-        <locationX>263</locationX>
-        <locationY>172</locationY>
+        <locationX>235</locationX>
+        <locationY>703</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_through_Ticket_Data</targetReference>
@@ -1072,13 +2093,13 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
-        <locationY>101</locationY>
+        <locationX>235</locationX>
+        <locationY>547</locationY>
         <connector>
             <targetReference>Get_Ticket_Data</targetReference>
         </connector>
     </start>
-    <status>InvalidDraft</status>
+    <status>Draft</status>
     <variables>
         <name>objProjectTemplateTicket</name>
         <dataType>SObject</dataType>
@@ -1099,209 +2120,6 @@
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_02</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_03</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_04</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_05</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_06</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_07</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_08</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_09</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_10</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_11</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_12</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_13</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_14</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_15</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_16</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_17</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_18</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_19</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_20</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_21</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_22</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_23</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_24</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_25</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_26</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_27</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_28</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_29</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketCompleted_30</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
         <isOutput>true</isOutput>
     </variables>
     <variables>
@@ -1334,217 +2152,1254 @@
         <isOutput>true</isOutput>
     </variables>
     <variables>
-        <name>vTicketSelected_01</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_02</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_03</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_04</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_05</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_06</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_07</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_08</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_09</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_10</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_11</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_12</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_13</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_14</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_15</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_16</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_17</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_18</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_19</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_20</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_21</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_22</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_23</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_24</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_25</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_26</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_27</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_28</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_29</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vTicketSelected_30</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>vTicketType_01</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_02</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_02</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_02</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_02</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_02</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_02</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_03</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_03</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_03</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_03</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_03</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_03</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_04</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_04</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_04</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_04</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_04</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_04</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_05</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_05</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_05</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_05</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_05</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_05</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_06</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_06</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_06</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_06</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_06</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_06</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_07</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_07</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_07</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_07</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_07</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_07</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_08</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_08</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_08</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_08</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_08</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_08</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_09</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_09</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_09</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_09</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_09</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_09</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_10</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_10</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_10</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_10</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_10</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_10</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_11</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_11</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_11</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_11</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_11</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_11</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_12</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_12</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_12</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_12</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_12</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_12</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_13</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_13</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_13</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_13</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_13</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_13</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_14</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_14</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_14</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_14</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_14</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_14</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_15</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_15</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_15</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_15</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_15</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_15</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_16</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_16</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_16</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_16</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_16</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_16</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_17</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_17</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_17</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_17</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_17</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_17</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_18</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_18</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_18</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_18</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_18</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_18</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_19</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_19</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_19</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_19</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_19</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_19</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_20</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_20</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_20</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_20</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_20</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_20</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_21</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_21</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_21</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_21</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_21</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_21</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_22</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_22</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_22</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_22</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_22</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_22</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_23</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_23</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_23</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_23</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_23</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_23</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_24</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_24</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_24</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_24</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_24</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_24</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_25</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_25</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_25</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_25</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_25</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_25</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_26</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_26</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_26</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_26</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_26</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_26</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_27</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_27</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_27</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_27</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_27</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_27</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_28</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_28</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_28</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_28</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_28</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_28</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_29</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_29</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_29</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_29</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_29</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_29</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketAssign_30</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketFlow_30</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketGroup_30</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketParent_30</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>vTicketProcess_30</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>vTicketType_30</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

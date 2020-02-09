@@ -3,6 +3,9 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/ersSwitchAppPage": [
+                "ersSwitchAppPage/ersSwitchAppPage.js"
+            ],
             "c/flowPickerFSC": [
                 "flowPickerFSC/flowPickerFSC.js"
             ],

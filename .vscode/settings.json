@@ -9,5 +9,6 @@
         "SFDX_SET_CLIENT_IDS": "sfdx-vscode"
     },
     "eslint.nodePath": "c:\\Users\\esmit\\.vscode\\extensions\\salesforce.salesforcedx-vscode-lwc-47.17.1\\node_modules",
-    "salesforcedx-vscode-core.show-cli-success-msg": false
+    "salesforcedx-vscode-core.show-cli-success-msg": false,
+    "salesforcedx-vscode-apex.java.home": "D:\\Program Files\\Java\\jdk1.8.0_211"
 }

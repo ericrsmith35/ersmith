@@ -1,0 +1,9 @@
+<design:component >
+    <design:attribute name="action" label="Action: GetId, Open, Label, Focus, Close" default="GetId" />
+    <design:attribute name="tabId" label="TabId - Returned by GetId or Passed to Open, Label, Focus or Close" description="Specify 'Child' to open as a subtab in the currently focused parent tab" />
+    <design:attribute name="subtabId" label="SubtabId returned by GetId" />
+    <design:attribute name="tabUrl" label="URL to be opened in a new Tab" />
+    <design:attribute name="tabLabel" label="Label - Text for the tab label when the mode is Label" />
+    <design:attribute name="tabIcon" label="Label - Icon for the tab label when the mode is Label" />
+    <design:attribute name="errorMessage" label="Error Message returned by the Component" />
+</design:component>

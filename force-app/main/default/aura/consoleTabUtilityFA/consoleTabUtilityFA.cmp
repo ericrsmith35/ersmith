@@ -1,0 +1,26 @@
+<!--
+    consoleTabUtilityFA Lightning Flow Action
+    
+	Eric Smith - 2/1/20
+	https://trailblazer.me/id/ericsmith
+	https://github.com/ericrsmith35
+
+    Created to allow for closing, refreshing and naming the Tabs created when 
+    navigating to a Flow url from within a Flow
+	
+    This component uses lightning:workspaceAPI 
+    (https://developer.salesforce.com/docs/component-library/bundle/lightning:workspaceAPI/documentation)
+
+-->
+
+<aura:component implements="lightning:availableForFlowActions" access="global">
+    <lightning:workspaceAPI aura:id="workspace" />
+    <aura:attribute name="action" type="String" default="getId" />
+    <aura:attribute name="tabId" type="String" default="" />
+    <aura:attribute name="subtabId" type="String" default="" />
+    <aura:attribute name="tabUrl" type="String" />
+    <aura:attribute name="tabLabel" type="String" />
+    <aura:attribute name="tabIcon" type="String" default="standard:default" />
+    <aura:attribute name="errorMessage" type="String" />
+    <aura:attribute name="saveTabId" type="String" />
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes, lightning:availableForFlowActions" access="global" >
+    <lightning:workspaceAPI aura:id="workspace" />
+    <!--lightning:button label="Close Focused Tab" onclick="{! c.closeFocusedTab }" /-->
+</aura:component>
