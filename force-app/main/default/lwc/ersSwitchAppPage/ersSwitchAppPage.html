@@ -8,16 +8,18 @@ This is useful when supporting an org that has different Record Pages for differ
 
 -->
 <template>
-    <template for:each={apps} for:item="app">
-        <span key={app.index} class={avatar}>
-            <img src={app.image} 
-                alt={app.altText} 
-                class={app.avatar} 
-                data-key={app.index}
-                onmouseover={handleHover} 
-                onmouseout={handleMouseOut} 
-                onclick={navigateToAppPage}
-            >
-        </span>
-    </template>
+    <div class="slds-p-around_x-small app-bg">
+        <template for:each={apps} for:item="app">
+            <span key={app.index} class={avatar}>
+                <img src={app.image} 
+                    alt={app.altText} 
+                    class={app.avatar} 
+                    data-key={app.index}
+                    onmouseover={handleHover} 
+                    onmouseout={handleMouseOut} 
+                    onclick={navigateToAppPage}
+                >
+            </span>
+        </template>
+    </div>
 </template>
