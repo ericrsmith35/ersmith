@@ -3,6 +3,9 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/ersQuickSwitchApp": [
+                "ersQuickSwitchApp/ersQuickSwitchApp.js"
+            ],
             "c/ersSwitchAppPage": [
                 "ersSwitchAppPage/ersSwitchAppPage.js"
             ],

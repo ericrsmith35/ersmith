@@ -8,6 +8,7 @@ export default class ErsSwitchAppPage extends NavigationMixin(LightningElement) 
     @api choiceApps;        // List of App API Names
     @api choiceImages;      // List of image names from /images/ sub-directory in the APP_Images Static Resource
     @api choiceAltTexts;    // List of Alternate Text values for the images
+    @api backgroundColor = "transparent";   // Background color for the component
 
     @api inputApps = "";
     @api inputImages = "";
@@ -75,5 +76,9 @@ export default class ErsSwitchAppPage extends NavigationMixin(LightningElement) 
                 }
             }
         })
-    }    
+    }
+    
+    get backgroundStyle() {
+        return "background-color: " + this.backgroundColor;
+    }
 }
