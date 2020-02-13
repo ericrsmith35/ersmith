@@ -60,7 +60,8 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
                     index: index,
                     name: this.choiceApps[index],
                     image: APP_IMAGES + '/images/' + this.choiceImages[index],
-                    altText: this.altText
+                    altText: this.altText,
+                    variant: 'square'
                 });
                 index += 1;
             });
@@ -80,14 +81,14 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
     handleHover(event) {
         // Modify the Style to display the image as the avatar Circle variant
         var app = this.apps.find(app => app.index == event.target.dataset.key);
-        app.avatar = "slds-avatar slds-avatar--circle slds-avatar--large slds-m-right_small";
+        app.variant = 'circle';
         this.apps = [...this.apps];
     }
 
     handleMouseOut(event) {
         // Modify the Style to display the image as the default Square avatar
         var app = this.apps.find(app => app.index == event.target.dataset.key);
-        app.avatar = "slds-avatar slds-avatar--large slds-m-right_small";
+        app.variant = 'square';
         this.apps = [...this.apps];
     }
 

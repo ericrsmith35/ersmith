@@ -10,15 +10,19 @@ This is useful when supporting an org that has different Record Pages for differ
 <template>
     <div class="slds-p-around_x-small" style={backgroundStyle}>
         <template for:each={apps} for:item="app">
-            <span key={app.index} class={avatar}>
-                <img src={app.image} 
-                    alt={app.altText} 
-                    class={app.avatar} 
+            <span key={app.index}>
+                <lightning-avatar 
+                    variant={app.variant}
+                    src={app.image}
+                    alternative-text={app.altText}
+                    class="slds-m-right_small"
+                    size="large"
                     data-key={app.index}
                     onmouseover={handleHover} 
                     onmouseout={handleMouseOut} 
                     onclick={navigateToAppPage}
                 >
+                </lightning-avatar>
             </span>
         </template>
     </div>
