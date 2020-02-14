@@ -23,6 +23,9 @@
             ],
             "c/toastMessage": [
                 "toastMessage/toastMessage.js"
+            ],
+            "c/datatableFsc": [
+                "datatableFsc/datatableFsc.js"
             ]
         }
     },
