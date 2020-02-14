@@ -13,6 +13,7 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
 
     // Values passed into the component
     @api recordId;                          // Current Record ID
+    @api objectApiName;                     // Current Object Name
     @api quickAppSwitcherId;                // Record Id of the QuickAppSwitcher metadata record storing the component attributes
     @api backgroundColor = "transparent";   // Background color for the component
 
@@ -105,7 +106,7 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
                     type: "standard__recordPage",
                     attributes: {
                         recordId: this.recordId,
-                        objectApiName: 'Case',  // Doesn't matter if this Object name doesn't match the Record Id
+                        objectApiName: this.objectApiName,  // It actually doesn't matter if this Object name doesn't match the Record Id
                         actionName: "view"
                     }
                 }

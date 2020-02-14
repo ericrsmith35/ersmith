@@ -3,6 +3,9 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/datatableFsc": [
+                "datatableFsc/datatableFsc.js"
+            ],
             "c/ersQuickSwitchApp": [
                 "ersQuickSwitchApp/ersQuickSwitchApp.js"
             ],
@@ -23,9 +26,6 @@
             ],
             "c/toastMessage": [
                 "toastMessage/toastMessage.js"
-            ],
-            "c/datatableFsc": [
-                "datatableFsc/datatableFsc.js"
             ]
         }
     },
