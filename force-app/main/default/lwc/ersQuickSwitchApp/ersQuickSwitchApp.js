@@ -1,8 +1,7 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getQuickAppSwitcher from '@salesforce/apex/CustomMetadataController.getQuickAppSwitcher';    // Apex Class to return the QuickAppSwitcher Custom Metadata record
-import APP_IMAGES from '@salesforce/resourceUrl/App_Images';    // Must have a Static Resource Zip file called 'App_Images' 
-                                                                // with a subdirectory /images/ where the image files are stored
+import APP_IMAGES from '@salesforce/resourceUrl/App_Images';    // Must have a Static Resource Zip file called 'App_Images' where the image files are stored
 
 export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement) {
 
@@ -26,7 +25,6 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
     @track apps = [];       // Store the List of App Paramters
     @track mdtRecord;       // Store the Custom Metadata returned by the Apex Class
     @track mdtValues = {};  // Store the values from the Custom Metadata Record
-    @track avatar = "slds-avatar slds-avatar--large slds-m-right_small";  // Default display class
 
     // Get the Custom Metadata Record and build the list of selections
     @wire(getQuickAppSwitcher, { label: '$quickAppSwitcherLabel' }) 
@@ -58,7 +56,7 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
                 apps.push({
                     index: index,
                     name: this.choiceApps[index],
-                    image: APP_IMAGES + '/images/' + this.choiceImages[index],
+                    image: APP_IMAGES + '/' + this.choiceImages[index],
                     altText: this.altText,
                     variant: 'square'
                 });
