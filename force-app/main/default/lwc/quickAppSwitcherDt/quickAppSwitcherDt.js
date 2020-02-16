@@ -75,10 +75,10 @@ export default class QuickAppSwitcherDt extends LightningElement {
     }
    
     handleRowAction(event) {
+        // Disable the button and process the record here
         const action = event.detail.action;
         const row = JSON.parse(JSON.stringify(event.detail.row));
         const keyValue = row[this.keyfield];
-        // Disable the button and process the record here
         this.mydata = this.mydata.map(rowData => {
             if (rowData[this.keyfield] === keyValue) {
                 switch (action.name) {
@@ -94,7 +94,7 @@ export default class QuickAppSwitcherDt extends LightningElement {
                         // Call function to process the selected row
                         this.processRowSelection(rowData);
                         break;
-                        
+
                     default:
                 }
             }
@@ -119,35 +119,14 @@ export default class QuickAppSwitcherDt extends LightningElement {
     }
    
     updateColumnSorting(event) {
+        // Handle column sorting
         this.sortedBy = event.detail.fieldName;
         this.sortedDirection = event.detail.sortDirection;
-        this.sortData(this.sortedBy, this.sortedDirection);
-    }
-
-    sortData(fieldname, direction) {
-        // serialize the data before calling sort function
-        let parseData = JSON.parse(JSON.stringify(this.mydata));
-
-        // Return the value stored in the field
-        let keyValue = (a) => {
-            return a[fieldname];
-        };
-
-        // checking reverse direction 
-        let isReverse = direction === 'asc' ? 1: -1;
-
-        // sorting data 
-        parseData.sort((x, y) => {
-            x = keyValue(x) ? keyValue(x) : ''; // handling null values
-            y = keyValue(y) ? keyValue(y) : '';
-
-            // sorting values based on direction
-            return isReverse * ((x > y) - (y > x));
-        });
-
-        // set the sorted data to data table data
-        this.mydata = parseData;
-
+        let fieldValue = row => row[this.sortedBy] || '';
+        let reverse = this.sortedDirection === 'asc'? 1: -1;
+        this.mydata = [...this.mydata.sort(
+            (a,b)=>(a=fieldValue(a),b=fieldValue(b),reverse*((a>b)-(b>a)))
+        )];
     }
 
 }
