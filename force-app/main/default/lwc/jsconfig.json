@@ -18,11 +18,17 @@
             "c/formfactorFlowHelperLwc": [
                 "formfactorFlowHelperLwc/formfactorFlowHelperLwc.js"
             ],
+            "c/quickAppSwitcherDt": [
+                "quickAppSwitcherDt/quickAppSwitcherDt.js"
+            ],
             "c/quickChoiceFSC": [
                 "quickChoiceFSC/quickChoiceFSC.js"
             ],
             "c/recordDetailFlowScreenComponent": [
                 "recordDetailFlowScreenComponent/recordDetailFlowScreenComponent.js"
+            ],
+            "c/testDatatable": [
+                "testDatatable/testDatatable.js"
             ],
             "c/toastMessage": [
                 "toastMessage/toastMessage.js"

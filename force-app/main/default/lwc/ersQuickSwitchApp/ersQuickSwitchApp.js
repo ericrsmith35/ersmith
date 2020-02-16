@@ -7,8 +7,7 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
 
     // Values passed into the component
     @api recordId;                          // Current Record ID
-    @api objectApiName;                     // Current Object Name
-    @api quickAppSwitcherId;                // Record Id of the QuickAppSwitcher metadata record storing the component attributes
+    @api objectApiName = "Account";         // Current Object Name
     @api quickAppSwitcherLabel = "Test ersmith";             // Label of the QuickAppSwitcher metadata record storing the component attributes
     @api backgroundColor = "transparent";   // Background color for the component
 
@@ -71,8 +70,7 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
     }
 
     connectedCallback() {
-        // make the recordId of the Custom Metadata Record available to the @wire Service
-        // this.mdtId = this.quickAppSwitcherId;
+        // make the Label of the Custom Metadata Record available to the @wire Service
         this.quickAppSwitcherLabel = this.quickAppSwitcherLabel;
     }
 
