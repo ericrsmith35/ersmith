@@ -52,14 +52,22 @@ export default class QuickAppSwitcherDt extends LightningElement {
 
     @api tableData;
     @api selectedData;
+    @api AppAPINames = '';
+    @api AppImageNames = '';
+    @api AppAlternateTexts = '';
+    @api displayAppLabel;
     @api columns = COLUMNS;
     @api keyfield = 'DeveloperName';
     @api sortedBy;
     @api sortedDirection;
     @api maxRowSelection;
     @api hideCheckboxColumn;
+    @api selectedRow;
+    @api isFirstSelection;
+    @api imageName;
     @track preSelectedIds = [];
     @track mydata = MYDATA;
+    @track requestImageNameModal = false;
 
     connectedCallback() {
         // Add fields to datatable records
@@ -68,10 +76,12 @@ export default class QuickAppSwitcherDt extends LightningElement {
             Label: tableRecord.Label,
             NavType: tableRecord.NavType,
             LogoUrl: tableRecord.LogoUrl,
+            NamespacePrefix: tableRecord.NamespacePrefix,
             buttonDisabled: false        
             })
         );
         this.hideCheckboxColumn = true;
+        this.isFirstSelection = true;
     }
    
     handleRowAction(event) {
@@ -83,18 +93,15 @@ export default class QuickAppSwitcherDt extends LightningElement {
             if (rowData[this.keyfield] === keyValue) {
                 switch (action.name) {
                     case 'select':
+                        // Save rowData for processing on modal exit
+                        this.selectedRow = rowData;
+                        // Open modal to request image name
+                        this.imageName = '';
+                        this.displayAppLabel = rowData.Label;
+                        this.requestImageNameModal = true;
                         // Disable the button from being selected again
-                        rowData.buttonDisabled = true;
-
-                        // If not already selected, highlight the row as selected
-                        if(this.preSelectedIds.indexOf(rowData[this.keyfield]) === -1) {
-                            this.preSelectedIds.push(rowData[this.keyfield]);
-                            this.preSelectedIds = [...this.preSelectedIds];
-                        }
-                        // Call function to process the selected row
-                        this.processRowSelection(rowData);
+                        this.selectedRow.buttonDisabled = true;
                         break;
-
                     default:
                 }
             }
@@ -102,8 +109,35 @@ export default class QuickAppSwitcherDt extends LightningElement {
         });
     }
 
-    processRowSelection(rowData) {
-        // Add to the QuickSwitchApp metadata parameters
+    handleCancelModal() {
+        // Close modal
+        this.requestImageNameModal = false;
+        // Allow the button to be selected again
+        this.selectedRow.buttonDisabled = false;
+        // Force rerender
+        this.mydata = [...this.mydata];
+    }
+
+    handleSaveModal() {
+        // Close modal
+        this.requestImageNameModal = false;
+        // If not already selected, highlight the row as selected
+        if(this.preSelectedIds.indexOf(this.selectedRow[this.keyfield]) === -1) {
+            this.preSelectedIds.push(this.selectedRow[this.keyfield]);
+            this.preSelectedIds = [...this.preSelectedIds];
+        }
+        // Update values to pass back to the Flow
+        let addComma = (!this.isFirstSelection) ? ',' : '';
+        let namespace = (!this.selectedRow.NamespacePrefix) ? 'c' : this.selectedRow.NamespacePrefix;
+        this.AppAPINames += (addComma + namespace + '__' + this.selectedRow.DeveloperName);
+        this.AppImageNames += (addComma + this.imageName);
+        this.AppAlternateTexts += (addComma + this.selectedRow.Label);
+        this.isFirstSelection = false;
+    }
+
+    handleFileSelection(event) {
+        let file = event.detail.files;
+        this.imageName = file[0].name;
     }
 
     handleSave(event) {

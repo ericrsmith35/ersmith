@@ -8,7 +8,10 @@
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
             <property name="tableData" label="App Definition Record Collection" type="@salesforce/schema/AppDefinition[]" role="inputOnly"/>
-            <property name="selectedData" label="Selected App Definitions" type="@salesforce/schema/AppDefinition[]" role="outputOnly"/>
+            <property name="selectedData" label="Selected App Definitions" type="@salesforce/schema/AppDefinition[]" role="inputOnly"/>
+            <property name="AppAPINames" label="Custom Metadata Field - AppAPINames" type="String" role="outputOnly"/>
+            <property name="AppImageNames" label="Custom Metadata Field - AppImageNames" type="String" role="outputOnly"/>
+            <property name="AppAlternateTexts" label="Custom Metadata Field - AppAlternateTexts" type="String" role="outputOnly"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
