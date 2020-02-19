@@ -1,3 +1,9 @@
+/* Flow Invocable Apex Class to Create or Update a QuickAppSwitcher Custom Metadata Record
+
+2/18/20 -    Eric Smith -    Version 1.0 
+
+*/
+
 public class CreateCustomMetadataQuickAppSwitcher implements Metadata.DeployCallback{
 
     public void handleResult(Metadata.DeployResult result, Metadata.DeployCallbackContext context) {
@@ -34,6 +40,7 @@ public class CreateCustomMetadataQuickAppSwitcher implements Metadata.DeployCall
         Metadata.DeployContainer mdContainer = new Metadata.DeployContainer();
         mdContainer.addMetadata(customMetadata);
         CreateCustomMetadataQuickAppSwitcher callback = new CreateCustomMetadataQuickAppSwitcher();
-        Id jobId = Metadata.Operations.enqueueDeployment(mdContainer, callback);
+        if(!Test.isRunningTest()) Id jobId = Metadata.Operations.enqueueDeployment(mdContainer, callback);
+
     }
 }

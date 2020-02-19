@@ -92,21 +92,32 @@ export default class ErsQuickSwitchApp extends NavigationMixin(LightningElement)
         // Get the attributes for the selected App
         var app = this.apps.find(app => app.index == event.target.dataset.key);
 
-        // Navigate to the specified App and App Page for the same Record
-        this[NavigationMixin.Navigate]({
-            type: "standard__app",
-            attributes: {
-                appTarget: app.name,
-                pageRef: {
-                    type: "standard__recordPage",
-                    attributes: {
-                        recordId: this.recordId,
-                        objectApiName: this.objectApiName,  // It actually doesn't matter if this Object name doesn't match the Record Id
-                        actionName: "view"
+        // Check to see if the user is on a Record Page
+        if(this.recordId) {
+            // Navigate to the specified App and App Page for the same Record
+            this[NavigationMixin.Navigate]({
+                type: "standard__app",
+                attributes: {
+                    appTarget: app.name,
+                    pageRef: {
+                        type: "standard__recordPage",
+                        attributes: {
+                            recordId: this.recordId,
+                            objectApiName: this.objectApiName,  // It actually doesn't matter if this Object name doesn't match the Record Id
+                            actionName: "view"
+                        }
                     }
                 }
-            }
-        })
+            })
+        } else {
+            // Navigate to the specified App only
+            this[NavigationMixin.Navigate]({
+                type: "standard__app",
+                attributes: {
+                    appTarget: app.name,
+                }
+            })
+        }
     }
     
     // Make the background color attribute available to the rendering template
