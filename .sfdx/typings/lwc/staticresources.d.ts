@@ -2,6 +2,10 @@ declare module "@salesforce/resourceUrl/Action_Update_60" {
     var Action_Update_60: string;
     export default Action_Update_60;
 }
+declare module "@salesforce/resourceUrl/App_Images" {
+    var App_Images: string;
+    export default App_Images;
+}
 declare module "@salesforce/resourceUrl/CloudQuestion" {
     var CloudQuestion: string;
     export default CloudQuestion;
