@@ -3,8 +3,8 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/datatableFsc": [
-                "datatableFsc/datatableFsc.js"
+            "c/datatableLwcFsc": [
+                "datatableLwcFsc/datatableLwcFsc.js"
             ],
             "c/ersQuickSwitchApp": [
                 "ersQuickSwitchApp/ersQuickSwitchApp.js"
