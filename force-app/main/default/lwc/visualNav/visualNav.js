@@ -37,19 +37,19 @@ import {
     connectedCallback() {
       console.log("initializing visualPicker ");
       console.log("showIcons is: " + this.showIcons);
-      console.log("choiceIcons is: " + this.choiceIcons);
+      console.log(this.choiceIcons.length,"choiceIcons is: " + this.choiceIcons);
       let items = [];
       let index = 0;
-      console.log("choiceLabels is: " + this.choiceLabels);
+      console.log(this.choiceLabels.length,"choiceLabels is: " + this.choiceLabels);
       this.choiceLabels.forEach(label => {
+        console.log('item',index,label);
         items.push({
           label: label,
-          sublabel: this.choiceSubLabels[index],
+          sublabel: (this.showSubLabel) ? this.choiceSubLabels[index] : null,
           value: this.choiceValues[index],
-          icon: this.choiceIcons[index],
+          icon: (this.choiceIcons[index]) ? this.choiceIcons[index] : null,
           uniqueId: this.choiceValues[index] + "+" + index
         });
-        console.log("items is: " + items);
         index += 1;
       });
       this.items = items;

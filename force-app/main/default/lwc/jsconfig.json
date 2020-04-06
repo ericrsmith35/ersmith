@@ -35,6 +35,9 @@
             ],
             "c/visualNav": [
                 "visualNav/visualNav.js"
+            ],
+            "c/projectManagerPicker": [
+                "projectManagerPicker/projectManagerPicker.js"
             ]
         }
     },

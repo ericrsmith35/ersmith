@@ -13,16 +13,10 @@
                 style={sizeWidth}>
                 <span>
                   <template if:true={showIcons}>
-                    <span class="slds-icon_container">
-                      <lightning-avatar variant={iconVariant} src="" class="slds-m-around_small"
-                        fallback-icon-name={item.icon} size={iconSize}></lightning-avatar>
+                    <span class="slds-icon_container" title={item.label}>
+                      <lightning-avatar variant={iconVariant} src={item.icon} class="slds-m-around_xx-small"
+                        fallback-icon-name="standard:person_account" alternative-text={item.label} size={iconSize}></lightning-avatar>
                     </span>
-                  </template>
-                  <div class="slds-text-heading_small slds-m-left_xx-small slds-m-right_xx-small">
-                    {item.label}
-                  </div>
-                  <template if:true={showSubLabel}>
-                    <div class="slds-text-title slds-m-left_xx-small slds-m-right_xx-small">{item.sublabel}</div>
                   </template>
                 </span>
               </span>
