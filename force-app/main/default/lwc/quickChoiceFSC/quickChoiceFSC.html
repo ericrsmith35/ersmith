@@ -17,6 +17,13 @@ Additional components packaged with this LWC:
                                                 GetRecordTypeInfobyObjectTest
                                                 MockHttpResponseGenerator
 
+3/2/20 -    Eric Smith -    Version 1.27
+                            Added ability to display both images & icons on visual cards
+                            (thx again to clifford-fra)
+
+2/2/20 -    Eric Smith -    Version 1.26
+                            Fixed default display for visual cards (thx to clifford-fra)
+
 1/12/20 -   Eric Smith -    Version 1.22
                             Added an option to display the visual card pickers in a single or dual columns
 
@@ -38,7 +45,7 @@ Additional components packaged with this LWC:
             <div class={gridClass} style={gridStyle}>
                 <template for:each={items} for:item="item">
                     <div key={item.name} class={columnClass}>
-                        <input type="radio" id={item.name} value={item.name} name="visualList" onclick={handleChange} />
+                        <input type="radio" id={item.name} value={item.name} name="visualList" data-id={item.name} onclick={handleChange} />
                         <label for={item.name}>
 
                             <!-- Display Visual Card Pickers with Icons-->
@@ -48,10 +55,11 @@ Additional components packaged with this LWC:
                                     style="width:25rem">
                                     <div
                                         class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center slds-m-left_xx-small">
-                                        <span class="slds-icon_container">
+                                        <lightning-avatar size={iconSize} src={item.icon} fallback-icon-name={item.icon}></lightning-avatar>
+                                        <!-- <span class="slds-icon_container">
                                             <lightning-icon icon-name={item.icon} size={iconSize}>
                                             </lightning-icon>
-                                        </span>
+                                        </span> -->
                                     </div>
                                     <div
                                         class="slds-media__body slds-border_left slds-p-left_small slds-p-top_xxx-small">
@@ -86,27 +94,31 @@ Additional components packaged with this LWC:
 
         <!-- Display Radio Buttons -->
         <template if:true={showRadio}>
-            <lightning-radio-group 
-                name={masterLabel} 
-                label={masterLabel} 
-                value={value} 
-                options={options}
-                required={required} 
-                onchange={handleChange} 
-                type="radio">
-            </lightning-radio-group>
+            <div style={inputStyle}>
+                <lightning-radio-group 
+                    name={masterLabel} 
+                    label={masterLabel} 
+                    value={value} 
+                    options={options}
+                    required={required} 
+                    onchange={handleChange} 
+                    type="radio">
+                </lightning-radio-group>
+            </div>
         </template>
 
         <!-- Display Picklist -->
         <template if:false={showRadio}>
-            <lightning-combobox 
-                name={masterLabel} 
-                label={masterLabel} 
-                value={value} 
-                options={options}
-                required={required} 
-                onchange={handleChange}>
-            </lightning-combobox>
+            <div style={inputStyle}>
+                <lightning-combobox 
+                    name={masterLabel} 
+                    label={masterLabel} 
+                    value={value} 
+                    options={options}
+                    required={required} 
+                    onchange={handleChange}>
+                </lightning-combobox>
+            </div>
         </template>
 
     </template>

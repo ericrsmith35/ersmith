@@ -1,7 +1,7 @@
 import { LightningElement, api, track, wire } from "lwc";
 import { FlowAttributeChangeEvent } from "lightning/flowSupport";
 import { getPicklistValues } from "lightning/uiObjectInfoApi";
-import TYPE_FIELD from "@salesforce/schema/Account.Type";
+import Quickchoice_Images from '@salesforce/resourceUrl/Quickchoice_Images';	//Static Resource containing images for Visual Cards
 
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
@@ -11,20 +11,27 @@ export default class SmartChoiceFSC extends LightningElement {
 	@api masterLabel;
 	@api choiceLabels;
 	@api choiceValues; //string collection
+
+	@api displayMode; //Picklist, Radio, Card (3 different selection types) - Visual is equivalent to Card
+	
+	@api numberOfColumns; //for Visual Pickers only, 1(default) or 2
+
+	//-------------For inputMode = Picklist
+	@api allowNoneToBeChosen; //For picklist field only
+	@api recordTypeId; //used for picklist fields
+	@api objectName; //used for picklist fields
+	@api fieldName; //used for picklist fields
+
+	//-------------For inputMode = Visual Text Box (Card)
 	@api choiceIcons; 
 	@api includeIcons;
 	@api iconSize;
-	@api numberOfColumns; //for Visual Pickers only, 1(default) or 2
-	@api displayMode; //Picklist, Radio, Card (3 different selection types) - Visual is equivalent to Card
-	@api allowNoneToBeChosen; //For picklist field only
 
-	@api recordTypeId; //used for picklist fields
+	//-------------For displayMode = Picklist or Radio
+	@api style_width = 320;
 
-	@api objectName; //used for picklist fields
-	@api fieldName; //used for picklist fields
+
 	masterRecordTypeId = "012000000000000AAA"; //if a recordTypeId is not provided, use this one
-	@api objectAndFieldName;
-	//tempcalculatedObjectAndFieldName = this.objectName + '.' + this.fieldName;
 	@api inputMode;
 	@api required;
 	picklistOptionsStorage;
@@ -45,8 +52,7 @@ export default class SmartChoiceFSC extends LightningElement {
 	//possibility master record type only works if there aren't other record types?
 	@wire(getPicklistValues, {
 		recordTypeId: "$recordTypeId",
-		fieldApiName: "$objectAndFieldName"
-		//fieldApiName: "$calculatedObjectAndFieldName"
+		fieldApiName: "$calculatedObjectAndFieldName"
 	})
 	picklistValues({ error, data }) {
 		if (data) {
@@ -73,10 +79,8 @@ export default class SmartChoiceFSC extends LightningElement {
 		} else if (error) {
 			this.error = JSON.stringify(error);
 			console.log("getPicklistValues wire service returned error: " + this.error);
-			console.log("object and field " + this.objectAndFieldName);
-			//if (!this.objectAndFieldName)
-			//	throw new Error("objectAndFieldName is undefined. Needs a value like Account.Rating");
-		}
+
+			}
 	}
 
 	get calculatedObjectAndFieldName() {
@@ -109,7 +113,6 @@ export default class SmartChoiceFSC extends LightningElement {
 	connectedCallback() {
 		console.log("Entering Connected Callback for smartchoice");
 		console.log("recordtypeId is: " + this.recordTypeId);
-		console.log("objectFieldName is: " + this.objectAndFieldName);
 		if (!this.recordTypeId) this.recordTypeId = this.masterRecordTypeId;
 
 		// Visual Card Selection
@@ -172,7 +175,12 @@ export default class SmartChoiceFSC extends LightningElement {
 					console.log("entering input mode Visual Text Box");
 					console.log("choiceLabels is: " + this.choiceLabels);
 					this.choiceLabels.forEach(label => {
-						items.push({ name: label, description: this.choiceValues[index], icon: this.choiceIcons[index] });
+						//Add the correct path to custom images
+						if (this.choiceIcons[index].includes(':')) {
+							items.push({ name: label, description: this.choiceValues[index], icon: this.choiceIcons[index] });
+						} else {
+							items.push({ name: label, description: this.choiceValues[index], icon: Quickchoice_Images + '/' + this.choiceIcons[index] });
+						}
 						console.log("items is: " + items);
 						index +=1;
 					});
@@ -185,6 +193,15 @@ export default class SmartChoiceFSC extends LightningElement {
 		} else {
 			console.log("SmartChoiceFSC: Need a valid Input Mode value. Didn't get one");
 			throw new Error("SmartChoiceFSC: Need a valid Input Mode value. Didn't get one");
+		}
+	}
+
+	//show default visual card as selected
+	renderedCallback() {
+		if (this.showVisual && this.value != null) {
+			if (this.template.querySelector('[data-id="' + this.value + '"]') != null) {
+				this.template.querySelector('[data-id="' + this.value + '"]').checked = true;
+			}
 		}
 	}
 
@@ -212,6 +229,14 @@ export default class SmartChoiceFSC extends LightningElement {
 			this.selectedValue
 		);
 		this.dispatchEvent(attributeChangeEvent);
+	}
+
+	get inputStyle() {
+		if (this.style_width) {
+			return 'max-width: ' + this.style_width + 'px';
+		} 
+		return '' 
+			
 	}
 
 }
