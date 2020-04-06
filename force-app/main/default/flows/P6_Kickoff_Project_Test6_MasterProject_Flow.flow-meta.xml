@@ -28,12 +28,36 @@
         <actionName>GenerateFlowLink</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Run_Flow</targetReference>
+            <targetReference>Load_Flow</targetReference>
         </connector>
+        <inputParameters>
+            <name>param2Name</name>
+            <value>
+                <stringValue>vProvTicketId</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>param1Name</name>
+            <value>
+                <stringValue>recordId</stringValue>
+            </value>
+        </inputParameters>
         <inputParameters>
             <name>flowName</name>
             <value>
                 <elementReference>fFlowAPIName</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>param1Value</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>param2Value</name>
+            <value>
+                <elementReference>vProvTicketId</elementReference>
             </value>
         </inputParameters>
         <outputParameters>
@@ -42,27 +66,67 @@
         </outputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Run_Flow</name>
-        <label>Run Flow</label>
-        <locationX>2921</locationX>
+        <name>Label_New_Flow_Tab</name>
+        <label>Label New Flow Tab</label>
+        <locationX>3068</locationX>
         <locationY>880</locationY>
-        <actionName>c:navigateEverywhereLFA</actionName>
+        <actionName>c:consoleTabUtilityFA</actionName>
         <actionType>component</actionType>
         <connector>
             <targetReference>Check_for_Ticket_Selection_2</targetReference>
         </connector>
         <inputParameters>
-            <name>destinationUrl</name>
+            <name>action</name>
+            <value>
+                <stringValue>Label</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tabLabel</name>
+            <value>
+                <stringValue>Ticket Action</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tabIcon</name>
+            <value>
+                <stringValue>standard:invocable_action</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Load_Flow</name>
+        <label>Load Flow</label>
+        <locationX>3068</locationX>
+        <locationY>721</locationY>
+        <actionName>c:consoleTabUtilityFA</actionName>
+        <actionType>component</actionType>
+        <connector>
+            <targetReference>Label_New_Flow_Tab</targetReference>
+        </connector>
+        <inputParameters>
+            <name>action</name>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tabId</name>
+            <value>
+                <stringValue>Child</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tabUrl</name>
             <value>
                 <elementReference>vFlowUrl</elementReference>
             </value>
         </inputParameters>
-        <inputParameters>
-            <name>destinationType</name>
-            <value>
-                <stringValue>url</stringValue>
-            </value>
-        </inputParameters>
+        <outputParameters>
+            <assignToReference>vActionTabId</assignToReference>
+            <name>tabId</name>
+        </outputParameters>
     </actionCalls>
     <assignments>
         <description>Add all tickets based on their parent ticket being completed</description>
@@ -3640,40 +3704,6 @@ IF({!vTicketSelected_30},30,
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>ServiceAddress</name>
-            <extensionName>flowruntime:lookup</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>fieldApiName</name>
-                <value>
-                    <stringValue>Primary_Service_Address__c</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <stringValue>Service Address</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>objectApiName</name>
-                <value>
-                    <stringValue>Opportunity</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>recordId</name>
-                <value>
-                    <elementReference>vServiceAddress</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>vServiceAddress</assignToReference>
-                <name>recordId</name>
-            </outputParameters>
-        </fields>
-        <fields>
             <name>DeliveryMethod</name>
             <extensionName>c:quickChoiceFSC</extensionName>
             <fieldType>ComponentInstance</fieldType>
@@ -3725,12 +3755,6 @@ IF({!vTicketSelected_30},30,
                     <elementReference>vRecordTypeId</elementReference>
                 </value>
             </inputParameters>
-            <inputParameters>
-                <name>objectAndFieldName</name>
-                <value>
-                    <stringValue>Opportunity.Default_Delivery_Method__c</stringValue>
-                </value>
-            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>vDeliveryMethod</assignToReference>
@@ -3768,6 +3792,40 @@ IF({!vTicketSelected_30},30,
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>vDeliverySystemOwner</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>ServiceAddress</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Primary_Service_Address__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Service Address</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Opportunity</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>vServiceAddress</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>vServiceAddress</assignToReference>
                 <name>recordId</name>
             </outputParameters>
         </fields>
@@ -11365,6 +11423,13 @@ Individual components can have their visibility filtered by whether or not athe 
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>vActionTabId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>vAdditionalInfo</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -12207,30 +12272,6 @@ Individual components can have their visibility filtered by whether or not athe 
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vParent_01</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-    </variables>
-    <variables>
-        <name>vParent_02</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-    </variables>
-    <variables>
-        <name>vParent_03</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
     </variables>
     <variables>
         <name>vParentTicket</name>
