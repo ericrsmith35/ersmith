@@ -1,0 +1,33 @@
+=== Test Reports
+FORMAT  FILE
+──────  ────────────────────────────────────────────────────────────────────────────────────────────────────────
+txt     d:\esmit\Documents\Salesforce\ersmith\.sfdx\tools\testresults\apex\test-result.txt
+txt     d:\esmit\Documents\Salesforce\ersmith\.sfdx\tools\testresults\apex\test-run-id.txt
+junit   d:\esmit\Documents\Salesforce\ersmith\.sfdx\tools\testresults\apex\test-result-7076C00000sCeL0-junit.xml
+json    d:\esmit\Documents\Salesforce\ersmith\.sfdx\tools\testresults\apex\test-result-7076C00000sCeL0.json
+
+=== Test Results
+TEST NAME                             OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────  ───────  ───────  ────────────
+GetLayoutFieldsTest.CanGetRecordType  Pass              337
+
+=== Test Summary
+NAME                 VALUE
+───────────────────  ───────────────────────────────────────
+Outcome              Passed
+Tests Ran            1
+Passing              1
+Failing              0
+Skipped              0
+Pass Rate            100%
+Fail Rate            0%
+Test Start Time      Apr 19, 2020 4:51 PM
+Test Execution Time  337 ms
+Test Total Time      337 ms
+Command Time         3924 ms
+Hostname             https://gwi--ersmith.my.salesforce.com
+Org Id               00D6C0000008oXLUAY
+Username             ericrsmith@staff.gwi.net.ersmith
+Test Run Id          7076C00000sCeL0
+User Id              005600000019cXWAAY
+

@@ -13,3 +13,6 @@ declare module "@salesforce/apex/DisconnectOptionsController.getDeactivatePerm" 
 declare module "@salesforce/apex/DisconnectOptionsController.getDiscoReason" {
   export default function getDiscoReason(param: {accountId: any}): Promise<any>;
 }
+declare module "@salesforce/apex/DisconnectOptionsController.getActiveFiberAssets" {
+  export default function getActiveFiberAssets(param: {accountId: any}): Promise<any>;
+}

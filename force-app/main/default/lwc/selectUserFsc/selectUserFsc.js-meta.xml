@@ -2,7 +2,7 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>48.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Project Manager Picker</masterLabel>
+    <masterLabel>selectUserFsc v1.0</masterLabel>
     <targets>
         <target>lightning__FlowScreen</target>
     </targets>
@@ -14,6 +14,7 @@
             <property name="choiceLabels" role="inputOnly" label="Collection - Label" type="String[]" description="A string collection used to populated the labels"></property>
             <property name="choiceValues" role="inputOnly" label="Collection - Value" type="String[]" description="A string collection used to populated the additional values"></property>
             <property name="choiceIcons" role="inputOnly" label="Collection - Icons" type="String[]" description="A string collection used to populated the icons. Please visit https://www.lightningdesignsystem.com/icons/ for available icons. Example: standard:lead"></property>
+            <property name="prompt" role="inputOnly" label="Selection Prompt" type="String" default="Select User" description="The prompt to display on the selection screen"></property>
             <property name="iconSize" role="inputOnly" label="Icon Size" type="String" default="large" description="The size of the icon. Options include xx-small, x-small, small, medium, or large. The default is large."></property>
             <property name="boxSize" role="inputOnly" label="Box Size" type="Integer" required="true" default="60" description="The size of the box in pixels. The box is a square."></property>
             <property name="iconVariant" role="inputOnly" label="Icon Variant" type="String" default="circle" description="The variant changes the shape of the avatar. Valid values are empty, circle, and square. This value defaults to circle."></property>

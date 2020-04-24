@@ -5,12 +5,13 @@ import { FlowNavigationNextEvent } from "lightning/flowSupport";
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 
-export default class projectManagerPicker extends LightningElement {
+export default class selectUserFsc extends LightningElement {
 	@api value;
 	@track item;
 	@api choiceLabels; //string collection
 	@api choiceValues; //string collection
-	@api choiceIcons; //string collection
+    @api choiceIcons; //string collection
+    @api prompt = "Select User";
 	@api autoNext = false;
 	@api iconSize = "large";
 	@api required;

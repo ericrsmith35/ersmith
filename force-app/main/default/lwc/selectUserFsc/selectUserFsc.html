@@ -1,0 +1,46 @@
+<!-- 
+Lightning Web Component for Flow Screens:       selectUserFsc
+
+This component allows the user to select a User from a collection of avatars.
+
+Based on visualNav by chris@professorflow.com 
+
+4/6/20 -    Eric Smith -    Version 1.0
+
+-->
+<template>
+    <lightning-card title={prompt} icon-name="standard:user">
+        <div class="slds-card__body slds-card__body_inner">
+            <lightning-layout multiple-rows="true">
+                <template for:each={items} for:item="item">
+                    <lightning-layout-item class="slds-m-around_xxx-small" key={item.uniqueId}>
+                        <div class="slds-visual-picker" tabindex="0" onkeyup={handleKeyUp} data-outputlabel={item.label}
+                            data-outputsublabel={item.sublabel} data-outputvalue={item.value}
+                            data-outputunique={item.uniqueId}>
+                            <input type="radio" onclick={handleChange} name="visualList" id={item.uniqueId}
+                                tabindex="-1" title={item.label} value={item.value} data-outputlabel={item.label}
+                                data-outputsublabel={item.sublabel} data-outputvalue={item.value}
+                                data-outputunique={item.uniqueId} />
+                            <label for={item.uniqueId}>
+                                <span
+                                    class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center slds-m-around_xxx-small"
+                                    style={sizeWidth}>
+                                    <span class="slds-icon_container" title={item.label}>
+                                        <lightning-avatar variant={iconVariant} src={item.icon}
+                                            class="slds-m-around_xx-small" fallback-icon-name="standard:person_account"
+                                            alternative-text={item.label} size={iconSize}>
+                                        </lightning-avatar>
+                                    </span>
+                                </span>
+                            </label>
+                            <span class="slds-icon_container slds-visual-picker__text-check">
+                                <lightning-icon icon-name="utility:check" size="x-small" variant="inverse">
+                                </lightning-icon>
+                            </span>
+                        </div>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

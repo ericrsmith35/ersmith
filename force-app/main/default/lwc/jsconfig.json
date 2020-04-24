@@ -36,8 +36,14 @@
             "c/visualNav": [
                 "visualNav/visualNav.js"
             ],
-            "c/projectManagerPicker": [
-                "projectManagerPicker/projectManagerPicker.js"
+            "c/selectUserFsc": [
+                "selectUserFsc/selectUserFsc.js"
+            ],
+            "c/enhancedDualListBox": [
+                "enhancedDualListBox/enhancedDualListBox.js"
+            ],
+            "c/dualListBoxFSC": [
+                "dualListBoxFSC/dualListBoxFSC.js"
             ]
         }
     },

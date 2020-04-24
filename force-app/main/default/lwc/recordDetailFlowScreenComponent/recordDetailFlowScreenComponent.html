@@ -1,6 +1,9 @@
 <!-- 
 Lightning Web Component for Flow Screens:       recordDetailFlowScreenComponent
 
+4/16/20 -   Eric Smith -    Version 1.5
+                            Added underlines to fields when in View Mode to improve readability
+                            
 1/24/20 -   Eric Smith -    Version 1.3
                             Added a feature to display and handle a Cancel button when in Edit mode
                             Added an option to support flow navigation on record save and cancel                           
@@ -28,8 +31,10 @@ Lightning Web Component for Flow Screens:       recordDetailFlowScreenComponent
                             <lightning-layout multiple-rows="true">
                                 <template for:each={fieldData} for:item="field">
                                     <lightning-layout-item key={field.fieldName} size={elementSize}>
-                                        <lightning-output-field if:false={field.isError} field-name={field.fieldName}>
-                                        </lightning-output-field>
+                                        <div class="underline">
+                                            <lightning-output-field if:false={field.isError} field-name={field.fieldName}>
+                                            </lightning-output-field>
+                                        </div>
                                         <div if:true={field.isError} class="slds-text-color_destructive">
                                             {field.errorMessage}
                                         </div>
@@ -55,7 +60,6 @@ Lightning Web Component for Flow Screens:       recordDetailFlowScreenComponent
                                             <lightning-input-field  if:false={field.isOutput} field-name={field.fieldName}>
                                             </lightning-input-field>
                                         </template>
-
                                         <div if:true={field.isError}
                                              class="slds-text-color_destructive slds-align_absolute-center">
                                             {field.errorMessage}

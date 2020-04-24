@@ -3,7 +3,7 @@
     <apiVersion>47.0</apiVersion>
     <description>recordDetailFSC</description>
     <isExposed>true</isExposed>
-    <masterLabel>recordDetail FSC</masterLabel>
+    <masterLabel>recordDetail FSC v1.5</masterLabel>
     <targets>
         <target>lightning__FlowScreen</target>
         <target>lightning__RecordPage</target>

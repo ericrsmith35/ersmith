@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="force.apex" timestamp="2020-04-19T16:51:58-04:00" hostname="https://gwi--ersmith.my.salesforce.com" tests="1" failures="0"  errors="0"  time="0.34">
+        <properties>
+            <property name="outcome" value="Passed"/>
+            <property name="testsRan" value="1"/>
+            <property name="passing" value="1"/>
+            <property name="failing" value="0"/>
+            <property name="skipped" value="0"/>
+            <property name="passRate" value="100%"/>
+            <property name="failRate" value="0%"/>
+            <property name="testStartTime" value="Apr 19, 2020 4:51 PM"/>
+            <property name="testExecutionTime" value="0.34 s"/>
+            <property name="testTotalTime" value="0.34 s"/>
+            <property name="commandTime" value="3.92 s"/>
+            <property name="hostname" value="https://gwi--ersmith.my.salesforce.com"/>
+            <property name="orgId" value="00D6C0000008oXLUAY"/>
+            <property name="username" value="ericrsmith@staff.gwi.net.ersmith"/>
+            <property name="testRunId" value="7076C00000sCeL0"/>
+            <property name="userId" value="005600000019cXWAAY"/>
+        </properties>
+        <testcase name="CanGetRecordType" classname="GetLayoutFieldsTest" time="0.34">
+        </testcase>
+    </testsuite>
+</testsuites>
